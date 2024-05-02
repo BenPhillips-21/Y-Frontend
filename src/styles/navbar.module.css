@@ -1,0 +1,37 @@
+.navbar {
+    background-color: #FB4570;
+    color: #fff;
+    padding: 20px 20px; /* Increase padding to make navbar thicker */
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    text-decoration: none;
+    font-size: 24px;
+    color: #fff;
+}
+
+.navbarLink {
+    color: #EFEBE0;
+    margin-left: 1.5rem;
+}
+
+.navbarLinks {
+    justify-content: space-around;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.navbarContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

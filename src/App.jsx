@@ -1,33 +1,32 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Routes, Route, useLocation } from 'react-router-dom';
 import './App.css'
 
+import Navbar from './components/navbar.jsx'
+import Redirect from './components/redirect.jsx'
+import Home from './components/home.jsx'
+import MyProfile from './components/myprofile.jsx'
+import Register from './components/register.jsx'
+import Login from './components/login.jsx'
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [JWT, setJWT] = useState()
+
+  console.log(JWT)
+
+  const location = useLocation();
+  const showNavbar = !['/register', '/login'].includes(location.pathname);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {showNavbar && <Navbar JWT={JWT} setJWT={setJWT}/>}
+        <Routes>
+          <Route path='/' element={<Redirect />} />
+          <Route path='/home' element={<Home JWT={JWT} setJWT={setJWT}/>}/>
+          <Route path='/myprofile' element={<MyProfile JWT={JWT} setJWT={setJWT}/>}/>
+          <Route path='/register' element={<Register/>}/>
+          <Route path='/login' element={<Login JWT={JWT} setJWT={setJWT}/>}/>
+        </Routes>
     </>
   )
 }

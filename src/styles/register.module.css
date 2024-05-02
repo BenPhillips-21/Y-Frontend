@@ -1,0 +1,30 @@
+.registerContainer {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.registerContainer h1 {
+    margin-bottom: 20px;
+}
+
+.registerContainer form {
+    width: 50%; 
+}
+
+.registerContainer label {
+    margin-bottom: 8px;
+}
+
+.registerContainer input {
+    padding: 10px;
+    margin-bottom: 16px;
+    width: 100%; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+}
