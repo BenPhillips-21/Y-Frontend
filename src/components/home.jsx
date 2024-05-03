@@ -170,6 +170,29 @@ const Home = ({ JWT, setJWT }) => {
         }
     }
 
+    const handleDeleteComment = async (e, postid, commentid) => {
+        e.preventDefault()
+    
+        try {
+            const response = await fetch(`http://localhost:3000/deletecomment/${postid}/${commentid}`, {
+                method: 'GET', 
+                headers: headers,
+                mode: 'cors'
+            });
+    
+            if (response.ok) {
+                console.log('Comment deleted successfully')
+                fetchPosts()
+            } else {
+                console.log('Error occurred deleting comment')
+            }
+        } catch (error) {
+            console.error('Error deleting comment:', error)
+            throw new Error('Error deleting comment', error)
+        }
+    };
+    
+
     const formatDate = (date) => {
         return formatDistanceToNow(new Date(date), { addSuffix: true });
       }
@@ -193,6 +216,7 @@ const Home = ({ JWT, setJWT }) => {
                     <div className={styles.postContainer} key={index}>
                         <div className={styles.postHeader}>
                             <div className={styles.nameAndDateContainer}>
+                                <img src={post.poster.profilePic.url}></img>
                                 <p>{post.poster.username}</p>
                                 <p>{formatDate(post.dateSent)}</p>
                             </div>
@@ -222,12 +246,13 @@ const Home = ({ JWT, setJWT }) => {
                                 <div className={styles.commentContainer} key={index}>
                                     <div className={styles.commentInfo}>
                                         <div className={styles.nameAndDateContainer}>
+                                            <img src={comment.commenter.profilePic.url}></img>
                                             <p>{comment.commenter.username}</p>
                                             <p>{formatDate(comment.dateSent)}</p>
                                         </div>
-                                        {currentUser.username === comment.commenter.username && 
+                                        {currentUser._id === comment.commenter._id && 
                                         <div className={styles.deleteContainer}>
-                                            <button>Delete</button>
+                                            <button onClick={(e) => handleDeleteComment(e, post._id, comment._id)}>Delete</button>
                                         </div>}
                                     </div>
                                 <div className={styles.commentBody}>
