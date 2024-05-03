@@ -83,3 +83,9 @@
     display: flex;
     justify-content: flex-start;
 }
+
+.commentInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

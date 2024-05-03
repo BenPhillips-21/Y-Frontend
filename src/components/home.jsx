@@ -81,6 +81,27 @@ const Home = ({ JWT, setJWT }) => {
             console.error('An error occurred making the post', err);
         }
     };
+
+    const handleDeletePost = async (e, postid) => {
+        e.preventDefault()
+
+        try {
+            const response = await fetch(`http://localhost:3000/deletepost/${postid}`, {
+                method: 'GET',
+                headers: headers,
+                mode: 'cors'
+            })
+            
+            if (response.ok) {
+                fetchPosts()    
+            } else {
+                throw new Error("Failed to like post")
+            }
+
+        } catch (err) {
+            throw new Error ('Error occurred deleting post', err)
+        }
+    }
     
 
     const handleLike = async (postid) => {
@@ -153,10 +174,6 @@ const Home = ({ JWT, setJWT }) => {
         return formatDistanceToNow(new Date(date), { addSuffix: true });
       }
 
-    console.log(currentUser)
-    //  if current user posts array includes post._id && button
-    //   delete button should only appear if the currentUser is an admin or the owner of the post :)
-
     return (
         <div>
             <h2>Home Component</h2>
@@ -179,9 +196,9 @@ const Home = ({ JWT, setJWT }) => {
                                 <p>{post.poster.username}</p>
                                 <p>{formatDate(post.dateSent)}</p>
                             </div>
-                            {currentUser.posts.includes(post._id) && 
+                            {(currentUser.posts.includes(post._id) || currentUser.admin === true) && 
                             <div className={styles.deleteContainer}>
-                                <button>Delete</button>
+                                <button onClick={(e) => handleDeletePost(e, post._id)}>Delete</button>
                             </div>}
                         </div>
                         <div className={styles.postBody}>
@@ -204,8 +221,14 @@ const Home = ({ JWT, setJWT }) => {
                             {post.comments.map((comment, index) => (
                                 <div className={styles.commentContainer} key={index}>
                                     <div className={styles.commentInfo}>
-                                        <p>{comment.commenter.username}</p>
-                                        <p>{formatDate(comment.dateSent)}</p>
+                                        <div className={styles.nameAndDateContainer}>
+                                            <p>{comment.commenter.username}</p>
+                                            <p>{formatDate(comment.dateSent)}</p>
+                                        </div>
+                                        {currentUser.username === comment.commenter.username && 
+                                        <div className={styles.deleteContainer}>
+                                            <button>Delete</button>
+                                        </div>}
                                     </div>
                                 <div className={styles.commentBody}>
                                     <p>{comment.commentContent}</p>
