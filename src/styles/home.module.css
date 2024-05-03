@@ -17,7 +17,13 @@
 .postHeader {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     width: 95%;
+}
+
+.nameAndDateContainer {
+    display: flex;
+    flex-direction: row;
 }
 
 .postHeader p {

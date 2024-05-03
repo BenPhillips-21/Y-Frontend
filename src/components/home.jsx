@@ -7,11 +7,37 @@ const Home = ({ JWT, setJWT }) => {
     const [commentSection, setCommentSection] = useState([])
     const [commenting, setCommenting] = useState([])
     const [comment, setComment] = useState('')
+    const [post, setPost] = useState('')
+    const [currentUser, setCurrentUser] = useState()
 
     const headers = {
         'Authorization': `Bearer ${JWT}`,
         'Content-Type': 'application/json'
     };
+
+    useEffect(() => {
+        fetchPosts()
+        fetchCurrentUser()
+    }, [JWT])
+
+    const fetchCurrentUser = async () => {
+        try {
+            const response = await fetch('http://localhost:3000/myprofile', {
+                method: 'GET',
+                headers: headers,
+                mode: 'cors'
+            })
+
+            if (response.ok) {
+                const userData = await response.json()
+                setCurrentUser(userData)
+            } else {
+                throw new Error ("Error retrieving user data")
+            }
+        } catch (err) {
+            throw new Error ("Error fetching current user", err)
+        }
+    }
 
     const fetchPosts = async () => {
         try {
@@ -31,6 +57,31 @@ const Home = ({ JWT, setJWT }) => {
             console.error('Error fetching posts:', error);
         }
     };
+
+    const handleMakePost = async () => {
+        try {
+            const postBodyRequest = {
+                postContent: post
+            };
+    
+            const response = await fetch('http://localhost:3000/createpost/', {
+                method: 'POST',
+                headers: headers,
+                mode: 'cors',
+                body: JSON.stringify(postBodyRequest)
+            });
+    
+            if (response.ok) {
+                fetchPosts(); 
+                setPost(''); 
+            } else {
+                console.error('Failed to create post');
+            }
+        } catch (err) {
+            console.error('An error occurred making the post', err);
+        }
+    };
+    
 
     const handleLike = async (postid) => {
         try {
@@ -98,23 +149,40 @@ const Home = ({ JWT, setJWT }) => {
         }
     }
 
-    useEffect(() => {
-        fetchPosts();
-    }, [JWT])
-
     const formatDate = (date) => {
         return formatDistanceToNow(new Date(date), { addSuffix: true });
       }
 
+    console.log(currentUser)
+    //  if current user posts array includes post._id && button
+    //   delete button should only appear if the currentUser is an admin or the owner of the post :)
+
     return (
         <div>
             <h2>Home Component</h2>
+            <div className={styles.postBox}>
+            <form>
+                <input
+                    type="text"
+                    required
+                    value={post}
+                    onChange={(e) => setPost(e.target.value)}
+                />
+            </form>
+            <button onClick={(e) => handleMakePost(e)}>Post</button>
+            </div>
             <div className={styles.postsContainer}>
                 {posts.map((post, index) => (
                     <div className={styles.postContainer} key={index}>
                         <div className={styles.postHeader}>
-                            <p>{post.poster.username}</p>
-                            <p>{formatDate(post.dateSent)}</p>
+                            <div className={styles.nameAndDateContainer}>
+                                <p>{post.poster.username}</p>
+                                <p>{formatDate(post.dateSent)}</p>
+                            </div>
+                            {currentUser.posts.includes(post._id) && 
+                            <div className={styles.deleteContainer}>
+                                <button>Delete</button>
+                            </div>}
                         </div>
                         <div className={styles.postBody}>
                             <p>{post.postContent}</p>
