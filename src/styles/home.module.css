@@ -1,0 +1,79 @@
+.postsContainer {
+    background-color: orange;
+    width: 35vw;
+}
+
+.postContainer {
+    width: 100%;
+    margin-top: 1.5rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.postHeader {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+}
+
+.postHeader p {
+    margin-right: 1rem;
+}
+
+.postBody {
+    display: flex;
+    justify-content: flex-start;
+    width: 95%;
+}
+
+.postInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 95%;
+}
+
+.postFooter {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.likeButtonContainer {
+    width: 100%;
+}
+
+.commentButtonContainer{
+    width: 100%;
+}
+
+#buttonStyling {
+    width: 100%;
+}
+
+.commentSection {
+    background-color: blanchedalmond;
+    width: 95%;
+}
+
+.commentContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+    margin-top: 0.5rem;
+    width: 100%;
+}
+
+.commentInfo {
+    display: flex;
+    flex-direction: row;
+}
+
+.commentBody {
+    display: flex;
+    justify-content: flex-start;
+}
