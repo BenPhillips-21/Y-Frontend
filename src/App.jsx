@@ -11,6 +11,7 @@ import Login from './components/login.jsx'
 
 function App() {
   const [JWT, setJWT] = useState()
+  const [currentUser, setCurrentUser] = useState()
 
   console.log(JWT)
 
@@ -19,10 +20,10 @@ function App() {
 
   return (
     <>
-      {showNavbar && <Navbar JWT={JWT} setJWT={setJWT}/>}
+      {showNavbar && <Navbar JWT={JWT} setJWT={setJWT} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
         <Routes>
           <Route path='/' element={<Redirect />} />
-          <Route path='/home' element={<Home JWT={JWT} setJWT={setJWT}/>}/>
+          <Route path='/home' element={<Home JWT={JWT} setJWT={setJWT} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}/>
           <Route path='/myprofile' element={<MyProfile JWT={JWT} setJWT={setJWT}/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/login' element={<Login JWT={JWT} setJWT={setJWT}/>}/>

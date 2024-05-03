@@ -1,3 +1,14 @@
+.homeContainer {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3rem;
+}
+
+.postFatherContainer {
+    display: flex;
+    flex-direction: column;
+}
+
 .postsContainer {
     background-color: orange;
     width: 35vw;
@@ -94,4 +105,15 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.userPicAndName {
+    display: flex;
+    flex-direction: row;
+}
+
+.userPicAndName img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
 }

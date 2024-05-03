@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import styles from '../styles/home.module.css';
+import { Toaster, toast } from 'sonner';
 
-const Home = ({ JWT, setJWT }) => {
+const Home = ({ JWT, setJWT, currentUser, setCurrentUser }) => {
     const [posts, setPosts] = useState([])
     const [commentSection, setCommentSection] = useState([])
     const [commenting, setCommenting] = useState([])
     const [comment, setComment] = useState('')
     const [post, setPost] = useState('')
-    const [currentUser, setCurrentUser] = useState()
+    const [allUsers, setAllUsers] = useState([])
+
+    const sentFriendToast = () => toast.success('Friend Request Sent')
+    const postToast = () => toast.success('Post Created Successfully')
+    const somethingWentWrong = (error) => toast.error(`Oh No! ${error}`)
 
     const headers = {
         'Authorization': `Bearer ${JWT}`,
@@ -18,7 +23,29 @@ const Home = ({ JWT, setJWT }) => {
     useEffect(() => {
         fetchPosts()
         fetchCurrentUser()
+        fetchAllUsers()
     }, [JWT])
+
+    const fetchAllUsers = async () => {
+        try {
+            const response = await fetch('http://localhost:3000/getallusers', {
+                method: 'GET',
+                headers: headers,
+                mode: 'cors'
+            })
+
+            if (response.ok) {
+                let allUsersData = await response.json()
+                setAllUsers(allUsersData)
+            } else {
+                somethingWentWrong('error occurred fetching all users')
+                throw new Error ('error occurred fetching all users')
+            }
+        } catch (err) {
+            somethingWentWrong('error fetching all users')
+            throw new Error ('error fetching all users', err)
+        }
+    }
 
     const fetchCurrentUser = async () => {
         try {
@@ -32,9 +59,11 @@ const Home = ({ JWT, setJWT }) => {
                 const userData = await response.json()
                 setCurrentUser(userData)
             } else {
+                somethingWentWrong("Error retrieving user data")
                 throw new Error ("Error retrieving user data")
             }
         } catch (err) {
+            somethingWentWrong("Error fetching current user")
             throw new Error ("Error fetching current user", err)
         }
     }
@@ -51,9 +80,11 @@ const Home = ({ JWT, setJWT }) => {
                 const data = await response.json();
                 setPosts(data); 
             } else {
+                somethingWentWrong('Failed to fetch posts')
                 throw new Error('Failed to fetch posts');
             }
         } catch (error) {
+            somethingWentWrong('Error fetching posts')
             console.error('Error fetching posts:', error);
         }
     };
@@ -72,10 +103,12 @@ const Home = ({ JWT, setJWT }) => {
             });
     
             if (response.ok) {
-                fetchPosts(); 
-                setPost(''); 
+                fetchPosts() 
+                setPost('')
+                postToast()
             } else {
-                console.error('Failed to create post');
+                somethingWentWrong('Failed to create post')
+                console.error('Failed to create post')
             }
         } catch (err) {
             console.error('An error occurred making the post', err);
@@ -95,10 +128,12 @@ const Home = ({ JWT, setJWT }) => {
             if (response.ok) {
                 fetchPosts()    
             } else {
+                somethingWentWrong("Failed to like post")
                 throw new Error("Failed to like post")
             }
 
         } catch (err) {
+            somethingWentWrong('Error occurred deleting post')
             throw new Error ('Error occurred deleting post', err)
         }
     }
@@ -115,9 +150,11 @@ const Home = ({ JWT, setJWT }) => {
             if (response.ok) {
                 fetchPosts()    
             } else {
+                somethingWentWrong("Failed to like post")
                 throw new Error("Failed to like post")
             }
         } catch (err) {
+            somethingWentWrong('Error liking post')
             console.error('Error liking post...', err)
         }
     }
@@ -166,6 +203,7 @@ const Home = ({ JWT, setJWT }) => {
         }
 
         } catch (err) {
+            somethingWentWrong("Error occurred adding comment")
             throw new Error ("Error occurred adding comment", err)
         }
     }
@@ -184,10 +222,11 @@ const Home = ({ JWT, setJWT }) => {
                 console.log('Comment deleted successfully')
                 fetchPosts()
             } else {
+                somethingWentWrong('Error occurred deleting comment')
                 console.log('Error occurred deleting comment')
             }
         } catch (error) {
-            console.error('Error deleting comment:', error)
+            somethingWentWrong('Error deleting comment')
             throw new Error('Error deleting comment', error)
         }
     };
@@ -197,8 +236,33 @@ const Home = ({ JWT, setJWT }) => {
         return formatDistanceToNow(new Date(date), { addSuffix: true });
       }
 
+    const sendFriendRequest = async (e, userid) => {
+        e.preventDefault()
+
+        try {
+            const response = await fetch(`http://localhost:3000/sendfriendrequest/${userid}`, {
+                method: 'GET',
+                headers: headers,
+                mode: 'cors'
+            }) 
+
+            if (response.ok) {
+                console.log("Friend request sent :D")
+                fetchCurrentUser()
+                sentFriendToast()
+            } else {
+                somethingWentWrong("Error sending friend request")
+                throw new Error ("Error sending friend request")
+            }
+        } catch (err) {
+            somethingWentWrong('Error occurred sending friend request')
+            throw new Error ('Error occurred sending friend request')
+        }
+    }
+
     return (
-        <div>
+        <div className={styles.homeContainer}>
+            <div className={styles.postFatherContainer}>
             <h2>Home Component</h2>
             <div className={styles.postBox}>
             <form>
@@ -263,7 +327,7 @@ const Home = ({ JWT, setJWT }) => {
                         </div>}
                         {commenting.includes(post._id) && 
                             <div className={styles.commentBox}>
-                               <form>
+                            <form>
                                     <input
                                         type="text"
                                         required
@@ -276,6 +340,22 @@ const Home = ({ JWT, setJWT }) => {
                     </div>
                 ))}
             </div>
+            </div>
+            {currentUser &&
+            <div className={styles.userListContainer}>
+                <h1>New Users</h1>
+                {allUsers.map((user, index) => (
+                    <div className={styles.userListContainer} key={index}>
+                        {(!currentUser.friends.includes(user._id) && !currentUser.friendRequests.includes(user._id) && !currentUser.sentFriendRequests.includes(user._id) && currentUser._id !== user._id) &&
+                        <div className={styles.userPicAndName}>   
+                            <img src={user.profilePic.url}></img>
+                            <p>{user.username}</p>
+                            <button onClick={(e) => sendFriendRequest(e, user._id)}>Add Friend</button>
+                        </div>}
+                    </div>
+                ))}
+            </div>}
+            <Toaster richColors/>
         </div>
     );
 };
