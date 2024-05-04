@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styles from '../styles/myprofile.module.css'; 
 // import { Toaster, toast } from 'sonner';
 
-const MyProfile = ({ JWT, setJWT, currentUser, setCurrentUser, postToast, deletePostToast,  }) => {
+const MyProfile = ({ fetchCurrentUser, JWT, setJWT, currentUser, setCurrentUser, postToast, deletePostToast,  }) => {
     const [post, setPost] = useState('')
 
     const somethingWentWrong = (error) => toast.error(`Oh No! ${error}`)
@@ -38,25 +38,6 @@ const MyProfile = ({ JWT, setJWT, currentUser, setCurrentUser, postToast, delete
             console.error('An error occurred making the post', err);
         }
     };
-
-    const fetchCurrentUser = async () => {
-        try {
-            const response = await fetch('http://localhost:3000/myprofile', {
-                method: 'GET',
-                headers: headers,
-                mode: 'cors'
-            })
-
-            if (response.ok) {
-                const userData = await response.json()
-                setCurrentUser(userData)
-            } else {
-                throw new Error ("Error retrieving user data")
-            }
-        } catch (err) {
-            throw new Error ("Error fetching current user", err)
-        }
-    }
 
     return (
         <div className={styles.fatherContainer}>

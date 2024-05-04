@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from '../styles/navbar.module.css'
 import { Toaster, toast } from 'sonner';
 
-const Navbar = ({JWT, setJWT, currentUser, setCurrentUser}) => {
+const Navbar = ({fetchCurrentUser, JWT, setJWT, currentUser, setCurrentUser}) => {
     const [openFriends, setOpenFriends] = useState(false)
 
     const headers = {
@@ -16,25 +16,6 @@ const Navbar = ({JWT, setJWT, currentUser, setCurrentUser}) => {
     useEffect(() => {
         fetchCurrentUser()
     }, [JWT])
-
-    const fetchCurrentUser = async () => {
-        try {
-            const response = await fetch('http://localhost:3000/myprofile', {
-                method: 'GET',
-                headers: headers,
-                mode: 'cors'
-            })
-
-            if (response.ok) {
-                const userData = await response.json()
-                setCurrentUser(userData)
-            } else {
-                throw new Error ("Error retrieving user data")
-            }
-        } catch (err) {
-            throw new Error ("Error fetching current user", err)
-        }
-    }
 
     console.log(currentUser, 'currentUser in navabar component')
 

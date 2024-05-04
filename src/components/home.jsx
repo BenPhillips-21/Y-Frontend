@@ -3,7 +3,7 @@ import { formatDistanceToNow } from 'date-fns';
 import styles from '../styles/home.module.css';
 // import { Toaster, toast } from 'sonner';
 
-const Home = ({ JWT, setJWT, currentUser, setCurrentUser, postToast, sentFriendToast, deletePostToast, createCommentToast, deleteCommentToast, somethingWentWrong }) => {
+const Home = ({ fetchCurrentUser, JWT, setJWT, currentUser, setCurrentUser, postToast, sentFriendToast, deletePostToast, createCommentToast, deleteCommentToast, somethingWentWrong }) => {
     const [posts, setPosts] = useState([])
     const [commentSection, setCommentSection] = useState([])
     const [commenting, setCommenting] = useState([])
@@ -40,27 +40,6 @@ const Home = ({ JWT, setJWT, currentUser, setCurrentUser, postToast, sentFriendT
         } catch (err) {
             somethingWentWrong('error fetching all users')
             throw new Error ('error fetching all users', err)
-        }
-    }
-
-    const fetchCurrentUser = async () => {
-        try {
-            const response = await fetch('http://localhost:3000/myprofile', {
-                method: 'GET',
-                headers: headers,
-                mode: 'cors'
-            })
-
-            if (response.ok) {
-                const userData = await response.json()
-                setCurrentUser(userData)
-            } else {
-                somethingWentWrong("Error retrieving user data")
-                throw new Error ("Error retrieving user data")
-            }
-        } catch (err) {
-            somethingWentWrong("Error fetching current user")
-            throw new Error ("Error fetching current user", err)
         }
     }
 

@@ -21,16 +21,42 @@ function App() {
   const deleteCommentToast = () => toast.success('Comment deleted successfully')
   const somethingWentWrong = (error) => toast.error(`Oh No! ${error}`)
 
+  const headers = {
+    'Authorization': `Bearer ${JWT}`,
+    'Content-Type': 'application/json'
+};
+
+  const fetchCurrentUser = async () => {
+    try {
+        const response = await fetch('http://localhost:3000/myprofile', {
+            method: 'GET',
+            headers: headers,
+            mode: 'cors'
+        })
+
+        if (response.ok) {
+            const userData = await response.json()
+            setCurrentUser(userData)
+        } else {
+            somethingWentWrong("Error retrieving user data")
+            throw new Error ("Error retrieving user data")
+        }
+    } catch (err) {
+        somethingWentWrong("Error fetching current user")
+        throw new Error ("Error fetching current user", err)
+    }
+}
+
   const location = useLocation();
   const showNavbar = !['/register', '/login'].includes(location.pathname);
 
   return (
     <>
-      {showNavbar && <Navbar JWT={JWT} setJWT={setJWT} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
+      {showNavbar && <Navbar fetchCurrentUser={fetchCurrentUser} JWT={JWT} setJWT={setJWT} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
         <Routes>
           <Route path='/' element={<Redirect />} />
-          <Route path='/home' element={<Home JWT={JWT} setJWT={setJWT} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} sentFriendToast={sentFriendToast} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} somethingWentWrong={somethingWentWrong}/>}/>
-          <Route path='/myprofile' element={<MyProfile JWT={JWT} setJWT={setJWT} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} deletePostToast={deletePostToast}/>}/>
+          <Route path='/home' element={<Home fetchCurrentUser={fetchCurrentUser} JWT={JWT} setJWT={setJWT} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} sentFriendToast={sentFriendToast} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} somethingWentWrong={somethingWentWrong}/>}/>
+          <Route path='/myprofile' element={<MyProfile fetchCurrentUser={fetchCurrentUser} JWT={JWT} setJWT={setJWT} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} deletePostToast={deletePostToast}/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/login' element={<Login JWT={JWT} setJWT={setJWT}/>}/>
         </Routes>
