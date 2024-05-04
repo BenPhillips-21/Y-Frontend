@@ -38,7 +38,7 @@
 
 .friendRequestsDropdown {
     position: absolute;
-    background-color: black;
+    background-color: grey;
     min-width: 160px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -49,4 +49,8 @@
 .friendRequestInfo {
     display: flex;
     flex-direction: row;
+}
+
+.friendRequestInfo img {
+    width: 3rem;
 }

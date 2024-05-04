@@ -78,12 +78,13 @@ const Navbar = ({JWT, setJWT, currentUser, setCurrentUser}) => {
                 </div>
                 {openFriends && (
                     <div className={styles.friendRequestsDropdown}>
-                        {currentUser.friendRequests.map((request, index) =>
+                        {currentUser.friendRequests.length > 0 ? currentUser.friendRequests.map((request, index) =>
                         <div className={styles.friendRequestInfo} key={index}>
+                            <img src={request.profilePic.url}></img>
                             <p>{request.username}</p>
                             <button onClick={(e) => acceptFriendRequest(e, request._id)}>Accept Friend Request</button>
                         </div>
-                    )}
+                    ) : <h2>No friend requests</h2>}
                     </div>
                 )}
         </div>

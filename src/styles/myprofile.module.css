@@ -1,0 +1,88 @@
+.fatherContainer {
+    width: 75vw;
+    min-height: 100vh;
+    margin-left: -1rem;
+    background-color: purple;
+    margin-top: 2.85rem;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    align-items: center;
+}
+
+.profileHeader {
+    width: 100%;
+    background-color: pink;
+    margin-top: 3rem;
+    height: 8rem;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.profileHeader img {
+    width: 8rem;
+}
+
+.profileBodyContainer {
+    width: 100%;
+    background-color: aquamarine;
+    height: 40rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.aboutMeAndFriendsContainer {
+    width: 30%;
+    height: 100%;
+    background-color: brown;
+    display: flex;
+    flex-direction: column;
+}
+
+.aboutMeContainer {
+    width: 100%;
+    min-height: 20%;
+    background-color: blueviolet;
+}
+
+.friendsContainer {
+    width: 100%;
+    height: 100%;
+    background-color: beige;
+}
+
+.friendCard {
+    background-color: aquamarine;
+    width: 100%;
+}
+
+.profilePostsContainer {
+    width: 70%;
+    height: 100%;
+    background-color: blanchedalmond;
+    display: flex;
+    flex-direction: column;
+}
+
+.postBox {
+    width: 100%;
+    min-height: 15rem;
+    background-color: orangered;
+}
+
+.myPostsContainer {
+    width: 100%;
+    min-height: 25rem;
+    background-color: aliceblue;
+}
+
+.postCard {
+    width: 100%;
+    min-height: 3rem;
+    background-color: bisque;
+}
+
+.postCard p {
+    color: black;
+}

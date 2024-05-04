@@ -11,8 +11,11 @@ const Home = ({ JWT, setJWT, currentUser, setCurrentUser }) => {
     const [post, setPost] = useState('')
     const [allUsers, setAllUsers] = useState([])
 
-    const sentFriendToast = () => toast.success('Friend Request Sent')
-    const postToast = () => toast.success('Post Created Successfully')
+    const sentFriendToast = () => toast.success('Friend request sent')
+    const postToast = () => toast.success('Post published Successfully')
+    const deletePostToast = () => toast.success('Post deleted successfully')
+    const createCommentToast = () => toast.success('Comment published successfully')
+    const deleteCommentToast = () => toast.success('Comment deleted successfully')
     const somethingWentWrong = (error) => toast.error(`Oh No! ${error}`)
 
     const headers = {
@@ -126,7 +129,8 @@ const Home = ({ JWT, setJWT, currentUser, setCurrentUser }) => {
             })
             
             if (response.ok) {
-                fetchPosts()    
+                fetchPosts() 
+                deletePostToast()   
             } else {
                 somethingWentWrong("Failed to like post")
                 throw new Error("Failed to like post")
@@ -200,6 +204,7 @@ const Home = ({ JWT, setJWT, currentUser, setCurrentUser }) => {
         if (response.ok) {
             fetchPosts()
             setComment('')
+            createCommentToast()
         }
 
         } catch (err) {
@@ -221,6 +226,7 @@ const Home = ({ JWT, setJWT, currentUser, setCurrentUser }) => {
             if (response.ok) {
                 console.log('Comment deleted successfully')
                 fetchPosts()
+                deleteCommentToast()
             } else {
                 somethingWentWrong('Error occurred deleting comment')
                 console.log('Error occurred deleting comment')
@@ -347,6 +353,7 @@ const Home = ({ JWT, setJWT, currentUser, setCurrentUser }) => {
                 {allUsers.map((user, index) => (
                     <div className={styles.userListContainer} key={index}>
                         {(!currentUser.friends.includes(user._id) && !currentUser.friendRequests.includes(user._id) && !currentUser.sentFriendRequests.includes(user._id) && currentUser._id !== user._id) &&
+                        // not a friend AND not in friend requests AND not in sentfriendrequests AND not the current user
                         <div className={styles.userPicAndName}>   
                             <img src={user.profilePic.url}></img>
                             <p>{user.username}</p>
