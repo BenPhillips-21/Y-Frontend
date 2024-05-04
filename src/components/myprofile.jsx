@@ -1,19 +1,17 @@
 import React, {useState} from 'react';
 import styles from '../styles/myprofile.module.css'; 
-import { Toaster, toast } from 'sonner';
+// import { Toaster, toast } from 'sonner';
 
-const MyProfile = ({ JWT, setJWT, currentUser, setCurrentUser }) => {
+const MyProfile = ({ JWT, setJWT, currentUser, setCurrentUser, postToast, deletePostToast,  }) => {
     const [post, setPost] = useState('')
 
-    const postToast = () => toast.success('Post published Successfully')
     const somethingWentWrong = (error) => toast.error(`Oh No! ${error}`)
-
-    console.log(currentUser);
 
     const headers = {
         'Authorization': `Bearer ${JWT}`,
         'Content-Type': 'application/json'
     };
+    console.log(currentUser);
     
     const handleMakePost = async () => {
         try {
@@ -102,7 +100,6 @@ const MyProfile = ({ JWT, setJWT, currentUser, setCurrentUser }) => {
                     </div>
                 </div>
             </div>
-            <Toaster richColors/>
         </div>
     );
 };

@@ -1,22 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import styles from '../styles/home.module.css';
-import { Toaster, toast } from 'sonner';
+// import { Toaster, toast } from 'sonner';
 
-const Home = ({ JWT, setJWT, currentUser, setCurrentUser }) => {
+const Home = ({ JWT, setJWT, currentUser, setCurrentUser, postToast, sentFriendToast, deletePostToast, createCommentToast, deleteCommentToast, somethingWentWrong }) => {
     const [posts, setPosts] = useState([])
     const [commentSection, setCommentSection] = useState([])
     const [commenting, setCommenting] = useState([])
     const [comment, setComment] = useState('')
     const [post, setPost] = useState('')
     const [allUsers, setAllUsers] = useState([])
-
-    const sentFriendToast = () => toast.success('Friend request sent')
-    const postToast = () => toast.success('Post published Successfully')
-    const deletePostToast = () => toast.success('Post deleted successfully')
-    const createCommentToast = () => toast.success('Comment published successfully')
-    const deleteCommentToast = () => toast.success('Comment deleted successfully')
-    const somethingWentWrong = (error) => toast.error(`Oh No! ${error}`)
 
     const headers = {
         'Authorization': `Bearer ${JWT}`,
@@ -362,7 +355,6 @@ const Home = ({ JWT, setJWT, currentUser, setCurrentUser }) => {
                     </div>
                 ))}
             </div>}
-            <Toaster richColors/>
         </div>
     );
 };
