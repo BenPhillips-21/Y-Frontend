@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from '../styles/register.module.css'
 
-const Register = () => {
+const Register = ({registerToast}) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [confirmedPassword, setConfirmedPassword] = useState('')
@@ -25,6 +25,7 @@ const Register = () => {
             throw new Error('Network response was not ok');
           }
 
+          registerToast()
           navigate('/login');
         } catch (error) {
           console.error('Error:', error);

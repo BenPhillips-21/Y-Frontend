@@ -4,6 +4,7 @@ import styles from '../styles/myprofile.module.css';
 const MyProfile = ({ fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, deletePostToast,  }) => {
     const [post, setPost] = useState('')
     const [profile, setProfile] = useState()
+    const [friends, setFriends] = useState()
 
     useEffect(() => {
         if (otherUser) {
@@ -12,8 +13,15 @@ const MyProfile = ({ fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, 
             setProfile(currentUser) 
         }
     }, [otherUser]);
-    
 
+    useEffect(() => {
+        if (profile && profile.friends) {
+            let friendsArray = profile.friends.map(friend => friend._id);
+            setFriends(friendsArray);
+        }
+    }, [profile])
+    
+    console.log(friends, 'friends array!!!!')
     const somethingWentWrong = (error) => toast.error(`Oh No! ${error}`)
 
     const headers = {
@@ -53,8 +61,14 @@ const MyProfile = ({ fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, 
     return (
         <div className={styles.fatherContainer}>
             <div className={styles.profileHeader}>
-                {profile && <img src={profile.profilePic.url}></img>}
-                {profile && <h2>{profile.username}</h2>}
+                <div className={styles.profilePicAndName}>
+                    {profile && <img src={profile.profilePic.url}></img>}
+                    {profile && <h2>{profile.username}</h2>}
+                </div>
+                {profile && profile._id !== currentUser._id &&
+                <div className={styles.friendsOrNotBox}>
+                    {friends.includes(currentUser._id) ? <h3>Friends</h3> : <h3>Enemies</h3>}
+                </div>}
             </div>
             <div className={styles.profileBodyContainer}>
                 <div className={styles.aboutMeAndFriendsContainer}>
@@ -66,7 +80,7 @@ const MyProfile = ({ fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, 
                         <h3>Friends</h3>
                         {profile && profile.friends.map((friend, index) => (
                             <div key={index} className={styles.friendCard}>
-                                <p>{friend.username}</p>
+                                <p onClick={(e) => handleVisitProfile(e, friend._id)}>{friend.username}</p>
                             </div>
                         ))}
                     </div>

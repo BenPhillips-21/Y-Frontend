@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from '../styles/navbar.module.css'
 import { Toaster, toast } from 'sonner';
 
-const Navbar = ({fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser}) => {
+const Navbar = ({fetchCurrentUser, fetchOtherUser, logoutToast, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser}) => {
     const [openFriends, setOpenFriends] = useState(false)
 
     let navigate = useNavigate()
@@ -52,6 +52,14 @@ const Navbar = ({fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJ
         navigate('/myprofile')
     }
 
+    const handleLogout = async () => {
+        setJWT()
+        setCurrentUser()
+        setOtherUser()
+        logoutToast()
+        navigate('/login')
+    }
+
 
     return (
     <div className={styles.navContainer}>
@@ -64,7 +72,7 @@ const Navbar = ({fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJ
                 <div className={styles.navbarLinks}>
                     <button onClick={(e) => handleMyProfileClick(e)} style={{ backgroundColor: 'transparent', color: '#fff', border: 'none', cursor: 'pointer' }}  className={styles.navbarLink}>My Profile</button>
                     <button onClick={() => openFriendRequests()} style={{ backgroundColor: 'transparent', color: '#fff', border: 'none', cursor: 'pointer' }} className={styles.navbarLink}>Friend Requests</button>
-                    <Link to="/logout" className={styles.navbarLink}>Logout</Link>
+                    <button onClick={() => handleLogout()} style={{ backgroundColor: 'transparent', color: '#fff', border: 'none', cursor: 'pointer' }} className={styles.navbarLink}>Logout</button>
                 </div>
                 {openFriends && (
                     <div className={styles.friendRequestsDropdown}>

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from '../styles/register.module.css'
 
-const Register = ({JWT, setJWT}) => {
+const Register = ({JWT, setJWT, loginToast}) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(false)
@@ -26,7 +26,8 @@ const Register = ({JWT, setJWT}) => {
 
           let data = await response.json()
           setJWT(data.token)
-          navigate('/home');
+          loginToast()
+          navigate('/home')
         } catch (error) {
           console.error('Error:', error);
         }

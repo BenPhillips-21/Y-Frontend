@@ -18,11 +18,14 @@ function App() {
 
   const navigate = useNavigate()
 
-  const postToast = () => toast.success('Post published Successfully')
+  const postToast = () => toast.success('Post published successfully')
   const sentFriendToast = () => toast.success('Friend request sent')
   const deletePostToast = () => toast.success('Post deleted successfully')
   const createCommentToast = () => toast.success('Comment published successfully')
   const deleteCommentToast = () => toast.success('Comment deleted successfully')
+  const registerToast = () => toast.success('Registered successfully')
+  const loginToast = () => toast.success('Logged in successfully')
+  const logoutToast = () => toast.success('Logged out successfully')
   const somethingWentWrong = (error) => toast.error(`Oh No! ${error}`)
 
   const headers = {
@@ -87,13 +90,13 @@ const handleVisitProfile = async (e, userid) => {
 
   return (
     <>
-      {showNavbar && <Navbar fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
+      {showNavbar && <Navbar fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} logoutToast={logoutToast} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
         <Routes>
           <Route path='/' element={<Redirect />} />
           <Route path='/home' element={<Home fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} sentFriendToast={sentFriendToast} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} somethingWentWrong={somethingWentWrong}/>}/>
           <Route path='/myprofile' element={<MyProfile fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} deletePostToast={deletePostToast}/>}/>
-          <Route path='/register' element={<Register/>}/>
-          <Route path='/login' element={<Login JWT={JWT} setJWT={setJWT}/>}/>
+          <Route path='/register' element={<Register registerToast={registerToast}/>}/>
+          <Route path='/login' element={<Login JWT={JWT} setJWT={setJWT} loginToast={loginToast}/>}/>
         </Routes>
         <Toaster richColors/>
     </>

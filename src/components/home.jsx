@@ -82,6 +82,7 @@ const Home = ({ fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJW
     
             if (response.ok) {
                 fetchPosts() 
+                fetchCurrentUser()
                 setPost('')
                 postToast()
             } else {
@@ -262,7 +263,7 @@ const Home = ({ fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJW
                         <div className={styles.postHeader}>
                             <div className={styles.nameAndDateContainer}>
                                 <img src={post.poster.profilePic.url}></img>
-                                <p>{post.poster.username}</p>
+                                <p onClick={(e) => handleVisitProfile(e, post.poster._id)}>{post.poster.username}</p>
                                 <p>{formatDate(post.dateSent)}</p>
                             </div>
                             {(currentUser.posts.includes(post._id) || currentUser.admin === true) && 
