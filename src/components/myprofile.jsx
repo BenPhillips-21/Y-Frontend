@@ -1,9 +1,18 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from '../styles/myprofile.module.css'; 
-// import { Toaster, toast } from 'sonner';
 
-const MyProfile = ({ fetchCurrentUser, JWT, setJWT, currentUser, setCurrentUser, postToast, deletePostToast,  }) => {
+const MyProfile = ({ fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, deletePostToast,  }) => {
     const [post, setPost] = useState('')
+    const [profile, setProfile] = useState()
+
+    useEffect(() => {
+        if (otherUser) {
+            setProfile(otherUser)  
+        } else {
+            setProfile(currentUser) 
+        }
+    }, [otherUser]);
+    
 
     const somethingWentWrong = (error) => toast.error(`Oh No! ${error}`)
 
@@ -11,7 +20,9 @@ const MyProfile = ({ fetchCurrentUser, JWT, setJWT, currentUser, setCurrentUser,
         'Authorization': `Bearer ${JWT}`,
         'Content-Type': 'application/json'
     };
-    console.log(currentUser);
+    console.log(currentUser, 'current user');
+    console.log(otherUser, 'profile visiting')
+    console.log(profile, 'profile!!!!!')
     
     const handleMakePost = async () => {
         try {
@@ -42,18 +53,18 @@ const MyProfile = ({ fetchCurrentUser, JWT, setJWT, currentUser, setCurrentUser,
     return (
         <div className={styles.fatherContainer}>
             <div className={styles.profileHeader}>
-                <img src={currentUser.profilePic.url}></img>
-                <h2>{currentUser.username}</h2>
+                {profile && <img src={profile.profilePic.url}></img>}
+                {profile && <h2>{profile.username}</h2>}
             </div>
             <div className={styles.profileBodyContainer}>
                 <div className={styles.aboutMeAndFriendsContainer}>
                     <div className={styles.aboutMeContainer}>
                         <h3>About Me</h3>
-                        <p>{currentUser.bio}</p>
+                        {profile && <p>{profile.bio}</p>}
                     </div>
                     <div className={styles.friendsContainer}>
                         <h3>Friends</h3>
-                        {currentUser.friends.map((friend, index) => (
+                        {profile && profile.friends.map((friend, index) => (
                             <div key={index} className={styles.friendCard}>
                                 <p>{friend.username}</p>
                             </div>
@@ -61,6 +72,7 @@ const MyProfile = ({ fetchCurrentUser, JWT, setJWT, currentUser, setCurrentUser,
                     </div>
                 </div>
                 <div className={styles.profilePostsContainer}>
+                    {profile && profile._id === currentUser._id && 
                     <div className={styles.postBox}>
                     <form>
                     <input
@@ -69,11 +81,11 @@ const MyProfile = ({ fetchCurrentUser, JWT, setJWT, currentUser, setCurrentUser,
                         value={post}
                         onChange={(e) => setPost(e.target.value)}
                     />
-                </form>
+                    </form>
                 <button onClick={(e) => handleMakePost(e)}>Post</button>
-                    </div>
+                    </div>}
                     <div className={styles.myPostsContainer}>
-                        {currentUser.posts.map((post, index) => (
+                        {profile && profile.posts.map((post, index) => (
                             <div key={index} className={styles.postCard}>
                                 <p>{post.postContent}</p>
                             </div>

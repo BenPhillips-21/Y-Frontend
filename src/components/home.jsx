@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import styles from '../styles/home.module.css';
-// import { Toaster, toast } from 'sonner';
 
-const Home = ({ fetchCurrentUser, JWT, setJWT, currentUser, setCurrentUser, postToast, sentFriendToast, deletePostToast, createCommentToast, deleteCommentToast, somethingWentWrong }) => {
+const Home = ({ fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, sentFriendToast, deletePostToast, createCommentToast, deleteCommentToast, somethingWentWrong }) => {
     const [posts, setPosts] = useState([])
     const [commentSection, setCommentSection] = useState([])
     const [commenting, setCommenting] = useState([])
@@ -15,6 +14,10 @@ const Home = ({ fetchCurrentUser, JWT, setJWT, currentUser, setCurrentUser, post
         'Authorization': `Bearer ${JWT}`,
         'Content-Type': 'application/json'
     };
+
+    useEffect(() => {
+        setOtherUser('')
+    }, [])
 
     useEffect(() => {
         fetchPosts()
@@ -328,7 +331,7 @@ const Home = ({ fetchCurrentUser, JWT, setJWT, currentUser, setCurrentUser, post
                         // not a friend AND not in friend requests AND not in sentfriendrequests AND not the current user
                         <div className={styles.userPicAndName}>   
                             <img src={user.profilePic.url}></img>
-                            <p>{user.username}</p>
+                            <p onClick={(e) => handleVisitProfile(e, user._id)}>{user.username}</p>
                             <button onClick={(e) => sendFriendRequest(e, user._id)}>Add Friend</button>
                         </div>}
                     </div>

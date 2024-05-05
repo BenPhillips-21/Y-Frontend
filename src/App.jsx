@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom';
 import './App.css'
 import { Toaster, toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
 
 import Navbar from './components/navbar.jsx'
 import Redirect from './components/redirect.jsx'
@@ -13,6 +14,9 @@ import Login from './components/login.jsx'
 function App() {
   const [JWT, setJWT] = useState()
   const [currentUser, setCurrentUser] = useState()
+  const [otherUser, setOtherUser] = useState()
+
+  const navigate = useNavigate()
 
   const postToast = () => toast.success('Post published Successfully')
   const sentFriendToast = () => toast.success('Friend request sent')
@@ -47,16 +51,47 @@ function App() {
     }
 }
 
+const fetchOtherUser = async (userid) => {
+  try {
+    const response = await fetch(`http://localhost:3000/getuser/${userid}`, {
+        method: 'GET',
+        headers: headers,
+        mode: 'cors'
+    })
+
+    if (response.ok) {
+        const userData = await response.json()
+        setOtherUser(userData)
+    } else {
+        somethingWentWrong("Error retrieving user data")
+        throw new Error ("Error retrieving user data")
+    }
+} catch (err) {
+    somethingWentWrong("Error fetching current user")
+    throw new Error ("Error fetching current user", err)
+}
+}
+
+const handleVisitProfile = async (e, userid) => {
+  e.preventDefault()
+  try {
+      fetchOtherUser(userid)
+      navigate('/myprofile')
+  } catch (err) {
+      throw new Error('Error occurred trying to visit user profile', err)
+  }
+}
+
   const location = useLocation();
   const showNavbar = !['/register', '/login'].includes(location.pathname);
 
   return (
     <>
-      {showNavbar && <Navbar fetchCurrentUser={fetchCurrentUser} JWT={JWT} setJWT={setJWT} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
+      {showNavbar && <Navbar fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
         <Routes>
           <Route path='/' element={<Redirect />} />
-          <Route path='/home' element={<Home fetchCurrentUser={fetchCurrentUser} JWT={JWT} setJWT={setJWT} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} sentFriendToast={sentFriendToast} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} somethingWentWrong={somethingWentWrong}/>}/>
-          <Route path='/myprofile' element={<MyProfile fetchCurrentUser={fetchCurrentUser} JWT={JWT} setJWT={setJWT} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} deletePostToast={deletePostToast}/>}/>
+          <Route path='/home' element={<Home fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} sentFriendToast={sentFriendToast} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} somethingWentWrong={somethingWentWrong}/>}/>
+          <Route path='/myprofile' element={<MyProfile fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} deletePostToast={deletePostToast}/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/login' element={<Login JWT={JWT} setJWT={setJWT}/>}/>
         </Routes>

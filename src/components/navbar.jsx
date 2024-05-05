@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from '../styles/navbar.module.css'
 import { Toaster, toast } from 'sonner';
 
-const Navbar = ({fetchCurrentUser, JWT, setJWT, currentUser, setCurrentUser}) => {
+const Navbar = ({fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser}) => {
     const [openFriends, setOpenFriends] = useState(false)
+
+    let navigate = useNavigate()
 
     const headers = {
         'Authorization': `Bearer ${JWT}`,
@@ -44,16 +46,23 @@ const Navbar = ({fetchCurrentUser, JWT, setJWT, currentUser, setCurrentUser}) =>
         }
     }
 
+    const handleMyProfileClick = async (e) => {
+        e.preventDefault()
+        setOtherUser('')
+        navigate('/myprofile')
+    }
+
+
     return (
     <div className={styles.navContainer}>
         <Toaster richColors/>
         <nav className={styles.navbar}>
         <div className={styles.container}>
             <div className={styles.navbarContainer}>
-                <Link to="/" className={styles.navbarLink}>Home</Link>
+                <Link to="/home" className={styles.navbarLink}>Home</Link>
             </div>
                 <div className={styles.navbarLinks}>
-                    <Link to="/myprofile" className={styles.navbarLink}>My Profile</Link>
+                    <button onClick={(e) => handleMyProfileClick(e)} style={{ backgroundColor: 'transparent', color: '#fff', border: 'none', cursor: 'pointer' }}  className={styles.navbarLink}>My Profile</button>
                     <button onClick={() => openFriendRequests()} style={{ backgroundColor: 'transparent', color: '#fff', border: 'none', cursor: 'pointer' }} className={styles.navbarLink}>Friend Requests</button>
                     <Link to="/logout" className={styles.navbarLink}>Logout</Link>
                 </div>
@@ -62,7 +71,7 @@ const Navbar = ({fetchCurrentUser, JWT, setJWT, currentUser, setCurrentUser}) =>
                         {currentUser.friendRequests.length > 0 ? currentUser.friendRequests.map((request, index) =>
                         <div className={styles.friendRequestInfo} key={index}>
                             <img src={request.profilePic.url}></img>
-                            <p>{request.username}</p>
+                            <p onClick={(e) => handleVisitProfile(e, request._id)}>{request.username}</p>
                             <button onClick={(e) => acceptFriendRequest(e, request._id)}>Accept Friend Request</button>
                         </div>
                     ) : <h2>No friend requests</h2>}
