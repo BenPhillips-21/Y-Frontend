@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from './components/navbar.jsx'
 import Redirect from './components/redirect.jsx'
 import Home from './components/home.jsx'
-import MyProfile from './components/myprofile.jsx'
+import Profile from './components/profile.jsx'
 import Register from './components/register.jsx'
 import Login from './components/login.jsx'
 
@@ -94,7 +94,7 @@ const handleVisitProfile = async (e, userid) => {
         <Routes>
           <Route path='/' element={<Redirect />} />
           <Route path='/home' element={<Home fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} sentFriendToast={sentFriendToast} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} somethingWentWrong={somethingWentWrong}/>}/>
-          <Route path='/myprofile' element={<MyProfile fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} deletePostToast={deletePostToast}/>}/>
+          <Route path='/myprofile' element={<Profile fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} deletePostToast={deletePostToast}/>}/>
           <Route path='/register' element={<Register registerToast={registerToast}/>}/>
           <Route path='/login' element={<Login JWT={JWT} setJWT={setJWT} loginToast={loginToast}/>}/>
         </Routes>

@@ -34,6 +34,12 @@
 .friendsOrNotBox {
     background-color: aquamarine;
     min-width: 10rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.friendsOrNotBox img {
+    width: 3rem;
 }
 
 .profileBodyContainer {

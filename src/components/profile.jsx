@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styles from '../styles/myprofile.module.css'; 
 
-const MyProfile = ({ fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, deletePostToast,  }) => {
+const Profile = ({ fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, deletePostToast,  }) => {
     const [post, setPost] = useState('')
     const [profile, setProfile] = useState()
     const [friends, setFriends] = useState()
@@ -67,7 +67,8 @@ const MyProfile = ({ fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, 
                 </div>
                 {profile && profile._id !== currentUser._id &&
                 <div className={styles.friendsOrNotBox}>
-                    {friends.includes(currentUser._id) ? <h3>Friends</h3> : <h3>Enemies</h3>}
+                    <h3>Friends</h3>
+                    {friends.includes(currentUser._id) ? <img src='/tick.svg'></img> : <img src='/cross.svg'></img>}
                 </div>}
             </div>
             <div className={styles.profileBodyContainer}>
@@ -111,4 +112,4 @@ const MyProfile = ({ fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, 
     );
 };
 
-export default MyProfile;
+export default Profile;
