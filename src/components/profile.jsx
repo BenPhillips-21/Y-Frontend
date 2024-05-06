@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import styles from '../styles/myprofile.module.css'; 
+import Post from './post.jsx'
 
-const Profile = ({ fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, deletePostToast,  }) => {
+const Profile = ({ headers, posts, setPosts, createCommentToast, deleteCommentToast, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, deletePostToast,  }) => {
     const [post, setPost] = useState('')
     const [profile, setProfile] = useState()
     const [friends, setFriends] = useState()
@@ -24,10 +25,6 @@ const Profile = ({ fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, se
     console.log(friends, 'friends array!!!!')
     const somethingWentWrong = (error) => toast.error(`Oh No! ${error}`)
 
-    const headers = {
-        'Authorization': `Bearer ${JWT}`,
-        'Content-Type': 'application/json'
-    };
     console.log(currentUser, 'current user');
     console.log(otherUser, 'profile visiting')
     console.log(profile, 'profile!!!!!')
@@ -101,9 +98,7 @@ const Profile = ({ fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, se
                     </div>}
                     <div className={styles.myPostsContainer}>
                         {profile && profile.posts.map((post, index) => (
-                            <div key={index} className={styles.postCard}>
-                                <p>{post.postContent}</p>
-                            </div>
+                            <Post headers={headers} post={post} index={index} currentUser={currentUser} deletePostToast={deletePostToast} JWT={JWT} setPosts={setPosts} somethingWentWrong={somethingWentWrong} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} />
                         ))}
                     </div>
                 </div>

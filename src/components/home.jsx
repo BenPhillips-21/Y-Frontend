@@ -2,15 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styles from '../styles/home.module.css';
 import Post from './post.jsx'
 
-const Home = ({ fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, sentFriendToast, deletePostToast, createCommentToast, deleteCommentToast, somethingWentWrong }) => {
-    const [posts, setPosts] = useState([])
+const Home = ({ headers, posts, setPosts, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, sentFriendToast, deletePostToast, createCommentToast, deleteCommentToast, somethingWentWrong }) => {
     const [post, setPost] = useState('')
     const [allUsers, setAllUsers] = useState([])
-
-    const headers = {
-        'Authorization': `Bearer ${JWT}`,
-        'Content-Type': 'application/json'
-    };
 
     useEffect(() => {
         setOtherUser('')
@@ -134,7 +128,7 @@ const Home = ({ fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJW
             </div>
             <div className={styles.postsContainer}>
                 {posts.map((post, index) => (
-                    <Post post={post} index={index} currentUser={currentUser} deletePostToast={deletePostToast} JWT={JWT} setPosts={setPosts} somethingWentWrong={somethingWentWrong} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} />
+                    <Post headers={headers} post={post} index={index} currentUser={currentUser} deletePostToast={deletePostToast} JWT={JWT} setPosts={setPosts} somethingWentWrong={somethingWentWrong} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} />
                 ))}
             </div>
             </div>

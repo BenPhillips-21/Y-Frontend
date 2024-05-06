@@ -2,15 +2,12 @@ import React, {useEffect, useState} from 'react';
 import styles from '../styles/post.module.css'; 
 import { formatDistanceToNow } from 'date-fns';
 
-const Post = ({post, index, currentUser, JWT, setPosts, somethingWentWrong, deletePostToast, createCommentToast, deleteCommentToast}) => {
+const Post = ({post, index, currentUser, JWT, setPosts, somethingWentWrong, deletePostToast, createCommentToast, deleteCommentToast, headers}) => {
     const [commentSection, setCommentSection] = useState([])
     const [commenting, setCommenting] = useState([])
     const [comment, setComment] = useState('')
-    
-    const headers = {
-        'Authorization': `Bearer ${JWT}`,
-        'Content-Type': 'application/json'
-    };
+
+    console.log(post, 'POST')
 
     const fetchPosts = async () => {
         try {
