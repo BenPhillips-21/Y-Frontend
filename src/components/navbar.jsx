@@ -3,15 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from '../styles/navbar.module.css'
 import { Toaster, toast } from 'sonner';
 
-const Navbar = ({fetchCurrentUser, fetchOtherUser, logoutToast, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser}) => {
+const Navbar = ({headers, fetchCurrentUser, fetchOtherUser, logoutToast, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser}) => {
     const [openFriends, setOpenFriends] = useState(false)
 
     let navigate = useNavigate()
-
-    const headers = {
-        'Authorization': `Bearer ${JWT}`,
-        'Content-Type': 'application/json'
-    };
 
     const friendAccepted = () => toast.success('Friend Request Accepted')
 
@@ -23,7 +18,8 @@ const Navbar = ({fetchCurrentUser, fetchOtherUser, logoutToast, handleVisitProfi
 
     console.log(openFriends)
 
-    const openFriendRequests = () => {
+    const openFriendRequests = (e) => {
+        e.preventDefault()
         setOpenFriends(!openFriends)
     }
 
@@ -52,7 +48,8 @@ const Navbar = ({fetchCurrentUser, fetchOtherUser, logoutToast, handleVisitProfi
         navigate('/myprofile')
     }
 
-    const handleLogout = async () => {
+    const handleLogout = async (e) => {
+        e.preventDefault()
         setJWT()
         setCurrentUser()
         setOtherUser()
@@ -70,9 +67,9 @@ const Navbar = ({fetchCurrentUser, fetchOtherUser, logoutToast, handleVisitProfi
                 <Link to="/home" className={styles.navbarLink}>Home</Link>
             </div>
                 <div className={styles.navbarLinks}>
-                    <button onClick={(e) => handleMyProfileClick(e)} style={{ backgroundColor: 'transparent', color: '#fff', border: 'none', cursor: 'pointer' }}  className={styles.navbarLink}>My Profile</button>
-                    <button onClick={() => openFriendRequests()} style={{ backgroundColor: 'transparent', color: '#fff', border: 'none', cursor: 'pointer' }} className={styles.navbarLink}>Friend Requests</button>
-                    <button onClick={() => handleLogout()} style={{ backgroundColor: 'transparent', color: '#fff', border: 'none', cursor: 'pointer' }} className={styles.navbarLink}>Logout</button>
+                    <button onClick={(e) => handleMyProfileClick(e)} className={styles.navbarLink}>My Profile</button>
+                    <button onClick={(e) => openFriendRequests(e)} className={styles.navbarLink}>Friend Requests</button>
+                    <button onClick={(e) => handleLogout(e)} className={styles.navbarLink}>Logout</button>
                 </div>
                 {openFriends && (
                     <div className={styles.friendRequestsDropdown}>

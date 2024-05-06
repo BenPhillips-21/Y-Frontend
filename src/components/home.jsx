@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/home.module.css';
 import Post from './post.jsx'
+import PostBox from './postbox.jsx'
 
 const Home = ({ headers, posts, setPosts, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, sentFriendToast, deletePostToast, createCommentToast, deleteCommentToast, somethingWentWrong }) => {
-    const [post, setPost] = useState('')
     const [allUsers, setAllUsers] = useState([])
 
     useEffect(() => {
@@ -58,35 +58,6 @@ const Home = ({ headers, posts, setPosts, fetchCurrentUser, fetchOtherUser, hand
         }
     };
 
-    const handleMakePost = async (e) => {
-        e.preventDefault()
-
-        try {
-            const postBodyRequest = {
-                postContent: post
-            };
-    
-            const response = await fetch('http://localhost:3000/createpost/', {
-                method: 'POST',
-                headers: headers,
-                mode: 'cors',
-                body: JSON.stringify(postBodyRequest)
-            });
-    
-            if (response.ok) {
-                fetchPosts() 
-                fetchCurrentUser()
-                setPost('')
-                postToast()
-            } else {
-                somethingWentWrong('Failed to create post')
-                console.error('Failed to create post')
-            }
-        } catch (err) {
-            console.error('An error occurred making the post', err);
-        }
-    };
-
     const sendFriendRequest = async (e, userid) => {
         e.preventDefault()
 
@@ -114,17 +85,8 @@ const Home = ({ headers, posts, setPosts, fetchCurrentUser, fetchOtherUser, hand
     return (
         <div className={styles.homeContainer}>
             <div className={styles.postFatherContainer}>
-            <h2>Home Component</h2>
             <div className={styles.postBox}>
-            <form>
-                <input
-                    type="text"
-                    required
-                    value={post}
-                    onChange={(e) => setPost(e.target.value)}
-                />
-            </form>
-            <button onClick={(e) => handleMakePost(e)}>Post</button>
+                <PostBox headers={headers} fetchPosts={fetchPosts} fetchCurrentUser={fetchCurrentUser} postToast={postToast} somethingWentWrong={somethingWentWrong}/>
             </div>
             <div className={styles.postsContainer}>
                 {posts.map((post, index) => (
@@ -138,7 +100,6 @@ const Home = ({ headers, posts, setPosts, fetchCurrentUser, fetchOtherUser, hand
                 {allUsers.map((user, index) => (
                     <div className={styles.userListContainer} key={index}>
                         {(!currentUser.friends.includes(user._id) && !currentUser.friendRequests.includes(user._id) && !currentUser.sentFriendRequests.includes(user._id) && currentUser._id !== user._id) &&
-                        // not a friend AND not in friend requests AND not in sentfriendrequests AND not the current user
                         <div className={styles.userPicAndName}>   
                             <img src={user.profilePic.url}></img>
                             <p onClick={(e) => handleVisitProfile(e, user._id)}>{user.username}</p>

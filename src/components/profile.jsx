@@ -13,7 +13,7 @@ const Profile = ({ headers, posts, setPosts, createCommentToast, deleteCommentTo
         } else {
             setProfile(currentUser) 
         }
-    }, [otherUser]);
+    }, [otherUser, currentUser]);
 
     useEffect(() => {
         if (profile && profile.friends) {
@@ -29,7 +29,9 @@ const Profile = ({ headers, posts, setPosts, createCommentToast, deleteCommentTo
     console.log(otherUser, 'profile visiting')
     console.log(profile, 'profile!!!!!')
     
-    const handleMakePost = async () => {
+    const handleMakePost = async (e) => {
+        e.preventDefault();
+
         try {
             const postBodyRequest = {
                 postContent: post

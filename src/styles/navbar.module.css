@@ -24,6 +24,13 @@
     justify-content: space-around;
 }
 
+.navbarLinks button {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
 .container {
     display: flex;
     flex-direction: row;
