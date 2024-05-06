@@ -80,7 +80,7 @@ const handleVisitProfile = async (e, userid) => {
   e.preventDefault()
   try {
       fetchOtherUser(userid)
-      navigate('/myprofile')
+      navigate('/profile')
   } catch (err) {
       throw new Error('Error occurred trying to visit user profile', err)
   }
@@ -95,7 +95,7 @@ const handleVisitProfile = async (e, userid) => {
         <Routes>
           <Route path='/' element={<Redirect />} />
           <Route path='/home' element={<Home headers={headers} posts={posts} setPosts={setPosts} fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} sentFriendToast={sentFriendToast} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} somethingWentWrong={somethingWentWrong}/>}/>
-          <Route path='/myprofile' element={<Profile headers={headers} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} posts={posts} setPosts={setPosts} fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} deletePostToast={deletePostToast}/>}/>
+          <Route path='/profile' element={<Profile headers={headers} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} posts={posts} setPosts={setPosts} fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} deletePostToast={deletePostToast}/>}/>
           <Route path='/register' element={<Register registerToast={registerToast}/>}/>
           <Route path='/login' element={<Login JWT={JWT} setJWT={setJWT} loginToast={loginToast}/>}/>
         </Routes>

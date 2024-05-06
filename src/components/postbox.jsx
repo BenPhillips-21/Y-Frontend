@@ -19,7 +19,7 @@ const PostBox = ({headers, fetchPosts, fetchCurrentUser, postToast, somethingWen
             });
     
             if (response.ok) {
-                fetchPosts() 
+                fetchPosts ? fetchPosts() : ''
                 fetchCurrentUser()
                 setPost('')
                 postToast()

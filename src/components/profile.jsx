@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styles from '../styles/myprofile.module.css'; 
 import Post from './post.jsx'
+import PostBox from './postbox.jsx'
 
 const Profile = ({ headers, posts, setPosts, createCommentToast, deleteCommentToast, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, deletePostToast,  }) => {
     const [post, setPost] = useState('')
@@ -88,16 +89,9 @@ const Profile = ({ headers, posts, setPosts, createCommentToast, deleteCommentTo
                 <div className={styles.profilePostsContainer}>
                     {profile && profile._id === currentUser._id && 
                     <div className={styles.postBox}>
-                    <form>
-                    <input
-                        type="text"
-                        required
-                        value={post}
-                        onChange={(e) => setPost(e.target.value)}
-                    />
-                    </form>
-                <button onClick={(e) => handleMakePost(e)}>Post</button>
-                    </div>}
+                        <PostBox headers={headers} fetchCurrentUser={fetchCurrentUser} postToast={postToast} somethingWentWrong={somethingWentWrong}/>
+                    </div>
+                    }
                     <div className={styles.myPostsContainer}>
                         {profile && profile.posts.map((post, index) => (
                             <Post headers={headers} post={post} index={index} currentUser={currentUser} deletePostToast={deletePostToast} JWT={JWT} setPosts={setPosts} somethingWentWrong={somethingWentWrong} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} />

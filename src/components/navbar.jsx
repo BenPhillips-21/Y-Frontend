@@ -45,7 +45,7 @@ const Navbar = ({headers, fetchCurrentUser, fetchOtherUser, logoutToast, handleV
     const handleMyProfileClick = async (e) => {
         e.preventDefault()
         setOtherUser('')
-        navigate('/myprofile')
+        navigate('/profile')
     }
 
     const handleLogout = async (e) => {
