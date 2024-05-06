@@ -4,9 +4,6 @@ import Post from './post.jsx'
 
 const Home = ({ fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, sentFriendToast, deletePostToast, createCommentToast, deleteCommentToast, somethingWentWrong }) => {
     const [posts, setPosts] = useState([])
-    const [commentSection, setCommentSection] = useState([])
-    const [commenting, setCommenting] = useState([])
-    const [comment, setComment] = useState('')
     const [post, setPost] = useState('')
     const [allUsers, setAllUsers] = useState([])
 
@@ -137,7 +134,7 @@ const Home = ({ fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJW
             </div>
             <div className={styles.postsContainer}>
                 {posts.map((post, index) => (
-                    <Post post={post} index={index} currentUser={currentUser} deletePostToast={deletePostToast} JWT={JWT} setPosts={setPosts} somethingWentWrong={somethingWentWrong} deletePostToast={deletePostToast} commenting={commenting} setCommenting={setCommenting} commentSection={commentSection} setCommentSection={setCommentSection} comment={comment} setComment={setComment} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} />
+                    <Post post={post} index={index} currentUser={currentUser} deletePostToast={deletePostToast} JWT={JWT} setPosts={setPosts} somethingWentWrong={somethingWentWrong} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} />
                 ))}
             </div>
             </div>
