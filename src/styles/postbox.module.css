@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'OpenSans';
+    src: url('/Open_Sans/static/OpenSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+.postBoxForm {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.postBoxForm textarea {
+    width: 90%;
+    height: 5rem;
+    border: 0px;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    resize: none;
+    font-family: 'OpenSans';
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.postBoxForm button {
+    background-color: #F2E34C;
+    border-radius: 2rem;
+    padding: auto;
+    position: absolute;
+    right: 0rem;
+    top: 4.25rem;
+}

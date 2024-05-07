@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react';
 import styles from '../styles/post.module.css'; 
 import { formatDistanceToNow } from 'date-fns';
 
-const Post = ({post, index, currentUser, JWT, setPosts, somethingWentWrong, deletePostToast, createCommentToast, deleteCommentToast, headers}) => {
+const Post = ({post, index, currentUserPostIDs, currentUser, JWT, posts, setPosts, somethingWentWrong, deletePostToast, createCommentToast, deleteCommentToast, headers}) => {
     const [commentSection, setCommentSection] = useState([])
     const [commenting, setCommenting] = useState([])
     const [comment, setComment] = useState('')
 
-    console.log(post, 'POST')
+    console.log(currentUserPostIDs, 'currentuserposts :)')
 
     const fetchPosts = async () => {
         try {
@@ -164,10 +164,13 @@ const Post = ({post, index, currentUser, JWT, setPosts, somethingWentWrong, dele
                         <p onClick={(e) => handleVisitProfile(e, post.poster._id)}>{post.poster.username}</p>
                         <p>{formatDate(post.dateSent)}</p>
                     </div>
-                    {(currentUser.posts.includes(post._id) || currentUser.admin === true) && 
+                    {currentUserPostIDs.includes(post._id) && 
                     <div className={styles.deleteContainer}>
-                        <button onClick={(e) => handleDeletePost(e, post._id)}>Delete</button>
-                    </div>}
+                        <button onClick={(e) => handleDeletePost(e, post._id)}>
+                            <img src="/trash.svg" alt="Trash Can Icon"></img>
+                        </button>
+                    </div>
+                    }
                 </div>
                 <div className={styles.postBody}>
                     <p>{post.postContent}</p>
@@ -196,7 +199,9 @@ const Post = ({post, index, currentUser, JWT, setPosts, somethingWentWrong, dele
                                 </div>
                                 {currentUser._id === comment.commenter._id && 
                                 <div className={styles.deleteContainer}>
-                                    <button onClick={(e) => handleDeleteComment(e, post._id, comment._id)}>Delete</button>
+                                    <button onClick={(e) => handleDeleteComment(e, post._id, comment._id)}>
+                                        <img src="/trash.svg" alt="Trash Can Icon"></img>
+                                    </button>
                                 </div>}
                             </div>
                         <div className={styles.commentBody}>

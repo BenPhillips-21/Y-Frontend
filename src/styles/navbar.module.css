@@ -1,6 +1,6 @@
 .navbar {
-    background-color: #FB4570;
-    color: #fff;
+    background-color: #F2E34C;
+    color: black;
     padding: 20px 20px; /* Increase padding to make navbar thicker */
     width: 100vw;
     position: fixed;
@@ -16,8 +16,9 @@
 }
 
 .navbarLink {
-    color: #EFEBE0;
+    color: black;
     margin-left: 1.5rem;
+    font-family: 'OpenSansBold';
 }
 
 .navbarLinks {
@@ -25,8 +26,9 @@
 }
 
 .navbarLinks button {
+    font-family: 'OpenSansBold';
     background-color: transparent;
-    color: #fff;
+    color: black;
     border: none;
     cursor: pointer;
 }

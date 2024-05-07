@@ -5,6 +5,23 @@ import PostBox from './postbox.jsx'
 
 const Home = ({ headers, posts, setPosts, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, sentFriendToast, deletePostToast, createCommentToast, deleteCommentToast, somethingWentWrong }) => {
     const [allUsers, setAllUsers] = useState([])
+    const [currentUserPostIDs, setCurrentUserPostIDs] = useState([])
+    const [userFriendIDs, setUserFriendIDs] = useState([])
+    const [userFriendRequestIDs, setUserFriendRequestIDs] = useState([])
+    const [userSentFriendRequestIDs, setUserSentFriendRequestIDs] = useState([])
+
+    useEffect(() => {
+        if (currentUser !== undefined) {
+        let currentUserPosts = currentUser.posts.map(post => post._id);
+        setCurrentUserPostIDs(currentUserPosts)
+        let userFriends = currentUser.friends.map(friend => friend._id)
+        setUserFriendIDs(userFriends)
+        let userFriendRequests = currentUser.friendRequests.map(friendRequest => friendRequest._id)
+        setUserFriendRequestIDs(userFriendRequests)
+        let userSentFriendRequests = currentUser.sentFriendRequests.map(sentFriendRequest => sentFriendRequest)
+        setUserSentFriendRequestIDs(userSentFriendRequests)
+    }
+    }, [currentUser])
 
     useEffect(() => {
         setOtherUser('')
@@ -85,29 +102,34 @@ const Home = ({ headers, posts, setPosts, fetchCurrentUser, fetchOtherUser, hand
     return (
         <div className={styles.homeContainer}>
             <div className={styles.postFatherContainer}>
-            <div className={styles.postBox}>
-                <PostBox headers={headers} fetchPosts={fetchPosts} fetchCurrentUser={fetchCurrentUser} postToast={postToast} somethingWentWrong={somethingWentWrong}/>
+                <div className={styles.postBox}>
+                    <PostBox headers={headers}fetchPosts={fetchPosts}fetchCurrentUser={fetchCurrentUser}postToast={postToast}somethingWentWrong={somethingWentWrong}/>
+                </div>
+                <div className={styles.postsContainer}>
+                    {posts.map((post, index) => (
+                        <Post key={index}currentUserPostIDs={currentUserPostIDs}headers={headers}post={post}index={index}currentUser={currentUser}deletePostToast={deletePostToast}JWT={JWT}posts={posts}setPosts={setPosts}somethingWentWrong={somethingWentWrong}deletePostToast={deletePostToast}createCommentToast={createCommentToast}deleteCommentToast={deleteCommentToast}/>
+                    ))}
+                </div>
             </div>
-            <div className={styles.postsContainer}>
-                {posts.map((post, index) => (
-                    <Post headers={headers} post={post} index={index} currentUser={currentUser} deletePostToast={deletePostToast} JWT={JWT} setPosts={setPosts} somethingWentWrong={somethingWentWrong} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} />
-                ))}
-            </div>
-            </div>
-            {currentUser &&
-            <div className={styles.userListContainer}>
-                <h1>New Users</h1>
-                {allUsers.map((user, index) => (
-                    <div className={styles.userListContainer} key={index}>
-                        {(!currentUser.friends.includes(user._id) && !currentUser.friendRequests.includes(user._id) && !currentUser.sentFriendRequests.includes(user._id) && currentUser._id !== user._id) &&
-                        <div className={styles.userPicAndName}>   
-                            <img src={user.profilePic.url}></img>
-                            <p onClick={(e) => handleVisitProfile(e, user._id)}>{user.username}</p>
-                            <button onClick={(e) => sendFriendRequest(e, user._id)}>Add Friend</button>
-                        </div>}
-                    </div>
-                ))}
-            </div>}
+            {currentUser && (
+                <div className={styles.userListContainer}>
+                    <h1>New Users</h1>
+                    {allUsers.map((user, index) => (
+                        <div className={styles.userListContainer} key={index}>
+                                {!userFriendIDs.includes(user._id) &&
+                                !userFriendRequestIDs.includes(user._id) &&
+                                !userSentFriendRequestIDs.includes(user._id) &&
+                                currentUser._id !== user._id && (
+                                    <div className={styles.userPicAndName}>
+                                        <img src={user.profilePic.url} alt={user.username} />
+                                        <p onClick={(e) => handleVisitProfile(e, user._id)}>{user.username}</p>
+                                        <button onClick={(e) => sendFriendRequest(e, user._id)}>Add Friend</button>
+                                    </div>
+                                )}
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import styles from '../styles/postbox.module.css'
 
 const PostBox = ({headers, fetchPosts, fetchCurrentUser, postToast, somethingWentWrong}) => {
     const [post, setPost] = useState('')
@@ -38,15 +39,16 @@ const PostBox = ({headers, fetchPosts, fetchCurrentUser, postToast, somethingWen
 
     return (
         <>
-            <form onSubmit={handleFormSubmit}>
-                <input
+            <form className={styles.postBoxForm} onSubmit={handleFormSubmit}>
+                <textarea
                     type="text"
                     required
+                    placeholder="What's on your mind?"
                     value={post}
                     onChange={(e) => setPost(e.target.value)}
                 />
+                <button onClick={(e) => handleMakePost(e)}>Post</button>
             </form>
-            <button onClick={(e) => handleMakePost(e)}>Post</button>
         </>
     )
 }

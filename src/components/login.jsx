@@ -35,6 +35,7 @@ const Register = ({JWT, setJWT, loginToast}) => {
 
     return (
         <>
+          <div className={styles.background}>
             <div className={styles.registerContainer}>
                 <h1>Login !</h1>
                 <form>
@@ -54,11 +55,13 @@ const Register = ({JWT, setJWT, loginToast}) => {
                     />
                 </form>
                 <button onClick={(e) => handleSubmit(e)}>Submit</button>
+                <button onClick={() => navigate('/register')}>Register</button>
                 {error === true &&
                     <ul>
                         <li>Username or password incorrect</li>
                     </ul>
                 }
+            </div>
             </div>
         </>
     )

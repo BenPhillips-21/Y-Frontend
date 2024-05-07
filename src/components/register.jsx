@@ -34,38 +34,41 @@ const Register = ({registerToast}) => {
 
     return (
         <>
-            <div className={styles.registerContainer}>
-                <h1>Sign Up !</h1>
-                <form>
-                    <label>Username:</label>
-                    <input
-                        type="text"
-                        required
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                    <label>Password:</label>
-                    <input 
-                        type="password"
-                        required
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <label>Confirm Password:</label>
-                    <input 
-                        type="password"
-                        required
-                        value={confirmedPassword}
-                        onChange={(e) => setConfirmedPassword(e.target.value)}
-                    />
-                </form>
-                <button onClick={(e) => handleSubmit(e)}>Submit</button>
-                {error === true &&
-                    <ul>
-                        <li>Password must be at least 6 characters long</li>
-                        <li>Password and confirmed password must match</li>
-                    </ul>
-                }
+            <div className={styles.background}>
+                <div className={styles.registerContainer}>
+                    <h1>Sign Up !</h1>
+                    <form>
+                        <label>Username:</label>
+                        <input
+                            type="text"
+                            required
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                        <label>Password:</label>
+                        <input 
+                            type="password"
+                            required
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <label>Confirm Password:</label>
+                        <input 
+                            type="password"
+                            required
+                            value={confirmedPassword}
+                            onChange={(e) => setConfirmedPassword(e.target.value)}
+                        />
+                    </form>
+                    <button onClick={(e) => handleSubmit(e)}>Submit</button>
+                    <button onClick={() => navigate('/login')}>Already Registered?</button>
+                    {error === true &&
+                        <ul>
+                            <li>Password must be at least 6 characters long</li>
+                            <li>Password and confirmed password must match</li>
+                        </ul>
+                    }
+                </div>
             </div>
         </>
     )
