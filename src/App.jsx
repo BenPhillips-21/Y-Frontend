@@ -96,6 +96,28 @@ const handleVisitProfile = async (e, userid) => {
   }
 }
 
+const handleDemoLogin = async (e) => {
+  e.preventDefault()
+  
+  try {
+    const response = await fetch('http://localhost:3000/demologin', {
+      method: 'GET',
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    let data = await response.json()
+    setJWT(data.token)
+    loginToast()
+    navigate('/home')
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
   const location = useLocation();
   const showNavbar = !['/register', '/login'].includes(location.pathname);
 
@@ -107,8 +129,8 @@ const handleVisitProfile = async (e, userid) => {
           <Route path='/home' element={<Home headers={headers} currentUserPostIDs={currentUserPostIDs} posts={posts} setPosts={setPosts} fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} sentFriendToast={sentFriendToast} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} somethingWentWrong={somethingWentWrong} postLikedToast={postLikedToast}/>}/>
           <Route path='/profile' element={<Profile headers={headers} fetchOtherUser={fetchOtherUser} navigate={navigate} currentUserPostIDs={currentUserPostIDs} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} posts={posts} setPosts={setPosts} fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} deletePostToast={deletePostToast} somethingWentWrong={somethingWentWrong} postLikedToast={postLikedToast}/>}/>
           <Route path='/profilesettings' element={<ProfileSettings currentUser={currentUser} JWT={JWT} fetchCurrentUser={fetchCurrentUser} headers={headers}/>}/>
-          <Route path='/register' element={<Register registerToast={registerToast}/>}/>
-          <Route path='/login' element={<Login JWT={JWT} setJWT={setJWT} loginToast={loginToast}/>}/>
+          <Route path='/register' element={<Register registerToast={registerToast} JWT={JWT} setJWT={setJWT} handleDemoLogin={handleDemoLogin}/>}/>
+          <Route path='/login' element={<Login JWT={JWT} setJWT={setJWT} loginToast={loginToast} handleDemoLogin={handleDemoLogin}/>}/>
         </Routes>
         <Toaster richColors/>
     </>

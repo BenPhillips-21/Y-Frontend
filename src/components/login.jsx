@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from '../styles/register.module.css'
 
-const Register = ({JWT, setJWT, loginToast}) => {
+const Login = ({JWT, setJWT, loginToast, handleDemoLogin}) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(false)
@@ -56,6 +56,7 @@ const Register = ({JWT, setJWT, loginToast}) => {
                 </form>
                 <button onClick={(e) => handleSubmit(e)}>Submit</button>
                 <button onClick={() => navigate('/register')}>Register</button>
+                <button onClick={(e) => handleDemoLogin(e)}>Demo Login</button>
                 {error === true &&
                     <ul>
                         <li>Username or password incorrect</li>
@@ -67,4 +68,4 @@ const Register = ({JWT, setJWT, loginToast}) => {
     )
 }
 
-export default Register
+export default Login

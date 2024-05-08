@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from '../styles/register.module.css'
 
-const Register = ({registerToast}) => {
+const Register = ({registerToast, handleDemoLogin}) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [confirmedPassword, setConfirmedPassword] = useState('')
@@ -62,6 +62,7 @@ const Register = ({registerToast}) => {
                     </form>
                     <button onClick={(e) => handleSubmit(e)}>Submit</button>
                     <button onClick={() => navigate('/login')}>Already Registered?</button>
+                    <button onClick={(e) => handleDemoLogin(e)}>Demo Login</button>
                     {error === true &&
                         <ul>
                             <li>Password must be at least 6 characters long</li>

@@ -92,6 +92,7 @@ const ProfileSettings = ({currentUser, JWT, fetchCurrentUser, headers}) => {
             <div className={styles.settingsInnerContainer}>
                 <div className={styles.pfpSettingsContainer}>
                     <h1>Settings</h1>
+                    {currentUser.username !== 'demoUser' &&
                     <div className={styles.updateUsernameContainer}>
                         <h2>Username</h2>
                         <input
@@ -101,7 +102,7 @@ const ProfileSettings = ({currentUser, JWT, fetchCurrentUser, headers}) => {
                         onChange={(e) => setUsername(e.target.value)}
                         ></input>
                         <button onClick={handleUpdateUsername}>Update</button>
-                    </div>
+                    </div>}
                     <div className={styles.pfpHeading}>
                         <h2>Profile Picture</h2>
                     </div>
