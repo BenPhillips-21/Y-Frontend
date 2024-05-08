@@ -37,6 +37,21 @@ function App() {
     'Content-Type': 'application/json'
 };
 
+const [userFriendIDs, setUserFriendIDs] = useState([])
+const [userFriendRequestIDs, setUserFriendRequestIDs] = useState([])
+const [userSentFriendRequestIDs, setUserSentFriendRequestIDs] = useState([])
+
+useEffect(() => {
+    if (currentUser !== undefined) {
+    let userFriends = currentUser.friends.map(friend => friend._id)
+    setUserFriendIDs(userFriends)
+    let userFriendRequests = currentUser.friendRequests.map(friendRequest => friendRequest._id)
+    setUserFriendRequestIDs(userFriendRequests)
+    let userSentFriendRequests = currentUser.sentFriendRequests.map(sentFriendRequest => sentFriendRequest)
+    setUserSentFriendRequestIDs(userSentFriendRequests)
+}
+}, [currentUser])
+
   useEffect(() => {
     if (currentUser !== undefined) {
     let currentUserPosts = currentUser.posts.map(post => post._id);
@@ -118,6 +133,30 @@ const handleDemoLogin = async (e) => {
   }
 }
 
+const sendFriendRequest = async (e, userid) => {
+  e.preventDefault()
+
+  try {
+      const response = await fetch(`http://localhost:3000/sendfriendrequest/${userid}`, {
+          method: 'GET',
+          headers: headers,
+          mode: 'cors'
+      }) 
+
+      if (response.ok) {
+          console.log("Friend request sent :D")
+          fetchCurrentUser()
+          sentFriendToast()
+      } else {
+          somethingWentWrong("Error sending friend request")
+          throw new Error ("Error sending friend request")
+      }
+  } catch (err) {
+      somethingWentWrong('Error occurred sending friend request')
+      throw new Error ('Error occurred sending friend request')
+  }
+}
+
   const location = useLocation();
   const showNavbar = !['/register', '/login'].includes(location.pathname);
 
@@ -126,8 +165,8 @@ const handleDemoLogin = async (e) => {
       {showNavbar && <Navbar headers={headers} fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} logoutToast={logoutToast} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
         <Routes>
           <Route path='/' element={<Redirect />} />
-          <Route path='/home' element={<Home headers={headers} currentUserPostIDs={currentUserPostIDs} posts={posts} setPosts={setPosts} fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} sentFriendToast={sentFriendToast} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} somethingWentWrong={somethingWentWrong} postLikedToast={postLikedToast}/>}/>
-          <Route path='/profile' element={<Profile headers={headers} fetchOtherUser={fetchOtherUser} navigate={navigate} currentUserPostIDs={currentUserPostIDs} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} posts={posts} setPosts={setPosts} fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} deletePostToast={deletePostToast} somethingWentWrong={somethingWentWrong} postLikedToast={postLikedToast}/>}/>
+          <Route path='/home' element={<Home headers={headers} userFriendIDs={userFriendIDs} userFriendRequestIDs={userFriendRequestIDs} userSentFriendRequestIDs={userSentFriendRequestIDs} sendFriendRequest={sendFriendRequest} currentUserPostIDs={currentUserPostIDs} posts={posts} setPosts={setPosts} fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} sentFriendToast={sentFriendToast} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} somethingWentWrong={somethingWentWrong} postLikedToast={postLikedToast}/>}/>
+          <Route path='/profile' element={<Profile headers={headers} userFriendIDs={userFriendIDs} userFriendRequestIDs={userFriendRequestIDs} userSentFriendRequestIDs={userSentFriendRequestIDs} sendFriendRequest={sendFriendRequest} fetchOtherUser={fetchOtherUser} navigate={navigate} currentUserPostIDs={currentUserPostIDs} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} posts={posts} setPosts={setPosts} fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} deletePostToast={deletePostToast} somethingWentWrong={somethingWentWrong} postLikedToast={postLikedToast}/>}/>
           <Route path='/profilesettings' element={<ProfileSettings currentUser={currentUser} JWT={JWT} fetchCurrentUser={fetchCurrentUser} headers={headers}/>}/>
           <Route path='/register' element={<Register registerToast={registerToast} JWT={JWT} setJWT={setJWT} handleDemoLogin={handleDemoLogin}/>}/>
           <Route path='/login' element={<Login JWT={JWT} setJWT={setJWT} loginToast={loginToast} handleDemoLogin={handleDemoLogin}/>}/>

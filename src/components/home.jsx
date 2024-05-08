@@ -3,22 +3,9 @@ import styles from '../styles/home.module.css';
 import Post from './post.jsx'
 import PostBox from './postbox.jsx'
 
-const Home = ({ headers, currentUserPostIDs, posts, setPosts, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, sentFriendToast, deletePostToast, createCommentToast, deleteCommentToast, somethingWentWrong, postLikedToast }) => {
+const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequestIDs, sendFriendRequest, currentUserPostIDs, posts, setPosts, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, sentFriendToast, deletePostToast, createCommentToast, deleteCommentToast, somethingWentWrong, postLikedToast }) => {
     const [allUsers, setAllUsers] = useState([])
-    const [userFriendIDs, setUserFriendIDs] = useState([])
-    const [userFriendRequestIDs, setUserFriendRequestIDs] = useState([])
-    const [userSentFriendRequestIDs, setUserSentFriendRequestIDs] = useState([])
 
-    useEffect(() => {
-        if (currentUser !== undefined) {
-        let userFriends = currentUser.friends.map(friend => friend._id)
-        setUserFriendIDs(userFriends)
-        let userFriendRequests = currentUser.friendRequests.map(friendRequest => friendRequest._id)
-        setUserFriendRequestIDs(userFriendRequests)
-        let userSentFriendRequests = currentUser.sentFriendRequests.map(sentFriendRequest => sentFriendRequest)
-        setUserSentFriendRequestIDs(userSentFriendRequests)
-    }
-    }, [currentUser])
 
     useEffect(() => {
         setOtherUser('')
@@ -72,30 +59,6 @@ const Home = ({ headers, currentUserPostIDs, posts, setPosts, fetchCurrentUser, 
         }
     };
 
-    const sendFriendRequest = async (e, userid) => {
-        e.preventDefault()
-
-        try {
-            const response = await fetch(`http://localhost:3000/sendfriendrequest/${userid}`, {
-                method: 'GET',
-                headers: headers,
-                mode: 'cors'
-            }) 
-
-            if (response.ok) {
-                console.log("Friend request sent :D")
-                fetchCurrentUser()
-                sentFriendToast()
-            } else {
-                somethingWentWrong("Error sending friend request")
-                throw new Error ("Error sending friend request")
-            }
-        } catch (err) {
-            somethingWentWrong('Error occurred sending friend request')
-            throw new Error ('Error occurred sending friend request')
-        }
-    }
-
     return (
         <div className={styles.homeContainer}>
             <div className={styles.postFatherContainer}>
@@ -103,14 +66,14 @@ const Home = ({ headers, currentUserPostIDs, posts, setPosts, fetchCurrentUser, 
                     <PostBox headers={headers}fetchPosts={fetchPosts}fetchCurrentUser={fetchCurrentUser}postToast={postToast}somethingWentWrong={somethingWentWrong}/>
                 </div>
                 <div className={styles.postsContainer}>
-                    {posts && posts.map((post, index) => (
+                    {posts.length > 0 ? posts.map((post, index) => (
                         <Post key={index}currentUserPostIDs={currentUserPostIDs}headers={headers}post={post}index={index}currentUser={currentUser}deletePostToast={deletePostToast}JWT={JWT}posts={posts}setPosts={setPosts}somethingWentWrong={somethingWentWrong}deletePostToast={deletePostToast}createCommentToast={createCommentToast}deleteCommentToast={deleteCommentToast} postLikedToast={postLikedToast}/>
-                    ))}
+                    )) : <h1>Add some friends to see some content!</h1>}
                 </div>
             </div>
             {currentUser && (
                 <div className={styles.userListContainer}>
-                    <h2>New Users</h2>
+                    <h2>Other Users</h2>
                     {allUsers.map((user, index) => (
                         <div className={styles.userListContainer} key={index}>
                                 {!userFriendIDs.includes(user._id) &&

@@ -3,7 +3,7 @@ import styles from '../styles/myprofile.module.css';
 import Post from './post.jsx'
 import PostBox from './postbox.jsx'
 
-const Profile = ({ headers, currentUserPostIDs, navigate, posts, setPosts, createCommentToast, deleteCommentToast, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, deletePostToast, somethingWentWrong, postLikedToast }) => {
+const Profile = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequestIDs, sendFriendRequest, currentUserPostIDs, navigate, posts, setPosts, createCommentToast, deleteCommentToast, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, deletePostToast, somethingWentWrong, postLikedToast }) => {
     const [post, setPost] = useState('')
     const [profile, setProfile] = useState()
     const [friends, setFriends] = useState()
@@ -34,6 +34,7 @@ const Profile = ({ headers, currentUserPostIDs, navigate, posts, setPosts, creat
                 <div className={styles.friendsOrNotBox}>
                     <h3>Friends</h3>
                     {friends.includes(currentUser._id) ? <img src='/tick.svg'></img> : <img src='/cross.svg'></img>}
+                    {!friends.includes(currentUser._id) && !userFriendRequestIDs.includes(profile._id) && !userSentFriendRequestIDs.includes(profile._id) && <img id={styles.addFriendButton} onClick={(e) => sendFriendRequest(e, profile._id)} src='/addFriend.svg'></img>}
                 </div>}
             </div>
             <div className={styles.profileBodyContainer}>
