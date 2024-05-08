@@ -5,6 +5,7 @@ const ProfileSettings = ({currentUser, JWT, fetchCurrentUser, headers}) => {
     const [changingPfp, setChangingPfp] = useState()
     const [selectedImage, setSelectedImage] = useState(null)
     const [bio, setBio] = useState('')
+    const [username, setUsername] = useState('')
 
     const handlePfpChange = async (e) => {
         e.preventDefault()        
@@ -36,11 +37,9 @@ const ProfileSettings = ({currentUser, JWT, fetchCurrentUser, headers}) => {
 
     const handleUpdateBio = async (e) => {
         e.preventDefault()
-
         let bioRequestBody = {
             bio: bio
         }
-        console.log(bioRequestBody)
         try {
             const response = await fetch('http://localhost:3000/updatebio', {
                 method: 'POST',
@@ -61,13 +60,49 @@ const ProfileSettings = ({currentUser, JWT, fetchCurrentUser, headers}) => {
         }
     }
 
+    const handleUpdateUsername = async (e) => {
+        e.preventDefault()
+        
+        let usernameRequestBody = {
+            username: username
+        }
+        try {
+            const response = await fetch('http://localhost:3000/updateusername', {
+                method: 'POST',
+                headers: headers,
+                mode: 'cors',
+                body: JSON.stringify(usernameRequestBody)
+            })
+
+            if (!response.ok) {
+                const errorData = await response.json()
+                throw new Error(`${errorData}`)
+            }
+
+            setUsername('')
+            fetchCurrentUser()
+        } catch (err) {
+            throw new Error(`${err}`) 
+        }
+    }
+
     return (
         <>
         <div className={styles.settingsOuterContainer}>
             <div className={styles.settingsInnerContainer}>
                 <div className={styles.pfpSettingsContainer}>
+                    <h1>Settings</h1>
+                    <div className={styles.updateUsernameContainer}>
+                        <h2>Username</h2>
+                        <input
+                        type="text"
+                        placeholder={currentUser.username}
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        ></input>
+                        <button onClick={handleUpdateUsername}>Update</button>
+                    </div>
                     <div className={styles.pfpHeading}>
-                        <h1>Settings</h1>
                         <h2>Profile Picture</h2>
                     </div>
                     <div className={styles.pfpChange}>

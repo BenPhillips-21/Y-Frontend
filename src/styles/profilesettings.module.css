@@ -76,3 +76,8 @@
     padding: auto;
     margin-top: .75rem;
 }
+
+.updateUsernameContainer {
+    display: flex;
+    flex-direction: column;
+}
