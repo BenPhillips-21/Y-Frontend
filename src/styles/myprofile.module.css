@@ -1,7 +1,6 @@
 .fatherContainer {
     width: 75vw;
     min-height: 100vh;
-    margin-left: -1rem;
     background-color: purple;
     margin-top: 2.85rem;
     display: flex;
@@ -51,7 +50,7 @@
 }
 
 .aboutMeAndFriendsContainer {
-    width: 30%;
+    width: 25%;
     height: 100%;
     background-color: brown;
     display: flex;
@@ -62,6 +61,19 @@
     width: 100%;
     min-height: 20%;
     background-color: blueviolet;
+}
+
+.headingAndEditing {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+}
+
+.headingAndEditing img {
+    width: 2rem;
+    height: 2rem;
 }
 
 .friendsContainer {
@@ -104,3 +116,4 @@
 .postCard p {
     color: black;
 }
+

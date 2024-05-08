@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'OpenSansBold';
+    src: url('/Open_Sans/static/OpenSans-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
 .homeContainer {
     display: flex;
     flex-direction: row;
@@ -16,3 +23,34 @@
 .postsContainer {
     width: 35vw;
 }
+
+.userListContainer {
+    margin-left: 1rem;
+}
+
+.userListContainer h2 {
+    font-family: 'OpenSansBold';
+    margin-top: -0.5rem;
+}
+
+.userPicAndName {
+    display: flex;
+    flex-direction: row;
+}
+
+.userPicAndName img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+.userPicAndName p {
+    margin-right: 3rem;
+}
+
+#addFriendButton {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 30%;
+}
+

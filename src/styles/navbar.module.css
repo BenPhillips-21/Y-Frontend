@@ -33,6 +33,14 @@
     cursor: pointer;
 }
 
+#homeButtonStyling {
+    font-family: 'OpenSansBold';
+    background-color: transparent;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+
 .container {
     display: flex;
     flex-direction: row;

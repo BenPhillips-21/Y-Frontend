@@ -3,7 +3,7 @@ import styles from '../styles/myprofile.module.css';
 import Post from './post.jsx'
 import PostBox from './postbox.jsx'
 
-const Profile = ({ headers, posts, setPosts, createCommentToast, deleteCommentToast, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, deletePostToast,  }) => {
+const Profile = ({ headers, currentUserPostIDs, navigate, posts, setPosts, createCommentToast, deleteCommentToast, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, deletePostToast,  }) => {
     const [post, setPost] = useState('')
     const [profile, setProfile] = useState()
     const [friends, setFriends] = useState()
@@ -23,12 +23,7 @@ const Profile = ({ headers, posts, setPosts, createCommentToast, deleteCommentTo
         }
     }, [profile])
     
-    console.log(friends, 'friends array!!!!')
     const somethingWentWrong = (error) => toast.error(`Oh No! ${error}`)
-
-    console.log(currentUser, 'current user');
-    console.log(otherUser, 'profile visiting')
-    console.log(profile, 'profile!!!!!')
     
     const handleMakePost = async (e) => {
         e.preventDefault();
@@ -74,7 +69,10 @@ const Profile = ({ headers, posts, setPosts, createCommentToast, deleteCommentTo
             <div className={styles.profileBodyContainer}>
                 <div className={styles.aboutMeAndFriendsContainer}>
                     <div className={styles.aboutMeContainer}>
-                        <h3>About Me</h3>
+                        <div className={styles.headingAndEditing}>
+                            <h3>About Me</h3>
+                            <img onClick={() => navigate('/profilesettings')}src='/editIcon.svg'></img>
+                        </div>
                         {profile && <p>{profile.bio}</p>}
                     </div>
                     <div className={styles.friendsContainer}>
@@ -94,7 +92,7 @@ const Profile = ({ headers, posts, setPosts, createCommentToast, deleteCommentTo
                     }
                     <div className={styles.myPostsContainer}>
                         {profile && profile.posts.map((post, index) => (
-                            <Post headers={headers} post={post} index={index} currentUser={currentUser} deletePostToast={deletePostToast} JWT={JWT} setPosts={setPosts} somethingWentWrong={somethingWentWrong} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} />
+                            <Post headers={headers} currentUserPostIDs={currentUserPostIDs} post={post} index={index} currentUser={currentUser} deletePostToast={deletePostToast} JWT={JWT} setPosts={setPosts} somethingWentWrong={somethingWentWrong} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} />
                         ))}
                     </div>
                 </div>

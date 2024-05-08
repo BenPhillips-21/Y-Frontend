@@ -1,0 +1,78 @@
+@font-face {
+    font-family: 'OpenSans';
+    src: url('/Open_Sans/static/OpenSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+.settingsOuterContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.settingsInnerContainer {
+    /* border: 2px solid black; */
+}
+
+.pfpSettingsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.pfpChange {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; /* Optional: Align items vertically within the container */
+}
+
+.pfpChange img {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%; /* Optional: Apply rounded corners to the image */
+    object-fit: cover; /* Optional: Ensure image covers the defined dimensions */
+}
+
+.pfpChange button {
+    background-color: #F2E34C;
+    border-radius: 5rem;
+    padding: 10px 20px; /* Adjust padding for button size */
+    margin-left: 10px; /* Optional: Add spacing between image and button */
+    font-size: 14px; /* Adjust font size */
+    width: auto; /* Set width to 'auto' to size based on content */
+    height: auto; /* Set height to 'auto' to size based on content */
+}
+
+
+.bioSettingsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.bioSettingsContainer textarea {
+    width: 150%;
+    height: 5rem;
+    border: 0px;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    resize: none;
+    font-family: 'OpenSans';
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.bioSettingsContainer button {
+    background-color: #F2E34C;
+    border-radius: 2rem;
+    padding: auto;
+    margin-top: .75rem;
+}

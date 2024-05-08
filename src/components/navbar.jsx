@@ -64,8 +64,9 @@ const Navbar = ({headers, fetchCurrentUser, fetchOtherUser, logoutToast, handleV
         <nav className={styles.navbar}>
         <div className={styles.container}>
             <div className={styles.navbarContainer}>
-                <Link to="/home" className={styles.navbarLink}>Home</Link>
-            </div>
+                {/* <Link to="/home" className={styles.navbarLink}>Home</Link> */}
+                <button id={styles.homeButtonStyling} onClick={() => navigate('/home')} className={styles.navbarLink}>Home</button>
+            </div> 
                 <div className={styles.navbarLinks}>
                     <button onClick={(e) => handleMyProfileClick(e)} className={styles.navbarLink}>My Profile</button>
                     <button onClick={(e) => openFriendRequests(e)} className={styles.navbarLink}>Friend Requests</button>
