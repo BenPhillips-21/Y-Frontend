@@ -2,12 +2,10 @@ import React, {useEffect, useState} from 'react';
 import styles from '../styles/post.module.css'; 
 import { formatDistanceToNow } from 'date-fns';
 
-const Post = ({post, index, currentUserPostIDs, currentUser, JWT, posts, setPosts, somethingWentWrong, deletePostToast, createCommentToast, deleteCommentToast, headers}) => {
+const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, currentUser, fetchCurrentUser, JWT, posts, setPosts, somethingWentWrong, deletePostToast, createCommentToast, deleteCommentToast, headers, postLikedToast}) => {
     const [commentSection, setCommentSection] = useState([])
     const [commenting, setCommenting] = useState([])
     const [comment, setComment] = useState('')
-
-    console.log(currentUserPostIDs, 'currentuserposts :)')
 
     const fetchPosts = async () => {
         try {
@@ -65,7 +63,11 @@ const Post = ({post, index, currentUserPostIDs, currentUser, JWT, posts, setPost
             })
 
             if (response.ok) {
-                fetchPosts()    
+                fetchPosts()
+                if (profile !== undefined) {
+                    profile._id.toString() === currentUser._id.toString() ? fetchCurrentUser() : fetchOtherUser(profile._id)
+                } 
+                postLikedToast()
             } else {
                 somethingWentWrong("Failed to like post")
                 throw new Error("Failed to like post")
@@ -116,6 +118,9 @@ const Post = ({post, index, currentUserPostIDs, currentUser, JWT, posts, setPost
 
         if (response.ok) {
             fetchPosts()
+            if (profile !== undefined) {
+                profile._id.toString() === currentUser._id.toString() ? fetchCurrentUser() : fetchOtherUser(profile._id)
+            } 
             setComment('')
             createCommentToast()
         }
@@ -155,7 +160,6 @@ const Post = ({post, index, currentUserPostIDs, currentUser, JWT, posts, setPost
         return formatDistanceToNow(new Date(date), { addSuffix: true });
       }
 
-
     return (
             <div className={styles.postContainer} key={index}>
                 <div className={styles.postHeader}>
@@ -173,7 +177,8 @@ const Post = ({post, index, currentUserPostIDs, currentUser, JWT, posts, setPost
                     }
                 </div>
                 <div className={styles.postBody}>
-                    <p>{post.postContent}</p>
+                    {post.postContent && <p>{post.postContent}</p>}
+                    {post.image && <img src={post.image.url}></img>}
                 </div>
                 <div className={styles.postInfo}>
                     <p>{post.likes.length} Likes</p>

@@ -3,7 +3,7 @@ import styles from '../styles/home.module.css';
 import Post from './post.jsx'
 import PostBox from './postbox.jsx'
 
-const Home = ({ headers, currentUserPostIDs, posts, setPosts, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, sentFriendToast, deletePostToast, createCommentToast, deleteCommentToast, somethingWentWrong }) => {
+const Home = ({ headers, currentUserPostIDs, posts, setPosts, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, sentFriendToast, deletePostToast, createCommentToast, deleteCommentToast, somethingWentWrong, postLikedToast }) => {
     const [allUsers, setAllUsers] = useState([])
     const [userFriendIDs, setUserFriendIDs] = useState([])
     const [userFriendRequestIDs, setUserFriendRequestIDs] = useState([])
@@ -103,8 +103,8 @@ const Home = ({ headers, currentUserPostIDs, posts, setPosts, fetchCurrentUser, 
                     <PostBox headers={headers}fetchPosts={fetchPosts}fetchCurrentUser={fetchCurrentUser}postToast={postToast}somethingWentWrong={somethingWentWrong}/>
                 </div>
                 <div className={styles.postsContainer}>
-                    {posts.map((post, index) => (
-                        <Post key={index}currentUserPostIDs={currentUserPostIDs}headers={headers}post={post}index={index}currentUser={currentUser}deletePostToast={deletePostToast}JWT={JWT}posts={posts}setPosts={setPosts}somethingWentWrong={somethingWentWrong}deletePostToast={deletePostToast}createCommentToast={createCommentToast}deleteCommentToast={deleteCommentToast}/>
+                    {posts && posts.map((post, index) => (
+                        <Post key={index}currentUserPostIDs={currentUserPostIDs}headers={headers}post={post}index={index}currentUser={currentUser}deletePostToast={deletePostToast}JWT={JWT}posts={posts}setPosts={setPosts}somethingWentWrong={somethingWentWrong}deletePostToast={deletePostToast}createCommentToast={createCommentToast}deleteCommentToast={deleteCommentToast} postLikedToast={postLikedToast}/>
                     ))}
                 </div>
             </div>

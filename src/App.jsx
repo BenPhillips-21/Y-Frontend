@@ -24,6 +24,7 @@ function App() {
   const postToast = () => toast.success('Post published successfully')
   const sentFriendToast = () => toast.success('Friend request sent')
   const deletePostToast = () => toast.success('Post deleted successfully')
+  const postLikedToast = () => toast.success('Post liked successfully')
   const createCommentToast = () => toast.success('Comment published successfully')
   const deleteCommentToast = () => toast.success('Comment deleted successfully')
   const registerToast = () => toast.success('Registered successfully')
@@ -103,8 +104,8 @@ const handleVisitProfile = async (e, userid) => {
       {showNavbar && <Navbar headers={headers} fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} logoutToast={logoutToast} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
         <Routes>
           <Route path='/' element={<Redirect />} />
-          <Route path='/home' element={<Home headers={headers} currentUserPostIDs={currentUserPostIDs} posts={posts} setPosts={setPosts} fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} sentFriendToast={sentFriendToast} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} somethingWentWrong={somethingWentWrong}/>}/>
-          <Route path='/profile' element={<Profile headers={headers} navigate={navigate} currentUserPostIDs={currentUserPostIDs} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} posts={posts} setPosts={setPosts} fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} deletePostToast={deletePostToast}/>}/>
+          <Route path='/home' element={<Home headers={headers} currentUserPostIDs={currentUserPostIDs} posts={posts} setPosts={setPosts} fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} sentFriendToast={sentFriendToast} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} somethingWentWrong={somethingWentWrong} postLikedToast={postLikedToast}/>}/>
+          <Route path='/profile' element={<Profile headers={headers} fetchOtherUser={fetchOtherUser} navigate={navigate} currentUserPostIDs={currentUserPostIDs} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} posts={posts} setPosts={setPosts} fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} deletePostToast={deletePostToast} somethingWentWrong={somethingWentWrong} postLikedToast={postLikedToast}/>}/>
           <Route path='/profilesettings' element={<ProfileSettings currentUser={currentUser} JWT={JWT} fetchCurrentUser={fetchCurrentUser} headers={headers}/>}/>
           <Route path='/register' element={<Register registerToast={registerToast}/>}/>
           <Route path='/login' element={<Login JWT={JWT} setJWT={setJWT} loginToast={loginToast}/>}/>

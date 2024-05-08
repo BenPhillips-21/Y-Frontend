@@ -35,9 +35,15 @@
 
 .postBody {
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     width: 95%;
     border-bottom: 0.5px solid black;
+}
+
+.postBody img {
+    max-width: 30%;
+    height: auto;
 }
 
 .postBody p {

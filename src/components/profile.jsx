@@ -3,7 +3,7 @@ import styles from '../styles/myprofile.module.css';
 import Post from './post.jsx'
 import PostBox from './postbox.jsx'
 
-const Profile = ({ headers, currentUserPostIDs, navigate, posts, setPosts, createCommentToast, deleteCommentToast, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, deletePostToast,  }) => {
+const Profile = ({ headers, currentUserPostIDs, navigate, posts, setPosts, createCommentToast, deleteCommentToast, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, deletePostToast, somethingWentWrong, postLikedToast }) => {
     const [post, setPost] = useState('')
     const [profile, setProfile] = useState()
     const [friends, setFriends] = useState()
@@ -22,36 +22,6 @@ const Profile = ({ headers, currentUserPostIDs, navigate, posts, setPosts, creat
             setFriends(friendsArray);
         }
     }, [profile])
-    
-    const somethingWentWrong = (error) => toast.error(`Oh No! ${error}`)
-    
-    const handleMakePost = async (e) => {
-        e.preventDefault();
-
-        try {
-            const postBodyRequest = {
-                postContent: post
-            };
-    
-            const response = await fetch('http://localhost:3000/createpost/', {
-                method: 'POST',
-                headers: headers,
-                mode: 'cors',
-                body: JSON.stringify(postBodyRequest)
-            });
-    
-            if (response.ok) {
-                fetchCurrentUser() 
-                setPost('')
-                postToast()
-            } else {
-                somethingWentWrong('Failed to create post')
-                console.error('Failed to create post')
-            }
-        } catch (err) {
-            console.error('An error occurred making the post', err);
-        }
-    };
 
     return (
         <div className={styles.fatherContainer}>
@@ -92,7 +62,7 @@ const Profile = ({ headers, currentUserPostIDs, navigate, posts, setPosts, creat
                     }
                     <div className={styles.myPostsContainer}>
                         {profile && profile.posts.map((post, index) => (
-                            <Post headers={headers} currentUserPostIDs={currentUserPostIDs} post={post} index={index} currentUser={currentUser} deletePostToast={deletePostToast} JWT={JWT} setPosts={setPosts} somethingWentWrong={somethingWentWrong} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} />
+                            <Post headers={headers} fetchOtherUser={fetchOtherUser} profile={profile} currentUserPostIDs={currentUserPostIDs} post={post} index={index} currentUser={currentUser} deletePostToast={deletePostToast} JWT={JWT} setPosts={setPosts} somethingWentWrong={somethingWentWrong} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} fetchCurrentUser={fetchCurrentUser} postLikedToast={postLikedToast}/>
                         ))}
                     </div>
                 </div>

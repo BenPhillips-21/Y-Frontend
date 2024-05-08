@@ -14,10 +14,6 @@
     align-items: center;
 }
 
-.settingsInnerContainer {
-    /* border: 2px solid black; */
-}
-
 .pfpSettingsContainer {
     display: flex;
     flex-direction: column;
@@ -28,24 +24,25 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center; /* Optional: Align items vertically within the container */
+    align-items: center;
 }
 
 .pfpChange img {
     width: 7rem;
     height: 7rem;
-    border-radius: 50%; /* Optional: Apply rounded corners to the image */
-    object-fit: cover; /* Optional: Ensure image covers the defined dimensions */
+    border-radius: 50%; 
+    object-fit: cover;
 }
 
 .pfpChange button {
     background-color: #F2E34C;
     border-radius: 5rem;
-    padding: 10px 20px; /* Adjust padding for button size */
-    margin-left: 10px; /* Optional: Add spacing between image and button */
-    font-size: 14px; /* Adjust font size */
-    width: auto; /* Set width to 'auto' to size based on content */
-    height: auto; /* Set height to 'auto' to size based on content */
+    padding: 10px 20px; 
+    margin-left: 10px; 
+    font-size: 14px;
+    width: auto; 
+    height: auto; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -75,9 +72,45 @@
     border-radius: 2rem;
     padding: auto;
     margin-top: .75rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .updateUsernameContainer {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+}
+
+.updateUsernameContainer button {
+    background-color: #F2E34C;
+    border-radius: 2rem;
+    padding: auto;
+    margin-top: .75rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.pfpInputBox {
+    display: flex;
+    flex-direction: row;
+    background-color: #f7f7f7;
+    width: 101%;
+    padding: 3%;
+    border-radius: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.pfpInputBox button {
+    background-color: #F2E34C;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.updateUsernameContainer input {
+    border: 0px;
+    border-radius: 1rem;
+    padding: 1rem 1rem;
+    display: flex;
+    resize: none;
+    font-family: 'OpenSans';
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }

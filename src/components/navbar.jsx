@@ -14,10 +14,6 @@ const Navbar = ({headers, fetchCurrentUser, fetchOtherUser, logoutToast, handleV
         fetchCurrentUser()
     }, [JWT])
 
-    console.log(currentUser, 'currentUser in navabar component')
-
-    console.log(openFriends)
-
     const openFriendRequests = (e) => {
         e.preventDefault()
         setOpenFriends(!openFriends)
