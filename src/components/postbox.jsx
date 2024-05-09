@@ -75,15 +75,18 @@ const PostBox = ({headers, JWT, fetchPosts, fetchCurrentUser, postToast, somethi
             <form className={styles.postBoxForm} onSubmit={handleFormSubmit}>
                 <textarea
                     type="text"
-                    required
                     placeholder="What's on your mind?"
                     value={post}
                     onChange={(e) => setPost(e.target.value)}
                 />
                 {attachingImage && 
-                <form>
-                    <input type="file" accept="image/*" onChange={(e) => setSelectedImage(e.target.files[0])} />
-                </form>}
+                <div className={styles.imageInputContainer}>
+                    <form>
+                        <input type="file" accept="image/*" id="fileInput" className={styles.fileInput} onChange={(e) => setSelectedImage(e.target.files[0])} />
+                        <label htmlFor="fileInput" className={styles.customButton}>Select Image</label>
+                    </form>
+                    {selectedImage && <p>Image Attached !</p>}
+                </div>}
                 <button id={styles.postBoxPostButton} onClick={(e) => handleMakePost(e)}>Post</button>
                 <button id={styles.attachImageButton} onClick={() => setAttachingImage(!attachingImage)}>Attach Image</button>
             </form>

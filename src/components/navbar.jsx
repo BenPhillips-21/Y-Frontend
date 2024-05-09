@@ -60,7 +60,6 @@ const Navbar = ({headers, fetchCurrentUser, fetchOtherUser, logoutToast, handleV
         <nav className={styles.navbar}>
         <div className={styles.container}>
             <div className={styles.navbarContainer}>
-                {/* <button id={styles.homeButtonStyling} onClick={() => navigate('/home')} className={styles.navbarLink}>Home</button> */}
                 <img id={styles.homeButton} src={'/home.svg'} onClick={() => navigate('/home')} className={styles.navbarLink}></img>
             </div> 
                 <div className={styles.navbarLinks}>
@@ -71,6 +70,7 @@ const Navbar = ({headers, fetchCurrentUser, fetchOtherUser, logoutToast, handleV
                     </div>
                     )}
                     <img onClick={(e) => openFriendRequests(e)} className={styles.navbarLink} src='/friendRequests.svg'></img>
+                    <img onClick={() => navigate('/profilesettings')} className={styles.navbarLink} src='/settingsGear.svg'></img>
                     <img onClick={(e) => handleLogout(e)} className={styles.navbarLink} src='/logout.svg'></img>
                 </div>
                 {openFriends && (
