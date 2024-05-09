@@ -196,32 +196,12 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
                         <button onClick={() => handleAddCommentClick(post._id)} id={styles.buttonStyling}>Comment</button>
                     </div>
                 </div>
-                {commentSection.includes(post._id) && 
-                <div className={styles.commentSection}>
-                    {post.comments.map((comment, index) => (
-                        <div className={styles.commentContainer} key={index}>
-                            <div className={styles.headerContainer}>
-                                <div className={styles.nameAndDateContainer}>
-                                    <img id={styles.commenterPfp} src={comment.commenter.profilePic.url}></img>
-                                    <p id={styles.commenterUsernameStyling}>{comment.commenter.username}</p>
-                                    <p id={styles.commentDateSentStyling}>{formatDate(comment.dateSent)}</p>
-                                </div>
-                                {currentUser._id === comment.commenter._id && 
-                                <div className={styles.deleteContainer}>
-                                        <img onClick={(e) => handleDeleteComment(e, post._id, comment._id)} src="/trash.svg" alt="Trash Can Icon"></img>
-                                </div>}
-                            </div>
-                        <div className={styles.commentBody}>
-                            <p>{comment.commentContent}</p>
-                        </div>
-                        </div>
-                    ))}
-                </div>}
                 {commenting.includes(post._id) && 
                     <div className={styles.commentBox}>
                     <form>
                             <textarea
                                 type="text"
+                                placeholder='What do you think of this post?'
                                 required
                                 value={comment}
                                 onChange={(e) => setComment(e.target.value)}
@@ -229,6 +209,27 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
                         </form>
                         <button onClick={(e) => handleAddComment(e, post._id)}>Post</button>
                     </div>}
+                {commentSection.includes(post._id) && 
+                <div className={styles.commentSection}>
+                    {post.comments.slice().reverse().map((comment, index) => (
+                    <div className={styles.commentContainer} key={index}>
+                        <div className={styles.headerContainer}>
+                            <div className={styles.nameAndDateContainer}>
+                                <img id={styles.commenterPfp} src={comment.commenter.profilePic.url} alt="Profile Pic"></img>
+                                <p id={styles.commenterUsernameStyling}>{comment.commenter.username}</p>
+                                <p id={styles.commentDateSentStyling}>{formatDate(comment.dateSent)}</p>
+                            </div>
+                            {currentUser._id === comment.commenter._id && 
+                            <div className={styles.deleteContainer}>
+                                <img onClick={(e) => handleDeleteComment(e, post._id, comment._id)} src="/trash.svg" alt="Trash Can Icon"></img>
+                            </div>}
+                        </div>
+                        <div className={styles.commentBody}>
+                            <p>{comment.commentContent}</p>
+                        </div>
+                    </div>
+                ))}
+                </div>}
             </div>
     )
 }

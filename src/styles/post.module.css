@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'OpenSans';
+    src: url('/Open_Sans/static/OpenSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
 .postContainer {
     width: 100%;
     margin-top: 1.5rem;
@@ -151,20 +158,41 @@
 }
 
 .commentBox {
-    width: 80%;
-    margin-top: 0.5rem;
+    position: relative;
+    width: 100%;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+}
+
+.commentBox.show {
+    transform: translateY(0);
 }
 
 .commentBox textarea {
-    width: 100%;
+    width: 94.5%;
     font-size: 0.8rem;
-    height: 3rem;
+    height: 5rem;
     border: 0px;
-    border-radius: 1rem;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     padding: 1rem 1rem;
     display: flex;
     resize: none;
     font-family: 'OpenSans';
     background-color: #FFFFFF;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.commentBox button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #F2E34C;
+    border-radius: 2rem;
+    padding: 10px 20px;
+    border: none;
+    font-size: 0.8rem;
+    font-family: 'OpenSans', sans-serif;
+    cursor: pointer;
 }
