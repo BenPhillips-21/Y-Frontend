@@ -26,12 +26,22 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.postBoxForm button {
+#postBoxPostButton {
     background-color: #F2E34C;
     border-radius: 2rem;
     padding: auto;
     position: absolute;
     right: 0rem;
+    top: 4rem;
+    font-family: 'OpenSans';
+}
+
+#attachImageButton {
+    background-color: #F2E34C;
+    border-radius: 2rem;
+    padding: auto;
+    position: absolute;
+    right: 5rem;
     top: 4rem;
     font-family: 'OpenSans';
 }

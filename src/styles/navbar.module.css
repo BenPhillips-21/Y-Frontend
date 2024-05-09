@@ -1,7 +1,7 @@
 .navbar {
     background-color: #F2E34C;
     color: black;
-    padding: 20px 20px; /* Increase padding to make navbar thicker */
+    padding: 20px 20px; 
     width: 100vw;
     position: fixed;
     top: 0;
@@ -21,8 +21,14 @@
     font-family: 'OpenSansBold';
 }
 
+.navbarLinks img {
+    width: 1.5rem;
+}
+
 .navbarLinks {
     justify-content: space-around;
+    display: flex;
+    flex-direction: row;
 }
 
 .navbarLinks button {
@@ -55,19 +61,56 @@
 
 .friendRequestsDropdown {
     position: absolute;
-    background-color: grey;
+    background-color: white;
     min-width: 160px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
     z-index: 1;
-    top: 75px;
+    top: 82px;
     left: 1165px;
+    border-radius: 10px;
+}
+
+.friendRequestsDropdown h3 {
+    margin: 1rem;
 }
 
 .friendRequestInfo {
     display: flex;
     flex-direction: row;
+    border-bottom: 0.5px solid black;
 }
 
 .friendRequestInfo img {
     width: 3rem;
+}
+
+#addFriendButton {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 30%;
+    margin-top: .8rem;
+    margin-left: 0.5rem;
+    margin-right: 0.3rem;
+}
+
+#homeButton {
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 30%;
+    margin-top: 0.8rem;
+}
+
+#myProfilePic {
+    width: 3rem;
+    height: 3rem;
+    margin-top: 0.3rem;
+}
+
+#myProfileUsername {
+    margin-left: 0rem;
+}
+
+.pfpAndName {
+    display: flex;
+    flex-direction: row;
 }

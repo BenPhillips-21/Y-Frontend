@@ -8,7 +8,7 @@
 .homeContainer {
     display: flex;
     flex-direction: row;
-    margin-top: 7rem;
+    margin-top: 8rem;
     width: 100vw;
     display: flex;
     flex-direction: row;
@@ -45,12 +45,15 @@
 }
 
 .userPicAndName p {
-    margin-right: 3rem;
+    margin-right: 2rem;
+    margin-top: 0.8rem;
+    margin-left: 0.3rem;
 }
 
 #addFriendButton {
-    width: 2rem;
-    height: 2rem;
+    width: 1.75rem;
+    height: 1.75rem;
     border-radius: 30%;
+    margin-top: .8rem;
 }
 

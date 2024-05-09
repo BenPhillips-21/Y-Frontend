@@ -21,14 +21,17 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 95%;
+    width: 100%;
     background-color: #f7f7f7;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .headerContainer {
     display: flex;
     flex-direction: row;
     margin-top: 5px;
+    margin-left: 5px;
     justify-content: space-between;
 }
 
@@ -39,7 +42,6 @@
 }
 
 .nameAndDateContainer {
-    /* background-color: purple; */
     display: flex;
     flex-direction: row;
     margin-top: -0.5rem;
@@ -58,54 +60,81 @@
     margin-left: 0.25rem;
 }
 
-.pfpContainer {
-    /* background-color: red; */
-}
-
 .postHeader p {
     margin-right: 1rem;
+    font-family: 'OpenSansBold';
 }
 
 .postBody {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 95%;
+    width: 100%;
     border-bottom: 0.5px solid black;
+    border-bottom-width: 90%;
+    background-color: white;
 }
 
 .postBody img {
     max-width: 30%;
     height: auto;
+    margin-left: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#postDateStyling {
+    font-size: 0.9rem;
+    margin-top: 1.1rem;
+    color: rgb(98, 97, 97);
+    font-family: 'OpenSans';
 }
 
 .postBody p {
     text-align: left; 
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .postInfo {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 95%;
+    width: 100%;
+    background-color: white;
+}
+
+.postInfo p {
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .postFooter {
     display: flex;
     flex-direction: row;
     width: 100%;
+    font-family: 'OpenSansBold';
+    font-size: 0.85rem;
+    background-color: white;
 }
 
 .likeButtonContainer {
     width: 100%;
+    display: flex;
+    justify-content: flex-start;
 }
 
 .commentButtonContainer{
     width: 100%;
+    display: flex;
+    justify-content: flex-end;
 }
 
-#buttonStyling {
-    width: 100%;
+#likeButtonStyling {
+    width: 98%;
+}
+
+#commentButtonStyling {
+    width: 98%;
 }
 
 .deleteContainer img {
@@ -131,13 +160,16 @@
 .commentBody {
     display: flex;
     justify-content: flex-start;
-    margin-top: -1rem;
-    margin-left: 0.8rem;
-    border-bottom: 0.5px solid black;
+    margin-top: -0.5rem;
+    border-radius: 5px;
+    width: 100%;
+    background-color: white;
 }
 
 .commentBody p {
     text-align: left;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .commentInfo {
@@ -160,12 +192,6 @@
 .commentBox {
     position: relative;
     width: 100%;
-    transform: translateY(-100%);
-    transition: transform 0.3s ease;
-}
-
-.commentBox.show {
-    transform: translateY(0);
 }
 
 .commentBox textarea {
@@ -177,11 +203,10 @@
     border-top-right-radius: 0;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    padding: 1rem 1rem;
-    display: flex;
-    resize: none;
-    font-family: 'OpenSans';
+    padding: 1rem;
+    font-family: 'OpenSans', sans-serif;
     background-color: #FFFFFF;
+    resize: none;
 }
 
 .commentBox button {
@@ -195,4 +220,8 @@
     font-size: 0.8rem;
     font-family: 'OpenSans', sans-serif;
     cursor: pointer;
+}
+
+#commentDeleteButton {
+    margin-left: -2rem;
 }

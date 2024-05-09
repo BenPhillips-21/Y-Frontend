@@ -63,7 +63,7 @@ const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequ
         <div className={styles.homeContainer}>
             <div className={styles.postFatherContainer}>
                 <div className={styles.postBox}>
-                    <PostBox headers={headers}fetchPosts={fetchPosts}fetchCurrentUser={fetchCurrentUser}postToast={postToast}somethingWentWrong={somethingWentWrong}/>
+                    <PostBox headers={headers}JWT={JWT}fetchPosts={fetchPosts}fetchCurrentUser={fetchCurrentUser}postToast={postToast}somethingWentWrong={somethingWentWrong}/>
                 </div>
                 <div className={styles.postsContainer}>
                     {posts.length > 0 ? posts.map((post, index) => (
@@ -82,7 +82,7 @@ const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequ
                                 currentUser._id !== user._id && (
                                     <div className={styles.userPicAndName}>
                                         <img src={user.profilePic.url} alt={user.username} />
-                                        <p onClick={(e) => handleVisitProfile(e, user._id)}>{user.username}</p>
+                                        <p id={styles.userName} onClick={(e) => handleVisitProfile(e, user._id)}>{user.username}</p>
                                         <img id={styles.addFriendButton} onClick={(e) => sendFriendRequest(e, user._id)} src='/addFriend.svg'></img>
                                     </div>
                                 )}

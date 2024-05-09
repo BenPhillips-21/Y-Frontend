@@ -58,7 +58,7 @@ const Profile = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendR
                 <div className={styles.profilePostsContainer}>
                     {profile && profile._id === currentUser._id && 
                     <div className={styles.postBox}>
-                        <PostBox headers={headers} fetchCurrentUser={fetchCurrentUser} postToast={postToast} somethingWentWrong={somethingWentWrong}/>
+                        <PostBox headers={headers} JWT={JWT} fetchCurrentUser={fetchCurrentUser} postToast={postToast} somethingWentWrong={somethingWentWrong}/>
                     </div>
                     }
                     <div className={styles.myPostsContainer}>

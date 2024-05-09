@@ -60,13 +60,18 @@ const Navbar = ({headers, fetchCurrentUser, fetchOtherUser, logoutToast, handleV
         <nav className={styles.navbar}>
         <div className={styles.container}>
             <div className={styles.navbarContainer}>
-                {/* <Link to="/home" className={styles.navbarLink}>Home</Link> */}
-                <button id={styles.homeButtonStyling} onClick={() => navigate('/home')} className={styles.navbarLink}>Home</button>
+                {/* <button id={styles.homeButtonStyling} onClick={() => navigate('/home')} className={styles.navbarLink}>Home</button> */}
+                <img id={styles.homeButton} src={'/home.svg'} onClick={() => navigate('/home')} className={styles.navbarLink}></img>
             </div> 
                 <div className={styles.navbarLinks}>
-                    <button onClick={(e) => handleMyProfileClick(e)} className={styles.navbarLink}>My Profile</button>
-                    <button onClick={(e) => openFriendRequests(e)} className={styles.navbarLink}>Friend Requests</button>
-                    <button onClick={(e) => handleLogout(e)} className={styles.navbarLink}>Logout</button>
+                    {currentUser && (
+                    <div className={styles.pfpAndName}>
+                    <img id={styles.myProfilePic} onClick={(e) => handleMyProfileClick(e)} className={styles.navbarLink} src={currentUser.profilePic.url}></img>
+                    <p onClick={(e) => handleMyProfileClick(e)} id={styles.myProfileUsername} className={styles.navbarLink}>{currentUser.username}</p>
+                    </div>
+                    )}
+                    <img onClick={(e) => openFriendRequests(e)} className={styles.navbarLink} src='/friendRequests.svg'></img>
+                    <img onClick={(e) => handleLogout(e)} className={styles.navbarLink} src='/logout.svg'></img>
                 </div>
                 {openFriends && (
                     <div className={styles.friendRequestsDropdown}>
@@ -74,9 +79,9 @@ const Navbar = ({headers, fetchCurrentUser, fetchOtherUser, logoutToast, handleV
                         <div className={styles.friendRequestInfo} key={index}>
                             <img src={request.profilePic.url}></img>
                             <p onClick={(e) => handleVisitProfile(e, request._id)}>{request.username}</p>
-                            <button onClick={(e) => acceptFriendRequest(e, request._id)}>Accept Friend Request</button>
+                            <img id={styles.addFriendButton} onClick={(e) => acceptFriendRequest(e, request._id)} src='/addFriend.svg'></img>
                         </div>
-                    ) : <h2>No friend requests</h2>}
+                    ) : <h3>No friend requests</h3>}
                     </div>
                 )}
         </div>

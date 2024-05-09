@@ -169,7 +169,7 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
                         </div>
                         <div className={styles.nameAndDateContainer}>
                             <p onClick={(e) => handleVisitProfile(e, post.poster._id)}>{post.poster.username}</p>
-                            <p>{formatDate(post.dateSent)}</p>
+                            <p id={styles.postDateStyling}>{formatDate(post.dateSent)}</p>
                         </div>
                     </div>
                     {currentUserPostIDs.includes(post._id) && 
@@ -190,10 +190,10 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
                 </div>
                 <div className={styles.postFooter}>
                     <div className={styles.likeButtonContainer}>
-                        <button onClick={() => handleLike(post._id)} id={styles.buttonStyling}>Like</button>
+                        <button onClick={() => handleLike(post._id)} id={styles.likeButtonStyling}>{currentUser && !post.likes.includes(currentUser._id) ? 'Like' : 'Unlike'}</button>
                     </div>
                     <div className={styles.commentButtonContainer}>
-                        <button onClick={() => handleAddCommentClick(post._id)} id={styles.buttonStyling}>Comment</button>
+                        <button onClick={() => handleAddCommentClick(post._id)} id={styles.commentButtonStyling}>Comment</button>
                     </div>
                 </div>
                 {commenting.includes(post._id) && 
