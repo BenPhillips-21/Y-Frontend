@@ -18,15 +18,41 @@
     background-color: #f7f7f7;
 }
 
-.nameAndDateContainer {
+.headerContainer {
     display: flex;
     flex-direction: row;
+    margin-top: 5px;
+    justify-content: space-between;
 }
 
-.nameAndDateContainer img {
+.headerContainer img {
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
+}
+
+.nameAndDateContainer {
+    /* background-color: purple; */
+    display: flex;
+    flex-direction: row;
+    margin-top: -0.5rem;
+    margin-left: 0.5rem;
+}
+
+#commentDateSentStyling {
+    margin-left: 0.75rem;
+}
+
+#commenterPfp {
+    margin-top: 0.5rem;
+}
+
+#commenterUsernameStyling {
+    margin-left: 0.25rem;
+}
+
+.pfpContainer {
+    /* background-color: red; */
 }
 
 .postHeader p {
@@ -80,14 +106,12 @@
 }
 
 .commentSection {
-    background-color: blanchedalmond;
     width: 95%;
 }
 
 .commentContainer {
     display: flex;
     flex-direction: column;
-    background-color: aliceblue;
     margin-top: 0.5rem;
     width: 100%;
 }
@@ -100,6 +124,13 @@
 .commentBody {
     display: flex;
     justify-content: flex-start;
+    margin-top: -1rem;
+    margin-left: 0.8rem;
+    border-bottom: 0.5px solid black;
+}
+
+.commentBody p {
+    text-align: left;
 }
 
 .commentInfo {
@@ -117,4 +148,23 @@
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
+}
+
+.commentBox {
+    width: 80%;
+    margin-top: 0.5rem;
+}
+
+.commentBox textarea {
+    width: 100%;
+    font-size: 0.8rem;
+    height: 3rem;
+    border: 0px;
+    border-radius: 1rem;
+    padding: 1rem 1rem;
+    display: flex;
+    resize: none;
+    font-family: 'OpenSans';
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }

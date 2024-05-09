@@ -163,10 +163,14 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
     return (
             <div className={styles.postContainer} key={index}>
                 <div className={styles.postHeader}>
-                    <div className={styles.nameAndDateContainer}>
-                        <img src={post.poster.profilePic.url}></img>
-                        <p onClick={(e) => handleVisitProfile(e, post.poster._id)}>{post.poster.username}</p>
-                        <p>{formatDate(post.dateSent)}</p>
+                    <div className={styles.headerContainer}>
+                        <div className={styles.pfpContainer}>
+                            <img src={post.poster.profilePic.url}></img>
+                        </div>
+                        <div className={styles.nameAndDateContainer}>
+                            <p onClick={(e) => handleVisitProfile(e, post.poster._id)}>{post.poster.username}</p>
+                            <p>{formatDate(post.dateSent)}</p>
+                        </div>
                     </div>
                     {currentUserPostIDs.includes(post._id) && 
                     <div className={styles.deleteContainer}>
@@ -196,17 +200,15 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
                 <div className={styles.commentSection}>
                     {post.comments.map((comment, index) => (
                         <div className={styles.commentContainer} key={index}>
-                            <div className={styles.commentInfo}>
+                            <div className={styles.headerContainer}>
                                 <div className={styles.nameAndDateContainer}>
-                                    <img src={comment.commenter.profilePic.url}></img>
-                                    <p>{comment.commenter.username}</p>
-                                    <p>{formatDate(comment.dateSent)}</p>
+                                    <img id={styles.commenterPfp} src={comment.commenter.profilePic.url}></img>
+                                    <p id={styles.commenterUsernameStyling}>{comment.commenter.username}</p>
+                                    <p id={styles.commentDateSentStyling}>{formatDate(comment.dateSent)}</p>
                                 </div>
                                 {currentUser._id === comment.commenter._id && 
                                 <div className={styles.deleteContainer}>
-                                    <button onClick={(e) => handleDeleteComment(e, post._id, comment._id)}>
-                                        <img src="/trash.svg" alt="Trash Can Icon"></img>
-                                    </button>
+                                        <img onClick={(e) => handleDeleteComment(e, post._id, comment._id)} src="/trash.svg" alt="Trash Can Icon"></img>
                                 </div>}
                             </div>
                         <div className={styles.commentBody}>
@@ -218,7 +220,7 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
                 {commenting.includes(post._id) && 
                     <div className={styles.commentBox}>
                     <form>
-                            <input
+                            <textarea
                                 type="text"
                                 required
                                 value={comment}
