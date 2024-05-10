@@ -1,0 +1,179 @@
+.fatherContainer {
+    width: 100vw;
+    min-height: 100vh;
+    margin-top: 2.85rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sonContainer {
+    width: 70%;
+}
+
+.profileHeader {
+    width: 100%;
+    margin-top: 3rem;
+    height: 8rem;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.profileHeader img {
+    width: 8rem;
+    border-radius: 50%;
+}
+
+.profilePicAndName {
+    min-width: 20rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.friendsOrNotBox {
+    min-width: 10rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.friendsOrNotBox img {
+    width: 3rem;
+}
+
+.profileBodyContainer {
+    width: 100%;
+    height: 40rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.aboutMeAndFriendsContainer {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 1.5rem;
+}
+
+.aboutMeContainer {
+    width: 100%;
+    height: auto;
+    border-radius: 1.5rem;
+    background-color: #DBE8D8;
+    background-image: linear-gradient(to right, #ABEA7C, #F2E34C);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.headingAndEditing {
+    background-image: linear-gradient(to right, #a0dc73, #e9db47);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    width: 100%;
+}
+
+.headingAndEditing img {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1rem;
+}
+
+.headingAndEditing h3 {
+    margin-left: 1rem;
+    font-family: 'OpenSansBold';
+}
+
+.profileBioContainer {
+    width: 85%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileBioContainer {
+    margin-top: -0.5rem;
+}
+
+.friendsContainer {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-image: linear-gradient(to right, #ABEA7C, #F2E34C);
+    border-radius: 1rem;
+    margin-top: 1rem;
+}
+
+.friendsContainerHeader {
+    width: 100%;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    display: flex;
+    align-items: flex-start;
+    background-image: linear-gradient(to right, #a0dc73, #e9db47);
+}
+
+.friendsContainer img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%; 
+    margin-left: 0.5rem;
+}
+
+.friendsContainer p {
+    margin-top: 0.45rem;
+    margin-left: 0.5rem;
+}
+
+.friendsContainer h3 {
+    margin-left: 1rem;
+    font-family: 'OpenSansBold';
+}
+
+.friendCard {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+}
+
+.profilePostsContainer {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.postBox {
+    width: 100%;
+    min-height: 15rem;
+}
+
+.myPostsContainer {
+    width: 100%;
+    min-height: 25rem;
+}
+
+.postCard {
+    width: 100%;
+    min-height: 3rem;
+}
+
+.postCard p {
+    color: black;
+}
+

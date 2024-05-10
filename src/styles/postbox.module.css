@@ -28,22 +28,34 @@
 
 #postBoxPostButton {
     background-color: #F2E34C;
-    border-radius: 2rem;
+    border-radius: 1rem;
     padding: auto;
     position: absolute;
     right: 0rem;
     top: 5rem;
+    border: 0px;
+    outline: 0px;
     font-family: 'OpenSans';
+}
+
+#postBoxPostButton:hover {
+    background-color: #d7c23c;
 }
 
 #attachImageButton {
     background-color: #F2E34C;
-    border-radius: 2rem;
+    border-radius: 1rem;
     padding: auto;
     position: absolute;
     right: 5rem;
     top: 5rem;
+    border: 0px;
+    outline: 0px;
     font-family: 'OpenSans';
+}
+
+#attachImageButton:hover {
+    background-color: #d7c23c;
 }
 
 .imageInputContainer {

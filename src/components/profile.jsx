@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import styles from '../styles/myprofile.module.css'; 
+import styles from '../styles/profile.module.css'; 
 import Post from './post.jsx'
 import PostBox from './postbox.jsx'
 
@@ -25,6 +25,7 @@ const Profile = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendR
 
     return (
         <div className={styles.fatherContainer}>
+            <div className={styles.sonContainer}>
             <div className={styles.profileHeader}>
                 <div className={styles.profilePicAndName}>
                     {profile && <img src={profile.profilePic.url}></img>}
@@ -44,12 +45,17 @@ const Profile = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendR
                             <h3>About Me</h3>
                             <img onClick={() => navigate('/profilesettings')}src='/editIcon.svg'></img>
                         </div>
-                        {profile && <p>{profile.bio}</p>}
+                        <div className={styles.profileBioContainer}>
+                            {profile && <p>{profile.bio}</p>}
+                        </div>
                     </div>
                     <div className={styles.friendsContainer}>
-                        <h3>Friends</h3>
+                        <div className={styles.friendsContainerHeader}>
+                            <h3>Friends</h3>
+                        </div>
                         {profile && profile.friends.map((friend, index) => (
                             <div key={index} className={styles.friendCard}>
+                                <img src={friend.profilePic.url}></img>
                                 <p onClick={(e) => handleVisitProfile(e, friend._id)}>{friend.username}</p>
                             </div>
                         ))}
@@ -67,6 +73,7 @@ const Profile = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendR
                         ))}
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     );

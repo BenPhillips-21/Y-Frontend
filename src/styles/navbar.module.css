@@ -104,6 +104,8 @@
     width: 3rem;
     height: 3rem;
     margin-top: 0.3rem;
+    border-radius: 50%;
+    margin-right: 0.3rem;
 }
 
 #myProfileUsername {
