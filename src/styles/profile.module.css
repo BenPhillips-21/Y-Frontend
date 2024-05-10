@@ -19,28 +19,54 @@
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
+    align-items: center;
 }
 
 .profileHeader img {
-    width: 8rem;
+    width: 6rem;
+    height: 6rem;
     border-radius: 50%;
 }
 
 .profilePicAndName {
     min-width: 20rem;
+    margin-left: 7.25rem;
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.profilePicAndName h2 {
+    margin-left: .75rem;
 }
 
 .friendsOrNotBox {
     min-width: 10rem;
     display: flex;
     flex-direction: row;
+    margin-right: 7.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.friendsBox {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: -20px;
+}
+
+.requestSentBox p {
+    margin-top: 0px;
+}
+
+.friendsOrNotBox h2 {
+    margin-right: .75rem;
 }
 
 .friendsOrNotBox img {
-    width: 3rem;
+    width: 2.5rem;
 }
 
 .profileBodyContainer {
@@ -48,10 +74,12 @@
     height: 40rem;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .aboutMeAndFriendsContainer {
-    width: 25%;
+    width: 20rem;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -152,7 +180,7 @@
 }
 
 .profilePostsContainer {
-    width: 70%;
+    width: 35vw;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -160,7 +188,7 @@
 
 .postBox {
     width: 100%;
-    min-height: 15rem;
+    height: auto;
 }
 
 .myPostsContainer {

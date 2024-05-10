@@ -35,7 +35,7 @@
     top: 5rem;
     border: 0px;
     outline: 0px;
-    font-family: 'OpenSans';
+    font-family: 'OpenSansBold';
 }
 
 #postBoxPostButton:hover {
@@ -51,7 +51,7 @@
     top: 5rem;
     border: 0px;
     outline: 0px;
-    font-family: 'OpenSans';
+    font-family: 'OpenSansBold';
 }
 
 #attachImageButton:hover {

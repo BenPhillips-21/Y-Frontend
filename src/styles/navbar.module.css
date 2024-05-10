@@ -59,6 +59,22 @@
     justify-content: center;
 }
 
+.friendRequestNav {
+    margin-bottom: 1rem;
+    width: auto;
+}
+
+.friendRequestNav p {
+    margin-top: 0px;
+    margin-bottom: -0.5rem;
+    margin-left: 3rem;
+}
+
+.friendRequestNav img {
+    margin-top: 0px;
+    width: 1.75rem;
+}
+
 .friendRequestsDropdown {
     position: absolute;
     background-color: white;
@@ -77,7 +93,6 @@
 .friendRequestInfo {
     display: flex;
     flex-direction: row;
-    border-bottom: 0.5px solid black;
 }
 
 .friendRequestInfo img {
@@ -94,10 +109,9 @@
 }
 
 #homeButton {
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 30%;
-    margin-top: 0.8rem;
 }
 
 #myProfilePic {
@@ -112,7 +126,21 @@
     margin-left: 0rem;
 }
 
+
+#friendRequestCount {
+    position: absolute;
+    top: 4px; /* Adjust vertical position above the icon */
+    left: 1283px;
+    color: #000; /* Example text color for count badge */
+    border-radius: 50%; /* Make the count badge circular */
+    padding: 5px; /* Provide padding for the count badge */
+    font-size: 15px; /* Example font size for the count badge */
+}
+
+
 .pfpAndName {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }

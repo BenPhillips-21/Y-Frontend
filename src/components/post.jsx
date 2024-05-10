@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styles from '../styles/post.module.css'; 
 import { formatDistanceToNow } from 'date-fns';
 
-const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, currentUser, fetchCurrentUser, JWT, posts, setPosts, somethingWentWrong, deletePostToast, createCommentToast, deleteCommentToast, headers, postLikedToast}) => {
+const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, currentUser, fetchCurrentUser, JWT, posts, setPosts, somethingWentWrong, deletePostToast, createCommentToast, deleteCommentToast, headers, postLikedToast, handleVisitProfile}) => {
     const [commentSection, setCommentSection] = useState([])
     const [commenting, setCommenting] = useState([])
     const [comment, setComment] = useState('')
@@ -168,7 +168,7 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
                             <img src={post.poster.profilePic.url}></img>
                         </div>
                         <div className={styles.nameAndDateContainer}>
-                            <p onClick={(e) => handleVisitProfile(e, post.poster._id)}>{post.poster.username}</p>
+                            <p id={styles.usernameStyling} onClick={(e) => handleVisitProfile(e, post.poster._id)}>{post.poster.username}</p>
                             <p id={styles.postDateStyling}>{formatDate(post.dateSent)}</p>
                         </div>
                     </div>
@@ -186,7 +186,7 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
                 </div>
                 <div className={styles.postInfo}>
                     <p>{post.likes.length} Likes</p>
-                    <p onClick={() => handleCommentClick(post._id)}>{post.comments.length} Comments</p>
+                    <p id={styles.openCommentsButton} onClick={() => handleCommentClick(post._id)}>{post.comments.length} Comments</p>
                 </div>
                 <div className={styles.postFooter}>
                     <div className={styles.likeButtonContainer}>

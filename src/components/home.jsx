@@ -67,13 +67,14 @@ const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequ
                 </div>
                 <div className={styles.postsContainer}>
                     {posts.length > 0 ? posts.map((post, index) => (
-                        <Post key={index}currentUserPostIDs={currentUserPostIDs}headers={headers}post={post}index={index}currentUser={currentUser}deletePostToast={deletePostToast}JWT={JWT}posts={posts}setPosts={setPosts}somethingWentWrong={somethingWentWrong}deletePostToast={deletePostToast}createCommentToast={createCommentToast}deleteCommentToast={deleteCommentToast} postLikedToast={postLikedToast}/>
+                        <Post key={index}currentUserPostIDs={currentUserPostIDs}headers={headers}post={post}index={index}currentUser={currentUser}deletePostToast={deletePostToast}JWT={JWT}posts={posts}setPosts={setPosts}somethingWentWrong={somethingWentWrong}deletePostToast={deletePostToast}createCommentToast={createCommentToast}deleteCommentToast={deleteCommentToast} postLikedToast={postLikedToast}handleVisitProfile={handleVisitProfile}/>
                     )) : <h1>Add some friends to see some content!</h1>}
                 </div>
             </div>
             {currentUser && (
                 <div className={styles.userListContainer}>
-                    <h2>Other Users</h2>
+                           {allUsers.some(user => !userFriendIDs.includes(user._id) && !userFriendRequestIDs.includes(user._id) && !userSentFriendRequestIDs.includes(user._id) && currentUser._id !== user._id) 
+                           && (<h2>Other Users</h2>)}
                     {allUsers.map((user, index) => (
                         <div className={styles.userListContainer} key={index}>
                                 {!userFriendIDs.includes(user._id) &&

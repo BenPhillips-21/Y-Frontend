@@ -31,19 +31,40 @@ const Profile = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendR
                     {profile && <img src={profile.profilePic.url}></img>}
                     {profile && <h2>{profile.username}</h2>}
                 </div>
-                {profile && profile._id !== currentUser._id &&
-                <div className={styles.friendsOrNotBox}>
-                    <h3>Friends</h3>
-                    {friends.includes(currentUser._id) ? <img src='/tick.svg'></img> : <img src='/cross.svg'></img>}
-                    {!friends.includes(currentUser._id) && !userFriendRequestIDs.includes(profile._id) && !userSentFriendRequestIDs.includes(profile._id) && <img id={styles.addFriendButton} onClick={(e) => sendFriendRequest(e, profile._id)} src='/addFriend.svg'></img>}
-                </div>}
+                {/* also make it so a nigga can accept friend requests from here */}
+                {profile && profile._id !== currentUser._id && (
+                    <div className={styles.friendsOrNotBox}>
+                        {userSentFriendRequestIDs.includes(profile._id) ? (
+                            <p>Friend Request Sent</p>
+                        ) : (
+                            <>
+                                <h2>Friends</h2>
+                                {friends.includes(currentUser._id) ? (
+                                    <img src='/tick.svg' alt="Tick Icon" />
+                                ) : (
+                                    <img src='/cross.svg' alt="Cross Icon" />
+                                )}
+                                {!friends.includes(currentUser._id) &&
+                                    !userFriendRequestIDs.includes(profile._id) &&
+                                    !userSentFriendRequestIDs.includes(profile._id) && (
+                                        <img
+                                            id={styles.addFriendButton}
+                                            onClick={(e) => sendFriendRequest(e, profile._id)}
+                                            src='/addFriend.svg'
+                                            alt="Add Friend Icon"
+                                        />
+                                    )}
+                            </>
+                        )}
+                    </div>
+                )}
             </div>
             <div className={styles.profileBodyContainer}>
                 <div className={styles.aboutMeAndFriendsContainer}>
                     <div className={styles.aboutMeContainer}>
                         <div className={styles.headingAndEditing}>
                             <h3>About Me</h3>
-                            <img onClick={() => navigate('/profilesettings')}src='/editIcon.svg'></img>
+                            {profile && profile._id === currentUser._id && <img onClick={() => navigate('/profilesettings')}src='/editIcon.svg'></img>}
                         </div>
                         <div className={styles.profileBioContainer}>
                             {profile && <p>{profile.bio}</p>}
@@ -68,9 +89,9 @@ const Profile = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendR
                     </div>
                     }
                     <div className={styles.myPostsContainer}>
-                        {profile && profile.posts.map((post, index) => (
+                        {profile && profile.posts.length > 0 ? profile.posts.map((post, index) => (
                             <Post headers={headers} fetchOtherUser={fetchOtherUser} profile={profile} currentUserPostIDs={currentUserPostIDs} post={post} index={index} currentUser={currentUser} deletePostToast={deletePostToast} JWT={JWT} setPosts={setPosts} somethingWentWrong={somethingWentWrong} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} fetchCurrentUser={fetchCurrentUser} postLikedToast={postLikedToast}/>
-                        ))}
+                        )) : <h1>This User Has No Posts!</h1>}
                     </div>
                 </div>
             </div>

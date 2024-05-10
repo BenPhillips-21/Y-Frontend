@@ -60,7 +60,7 @@ const Navbar = ({headers, fetchCurrentUser, fetchOtherUser, logoutToast, handleV
         <nav className={styles.navbar}>
         <div className={styles.container}>
             <div className={styles.navbarContainer}>
-                <img id={styles.homeButton} src={'/home.svg'} onClick={() => navigate('/home')} className={styles.navbarLink}></img>
+                <img id={styles.homeButton} src={'/Y.svg'} onClick={() => navigate('/home')} className={styles.navbarLink}></img>
             </div> 
                 <div className={styles.navbarLinks}>
                     {currentUser && (
@@ -69,7 +69,11 @@ const Navbar = ({headers, fetchCurrentUser, fetchOtherUser, logoutToast, handleV
                     <p onClick={(e) => handleMyProfileClick(e)} id={styles.myProfileUsername} className={styles.navbarLink}>{currentUser.username}</p>
                     </div>
                     )}
-                    <img onClick={(e) => openFriendRequests(e)} className={styles.navbarLink} src='/friendRequests.svg'></img>
+                    <div className={styles.friendRequestNav}>
+                        {currentUser && 
+                        <p>{currentUser.friendRequests.length}</p>}
+                        <img onClick={(e) => openFriendRequests(e)} className={styles.navbarLink} src='/friendRequests.svg'/>
+                    </div>
                     <img onClick={() => navigate('/profilesettings')} className={styles.navbarLink} src='/settingsGear.svg'></img>
                     <img onClick={(e) => handleLogout(e)} className={styles.navbarLink} src='/logout.svg'></img>
                 </div>

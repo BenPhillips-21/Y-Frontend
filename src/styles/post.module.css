@@ -46,6 +46,13 @@
     flex-direction: row;
     margin-top: -0.5rem;
     margin-left: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+#usernameStyling:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    cursor: pointer;
 }
 
 #commentDateSentStyling {
@@ -63,6 +70,7 @@
 .postHeader p {
     margin-right: 1rem;
     font-family: 'OpenSansBold';
+    color: #202030;
 }
 
 .postBody {
@@ -80,6 +88,7 @@
     height: auto;
     margin-left: 0.5rem;
     margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 #postDateStyling {
@@ -108,6 +117,12 @@
     margin-right: 1rem;
 }
 
+#openCommentsButton:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    cursor: pointer;
+}
+
 .postFooter {
     display: flex;
     flex-direction: row;
@@ -115,26 +130,42 @@
     font-family: 'OpenSansBold';
     font-size: 0.85rem;
     background-color: white;
+    border-radius: 10px;
+}
+
+.postFooter button {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.postFooter button:hover {
+    background-color: #202030;
+    color: white;
 }
 
 .likeButtonContainer {
     width: 100%;
     display: flex;
     justify-content: flex-start;
+    border-radius: 10px;
 }
 
 .commentButtonContainer{
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    border-radius: 10px;
 }
 
 #likeButtonStyling {
     width: 98%;
+    border: none;
+    outline: none;
 }
 
 #commentButtonStyling {
     width: 98%;
+    border: none;
+    outline: none;
 }
 
 .deleteContainer img {
@@ -218,8 +249,12 @@
     padding: 10px 20px;
     border: none;
     font-size: 0.8rem;
-    font-family: 'OpenSans', sans-serif;
+    font-family: 'OpenSansBold', sans-serif;
     cursor: pointer;
+}
+
+.commentBox button:hover {
+    background-color: #d7c23c;
 }
 
 #commentDeleteButton {
