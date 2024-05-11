@@ -3,6 +3,7 @@ import styles from '../styles/home.module.css';
 import Post from './post.jsx'
 import PostBox from './postbox.jsx'
 import Spinner from './spinner.jsx'
+import UserList from './userlist.jsx'
 
 const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequestIDs, sendFriendRequest, currentUserPostIDs, posts, setPosts, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, sentFriendToast, deletePostToast, createCommentToast, deleteCommentToast, somethingWentWrong, postLikedToast }) => {
     const [allUsers, setAllUsers] = useState([])
@@ -66,6 +67,7 @@ const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequ
             <div className={styles.postFatherContainer}>
                 <div className={styles.postBox}>
                     <PostBox headers={headers}JWT={JWT}fetchPosts={fetchPosts}fetchCurrentUser={fetchCurrentUser}postToast={postToast}somethingWentWrong={somethingWentWrong}/>
+                    <button id={styles.otherUsersButton}>Other Users</button>
                 </div>
                     {
                         showSpinner && <Spinner />
@@ -81,18 +83,7 @@ const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequ
                            {allUsers.some(user => !userFriendIDs.includes(user._id) && !userFriendRequestIDs.includes(user._id) && !userSentFriendRequestIDs.includes(user._id) && currentUser._id !== user._id) 
                            && (<h2>Other Users</h2>)}
                     {allUsers.map((user, index) => (
-                        <div className={styles.userListContainer} key={index}>
-                                {!userFriendIDs.includes(user._id) &&
-                                !userFriendRequestIDs.includes(user._id) &&
-                                !userSentFriendRequestIDs.includes(user._id) &&
-                                currentUser._id !== user._id && (
-                                    <div className={styles.userPicAndName}>
-                                        <img src={user.profilePic.url} alt={user.username} />
-                                        <p id={styles.userName} onClick={(e) => handleVisitProfile(e, user._id)}>{user.username}</p>
-                                        <img id={styles.addFriendButton} onClick={(e) => sendFriendRequest(e, user._id)} src='/addFriend.svg'></img>
-                                    </div>
-                                )}
-                        </div>
+                        <UserList user={user} key={index} userFriendIDs={userFriendIDs} userFriendRequestIDs={userFriendRequestIDs} userSentFriendRequestIDs={userSentFriendRequestIDs} currentUser={currentUser} handleVisitProfile={handleVisitProfile} sendFriendRequest={sendFriendRequest}/>
                     ))}
                 </div>
             )}
