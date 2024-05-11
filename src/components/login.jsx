@@ -36,6 +36,7 @@ const Login = ({JWT, setJWT, loginToast, handleDemoLogin}) => {
     return (
         <>
           <div className={styles.background}>
+            <img id={styles.homeButton} src={'/Y.svg'}></img>
             <div className={styles.registerContainer}>
                 <h1>Login !</h1>
                 <form>

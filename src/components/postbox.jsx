@@ -78,6 +78,7 @@ const PostBox = ({headers, JWT, fetchPosts, fetchCurrentUser, postToast, somethi
 
     return (
         <>
+        <div className={styles.postBoxContainer}>
             <form className={styles.postBoxForm} onSubmit={handleFormSubmit}>
                 <textarea
                     type="text"
@@ -97,6 +98,7 @@ const PostBox = ({headers, JWT, fetchPosts, fetchCurrentUser, postToast, somethi
                 <button id={styles.attachImageButton} onClick={() => setAttachingImage(!attachingImage)}>Attach Image</button>
             </form>
             {isPosting && <Spinner />}
+        </div>
         </>
     )
 }

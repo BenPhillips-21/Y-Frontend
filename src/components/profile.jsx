@@ -14,6 +14,7 @@ const Profile = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendR
         if (otherUser) {
             setProfile(otherUser)  
         } else {
+            fetchCurrentUser()
             setProfile(currentUser) 
         }
     }, [otherUser, currentUser]);

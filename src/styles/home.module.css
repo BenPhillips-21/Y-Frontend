@@ -48,6 +48,13 @@
     margin-left: 0.3rem;
 }
 
+.otherUsersButtonContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #addFriendButton {
     width: 1.75rem;
     height: 1.75rem;
@@ -60,20 +67,60 @@
 }
 
 /* Tablet styles (e.g., iPad landscape) */
-@media (max-width: 1024px) {
-
+@media (min-width: 1080px) and (max-width: 1200px) and (min-height: 810px) and (max-height: 900px) {
+    .postsContainer {
+        width: 45vw;
+    }
 }
 
 /* Smartphone styles (e.g., iPhone portrait) */
 @media (max-width: 768px) {
     #otherUsersButton {
         display: block;
+        margin-top: 1rem;
+        background-color: #F2E34C;
+        border-radius: 2rem;
+        font-size: 0.65rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        font-family: 'OpenSansBold';
     }
+
     .homeContainer {
         flex-direction: column;
     }
-    .userListContainer {
-        display: none;
+    .postFatherContainer {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .postsContainer {
+        width: 90%;
+    }
+
+    .userPicAndName {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-left: -2rem;
+    }
+
+    .userPicAndName p {
+        font-size: 0.9rem;
+    }
+
+    .userPicAndName img {
+        width: 2.3rem;
+        height: 2.3rem;
+    }
+
+    #addFriendButton {
+        width: 1.3rem;
+        height: 1.3rem;
+        border-radius: 30%;
+        margin-top: .25rem;
     }
 }
 

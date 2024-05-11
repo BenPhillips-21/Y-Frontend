@@ -35,7 +35,8 @@ const Register = ({registerToast, handleDemoLogin}) => {
     return (
         <>
             <div className={styles.background}>
-                <div className={styles.registerContainer}>
+            <img id={styles.homeButton} src={'/Y.svg'}></img>
+                <div className={styles.registerContainer}> 
                     <h1>Sign Up !</h1>
                     <form>
                         <label>Username:</label>

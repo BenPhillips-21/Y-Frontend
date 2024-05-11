@@ -8,6 +8,7 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
     const [commenting, setCommenting] = useState([])
     const [comment, setComment] = useState('')
     const [isCommenting, setIsCommenting] = useState(false)
+    const [isDeleting, setIsDeleting] = useState(false)
 
     const fetchPosts = async () => {
         try {
@@ -20,6 +21,7 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
             if (response.ok) {
                 const data = await response.json();
                 setPosts(data); 
+                console.log('Fetch posts!!!!')
             } else {
                 somethingWentWrong('Failed to fetch posts')
                 throw new Error('Failed to fetch posts');
@@ -33,6 +35,7 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
 
     const handleDeletePost = async (e, postid) => {
         e.preventDefault()
+        setIsDeleting(true)
 
         try {
             const response = await fetch(`http://localhost:3000/deletepost/${postid}`, {
@@ -43,9 +46,11 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
             
             if (response.ok) {
                 fetchPosts() 
-                deletePostToast()   
+                deletePostToast() 
+                setIsDeleting(false)  
             } else {
                 somethingWentWrong("Failed to like post")
+                setIsDeleting(false) 
                 throw new Error("Failed to like post")
             }
 
@@ -165,8 +170,9 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
         return formatDistanceToNow(new Date(date), { addSuffix: true });
       }
 
-    return (
+    return (    
             <div className={styles.postContainer} key={index}>
+                {isDeleting && <Spinner />}
                 <div className={styles.postHeader}>
                     <div className={styles.headerContainer}>
                         <div className={styles.pfpContainer}>

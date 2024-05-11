@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/home.module.css';
 
-const UserList = ({allUsers, userFriendIDs, userFriendRequestIDs, userSentFriendRequestIDs, currentUser, handleVisitProfile, sendFriendRequest}) => {
+const UserList = ({allUsers, isOpen, userFriendIDs, userFriendRequestIDs, userSentFriendRequestIDs, currentUser, handleVisitProfile, sendFriendRequest}) => {
 
     return (
         <>
             <div className={styles.userListContainer}>
                 {allUsers.some(user => !userFriendIDs.includes(user._id) && !userFriendRequestIDs.includes(user._id) && !userSentFriendRequestIDs.includes(user._id) && currentUser._id !== user._id) 
-                && (<h2>Other Users</h2>)}
+                && !isOpen && (<h2>Other Users</h2>)}
                 {allUsers.map((user, index) => 
                 <div className={styles.userListContainer} key={index}>
                     {!userFriendIDs.includes(user._id) &&

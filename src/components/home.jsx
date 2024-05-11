@@ -8,6 +8,7 @@ import UserList from './userlist.jsx'
 const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequestIDs, sendFriendRequest, currentUserPostIDs, posts, setPosts, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, sentFriendToast, deletePostToast, createCommentToast, deleteCommentToast, somethingWentWrong, postLikedToast }) => {
     const [allUsers, setAllUsers] = useState([])
     const [showSpinner, setShowSpinner] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
 
     useEffect(() => {
         setOtherUser('')
@@ -67,7 +68,12 @@ const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequ
           <div className={styles.postFatherContainer}>
             <div className={styles.postBox}>
               <PostBox headers={headers} JWT={JWT} fetchPosts={fetchPosts} fetchCurrentUser={fetchCurrentUser} postToast={postToast} somethingWentWrong={somethingWentWrong} />
-              <button id={styles.otherUsersButton}>Other Users</button>
+              <div className={styles.otherUsersButtonContainer}>
+                <button onClick={() => setIsOpen(!isOpen)} id={styles.otherUsersButton}>Other Users</button>
+              </div>
+              {isOpen && currentUser && (
+            <UserList isOpen={isOpen} allUsers={allUsers} userFriendIDs={userFriendIDs} userFriendRequestIDs={userFriendRequestIDs} userSentFriendRequestIDs={userSentFriendRequestIDs} currentUser={currentUser} handleVisitProfile={handleVisitProfile} sendFriendRequest={sendFriendRequest} />
+            )}
             </div>
             {showSpinner && <Spinner />}
             <div className={styles.postsContainer}>
@@ -82,7 +88,7 @@ const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequ
           </div>
           {currentUser && (
             <UserList allUsers={allUsers} userFriendIDs={userFriendIDs} userFriendRequestIDs={userFriendRequestIDs} userSentFriendRequestIDs={userSentFriendRequestIDs} currentUser={currentUser} handleVisitProfile={handleVisitProfile} sendFriendRequest={sendFriendRequest} />
-          )}
+            )}
         </div>
       );
     };
