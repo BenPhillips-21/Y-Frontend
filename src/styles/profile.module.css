@@ -115,6 +115,10 @@
     margin-right: 1rem;
 }
 
+.headingAndEditing img:hover {
+    cursor: pointer;
+}
+
 .headingAndEditing h3 {
     margin-left: 1rem;
     font-family: 'OpenSansBold';
@@ -211,3 +215,12 @@
     color: black;
 }
 
+/* Tablet styles (e.g., iPad landscape) */
+@media (max-width: 1024px) {
+
+}
+
+/* Smartphone styles (e.g., iPhone portrait) */
+@media (max-width: 768px) {
+
+}

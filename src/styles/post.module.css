@@ -168,9 +168,20 @@
     outline: none;
 }
 
+.deleteContainer button {
+    border: none;
+    outline: none;
+}
+
 .deleteContainer img {
     width: 1.3rem;
+    transition: transform 0.3s ease;
 }
+
+.deleteContainer img:hover {
+    transform: translateY(-5px); 
+}
+
 
 .commentSection {
     width: 95%;
@@ -259,4 +270,14 @@
 
 #commentDeleteButton {
     margin-left: -2rem;
+}
+
+/* Tablet styles (e.g., iPad landscape) */
+@media (max-width: 1024px) {
+
+}
+
+/* Smartphone styles (e.g., iPhone portrait) */
+@media (max-width: 768px) {
+
 }

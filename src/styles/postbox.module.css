@@ -91,3 +91,13 @@
 .customButton:hover {
     background-color: #d7c23c;
 }
+
+/* Tablet styles (e.g., iPad landscape) */
+@media (max-width: 1024px) {
+
+}
+
+/* Smartphone styles (e.g., iPhone portrait) */
+@media (max-width: 768px) {
+
+}

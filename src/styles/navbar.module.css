@@ -1,7 +1,7 @@
 .navbar {
     background-color: #F2E34C;
     color: black;
-    padding: 20px 20px; 
+    padding: 7px 7px; 
     width: 100vw;
     position: fixed;
     top: 0;
@@ -75,14 +75,20 @@
     width: 1.75rem;
 }
 
+.navbarLinks img:hover {
+    cursor: pointer;
+}
+
 .friendRequestsDropdown {
     position: absolute;
     background-color: white;
     min-width: 160px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
     z-index: 1;
-    top: 82px;
-    left: 1165px;
+    top: 80%;
+    position: absolute;
+    left: 72%;
+    transform: translateX(-50%);
     border-radius: 10px;
 }
 
@@ -114,6 +120,10 @@
     border-radius: 30%;
 }
 
+#homeButton:hover {
+    cursor: pointer;
+}
+
 #myProfilePic {
     width: 3rem;
     height: 3rem;
@@ -129,12 +139,12 @@
 
 #friendRequestCount {
     position: absolute;
-    top: 4px; /* Adjust vertical position above the icon */
+    top: 4px; 
     left: 1283px;
-    color: #000; /* Example text color for count badge */
-    border-radius: 50%; /* Make the count badge circular */
-    padding: 5px; /* Provide padding for the count badge */
-    font-size: 15px; /* Example font size for the count badge */
+    color: #000; 
+    border-radius: 50%; 
+    padding: 5px; 
+    font-size: 15px; 
 }
 
 
@@ -143,4 +153,29 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+.pfpAndName img:hover {
+    cursor: pointer;
+}
+
+.pfpAndName p:hover{
+    cursor: pointer;
+}
+
+/* Tablet styles (e.g., iPad landscape) */
+@media (max-width: 1024px) {
+
+}
+
+/* Smartphone styles (e.g., iPhone portrait) */
+@media (max-width: 768px) {
+    .navbarLink {
+        color: black;
+        margin-left: .75rem;
+        font-family: 'OpenSansBold';
+    }
+    .container {
+        justify-content: left;
+    }
 }
