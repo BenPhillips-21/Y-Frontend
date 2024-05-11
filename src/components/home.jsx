@@ -64,31 +64,27 @@ const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequ
 
     return (
         <div className={styles.homeContainer}>
-            <div className={styles.postFatherContainer}>
-                <div className={styles.postBox}>
-                    <PostBox headers={headers}JWT={JWT}fetchPosts={fetchPosts}fetchCurrentUser={fetchCurrentUser}postToast={postToast}somethingWentWrong={somethingWentWrong}/>
-                    <button id={styles.otherUsersButton}>Other Users</button>
-                </div>
-                    {
-                        showSpinner && <Spinner />
-                    }
-                <div className={styles.postsContainer}>
-                    {posts.length > 0 ? posts.map((post, index) => (
-                        <Post key={index}currentUserPostIDs={currentUserPostIDs}headers={headers}post={post}index={index}currentUser={currentUser}deletePostToast={deletePostToast}JWT={JWT}posts={posts}setPosts={setPosts}somethingWentWrong={somethingWentWrong}deletePostToast={deletePostToast}createCommentToast={createCommentToast}deleteCommentToast={deleteCommentToast} postLikedToast={postLikedToast}handleVisitProfile={handleVisitProfile}/>
-                    )) : <h1>Add some friends to see some content!</h1>}
-                </div>
+          <div className={styles.postFatherContainer}>
+            <div className={styles.postBox}>
+              <PostBox headers={headers} JWT={JWT} fetchPosts={fetchPosts} fetchCurrentUser={fetchCurrentUser} postToast={postToast} somethingWentWrong={somethingWentWrong} />
+              <button id={styles.otherUsersButton}>Other Users</button>
             </div>
-            {currentUser && (
-                <div className={styles.userListContainer}>
-                           {allUsers.some(user => !userFriendIDs.includes(user._id) && !userFriendRequestIDs.includes(user._id) && !userSentFriendRequestIDs.includes(user._id) && currentUser._id !== user._id) 
-                           && (<h2>Other Users</h2>)}
-                    {allUsers.map((user, index) => (
-                        <UserList user={user} key={index} userFriendIDs={userFriendIDs} userFriendRequestIDs={userFriendRequestIDs} userSentFriendRequestIDs={userSentFriendRequestIDs} currentUser={currentUser} handleVisitProfile={handleVisitProfile} sendFriendRequest={sendFriendRequest}/>
-                    ))}
-                </div>
-            )}
+            {showSpinner && <Spinner />}
+            <div className={styles.postsContainer}>
+              {posts.length > 0 ? (
+                posts.map((post, index) => (
+                  <Post key={index} currentUserPostIDs={currentUserPostIDs} headers={headers} post={post} index={index} currentUser={currentUser} deletePostToast={deletePostToast} JWT={JWT} posts={posts} setPosts={setPosts} somethingWentWrong={somethingWentWrong} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} postLikedToast={postLikedToast} handleVisitProfile={handleVisitProfile} />
+                ))
+              ) : (
+                <h1>Add some friends to see some content!</h1>
+              )}
+            </div>
+          </div>
+          {currentUser && (
+            <UserList allUsers={allUsers} userFriendIDs={userFriendIDs} userFriendRequestIDs={userFriendRequestIDs} userSentFriendRequestIDs={userSentFriendRequestIDs} currentUser={currentUser} handleVisitProfile={handleVisitProfile} sendFriendRequest={sendFriendRequest} />
+          )}
         </div>
-    );
-};
+      );
+    };
 
 export default Home;
