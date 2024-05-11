@@ -2,11 +2,13 @@ import React, {useEffect, useState} from 'react';
 import styles from '../styles/profile.module.css'; 
 import Post from './post.jsx'
 import PostBox from './postbox.jsx'
+import Spinner from './spinner.jsx'
 
 const Profile = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequestIDs, sendFriendRequest, currentUserPostIDs, navigate, posts, setPosts, createCommentToast, deleteCommentToast, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, deletePostToast, somethingWentWrong, postLikedToast }) => {
     const [post, setPost] = useState('')
     const [profile, setProfile] = useState()
     const [friends, setFriends] = useState()
+    const [showSpinner, setShowSpinner] = useState(true)
 
     useEffect(() => {
         if (otherUser) {
@@ -20,6 +22,7 @@ const Profile = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendR
         if (profile && profile.friends) {
             let friendsArray = profile.friends.map(friend => friend._id);
             setFriends(friendsArray);
+            setShowSpinner(false) 
         }
     }, [profile])
 
@@ -31,7 +34,6 @@ const Profile = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendR
                     {profile && <img src={profile.profilePic.url}></img>}
                     {profile && <h2>{profile.username}</h2>}
                 </div>
-                {/* also make it so a nigga can accept friend requests from here */}
                 {profile && profile._id !== currentUser._id && (
                     <div className={styles.friendsOrNotBox}>
                         {userSentFriendRequestIDs.includes(profile._id) ? (
@@ -87,6 +89,9 @@ const Profile = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendR
                     <div className={styles.postBox}>
                         <PostBox headers={headers} JWT={JWT} fetchCurrentUser={fetchCurrentUser} postToast={postToast} somethingWentWrong={somethingWentWrong}/>
                     </div>
+                    }
+                    {
+                        showSpinner && <Spinner />
                     }
                     <div className={styles.myPostsContainer}>
                         {profile && profile.posts.length > 0 ? profile.posts.map((post, index) => (

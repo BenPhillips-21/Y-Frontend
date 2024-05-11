@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import styles from '../styles/home.module.css';
 import Post from './post.jsx'
 import PostBox from './postbox.jsx'
+import Spinner from './spinner.jsx'
 
 const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequestIDs, sendFriendRequest, currentUserPostIDs, posts, setPosts, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, sentFriendToast, deletePostToast, createCommentToast, deleteCommentToast, somethingWentWrong, postLikedToast }) => {
     const [allUsers, setAllUsers] = useState([])
-
+    const [showSpinner, setShowSpinner] = useState(true)
 
     useEffect(() => {
         setOtherUser('')
@@ -49,6 +50,7 @@ const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequ
             if (response.ok) {
                 const data = await response.json();
                 setPosts(data); 
+                setShowSpinner(false)
             } else {
                 somethingWentWrong('Failed to fetch posts')
                 throw new Error('Failed to fetch posts');
@@ -65,6 +67,9 @@ const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequ
                 <div className={styles.postBox}>
                     <PostBox headers={headers}JWT={JWT}fetchPosts={fetchPosts}fetchCurrentUser={fetchCurrentUser}postToast={postToast}somethingWentWrong={somethingWentWrong}/>
                 </div>
+                    {
+                        showSpinner && <Spinner />
+                    }
                 <div className={styles.postsContainer}>
                     {posts.length > 0 ? posts.map((post, index) => (
                         <Post key={index}currentUserPostIDs={currentUserPostIDs}headers={headers}post={post}index={index}currentUser={currentUser}deletePostToast={deletePostToast}JWT={JWT}posts={posts}setPosts={setPosts}somethingWentWrong={somethingWentWrong}deletePostToast={deletePostToast}createCommentToast={createCommentToast}deleteCommentToast={deleteCommentToast} postLikedToast={postLikedToast}handleVisitProfile={handleVisitProfile}/>

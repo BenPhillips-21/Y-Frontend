@@ -1,13 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import styles from '../styles/postbox.module.css'
+import Spinner from './spinner.jsx'
 
 const PostBox = ({headers, JWT, fetchPosts, fetchCurrentUser, postToast, somethingWentWrong}) => {
     const [post, setPost] = useState('')
     const [attachingImage, setAttachingImage] = useState(false)
     const [selectedImage, setSelectedImage] = useState(null)
+    const [isPosting, setIsPosting] = useState(false)
 
     const handleMakePost = async (e) => {
         e.preventDefault()
+        setIsPosting(true);
 
         try {
             if (selectedImage === null) {
@@ -27,9 +30,11 @@ const PostBox = ({headers, JWT, fetchPosts, fetchCurrentUser, postToast, somethi
                     fetchCurrentUser()
                     setPost('')
                     postToast()
+                    setIsPosting(false);
                 } else {
                     somethingWentWrong('Failed to create post')
                     console.error('Failed to create post')
+                    setIsPosting(false);
                 }
         } else {
             let image = selectedImage
@@ -57,6 +62,7 @@ const PostBox = ({headers, JWT, fetchPosts, fetchCurrentUser, postToast, somethi
                 setPost('')
                 fetchCurrentUser()
                 postToast()
+                setIsPosting(false);
             } catch (err) {
                 throw new Error(`${err}`)
             }
@@ -90,6 +96,7 @@ const PostBox = ({headers, JWT, fetchPosts, fetchCurrentUser, postToast, somethi
                 <button id={styles.postBoxPostButton} onClick={(e) => handleMakePost(e)}>Post</button>
                 <button id={styles.attachImageButton} onClick={() => setAttachingImage(!attachingImage)}>Attach Image</button>
             </form>
+            {isPosting && <Spinner />}
         </>
     )
 }

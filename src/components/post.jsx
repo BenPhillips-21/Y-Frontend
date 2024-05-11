@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import styles from '../styles/post.module.css'; 
 import { formatDistanceToNow } from 'date-fns';
+import Spinner from './spinner.jsx'
 
 const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, currentUser, fetchCurrentUser, JWT, posts, setPosts, somethingWentWrong, deletePostToast, createCommentToast, deleteCommentToast, headers, postLikedToast, handleVisitProfile}) => {
     const [commentSection, setCommentSection] = useState([])
     const [commenting, setCommenting] = useState([])
     const [comment, setComment] = useState('')
+    const [isCommenting, setIsCommenting] = useState(false)
 
     const fetchPosts = async () => {
         try {
@@ -104,6 +106,8 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
 
     const handleAddComment = async (e, postid) => {
         e.preventDefault()
+        setIsCommenting(true)
+
         try {
         let commentPostBody = {
             "commentContent": comment
@@ -123,6 +127,7 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
             } 
             setComment('')
             createCommentToast()
+            setIsCommenting(false)
         }
 
         } catch (err) {
@@ -209,6 +214,7 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
                         </form>
                         <button onClick={(e) => handleAddComment(e, post._id)}>Post</button>
                     </div>}
+                    {isCommenting && <Spinner />}
                 {commentSection.includes(post._id) && 
                 <div className={styles.commentSection}>
                     {post.comments.slice().reverse().map((comment, index) => (
