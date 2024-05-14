@@ -13,7 +13,7 @@ const Login = ({JWT, setJWT, loginToast, handleDemoLogin}) => {
         const newUser = { username, password };
     
         try {
-          const response = await fetch('http://localhost:3000/login', {
+          const response = await fetch('https://y-backend-production.up.railway.app/login', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newUser)

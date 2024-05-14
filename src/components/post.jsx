@@ -12,7 +12,7 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
 
     const fetchPosts = async () => {
         try {
-            const response = await fetch('http://localhost:3000/getposts', {
+            const response = await fetch('https://y-backend-production.up.railway.app/getposts', {
                 method: 'GET',
                 headers: headers,
                 mode: 'cors'
@@ -38,7 +38,7 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
         setIsDeleting(true)
 
         try {
-            const response = await fetch(`http://localhost:3000/deletepost/${postid}`, {
+            const response = await fetch(`https://y-backend-production.up.railway.app/deletepost/${postid}`, {
                 method: 'GET',
                 headers: headers,
                 mode: 'cors'
@@ -63,7 +63,7 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
 
     const handleLike = async (postid) => {
         try {
-            const response = await fetch(`http://localhost:3000/likepost/${postid}`, {
+            const response = await fetch(`https://y-backend-production.up.railway.app/likepost/${postid}`, {
                 method: 'GET',
                 headers: headers,
                 mode: 'cors'
@@ -118,7 +118,7 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
             "commentContent": comment
         }
 
-        const response = await fetch(`http://localhost:3000/postcomment/${postid}`, {
+        const response = await fetch(`https://y-backend-production.up.railway.app/postcomment/${postid}`, {
             method: 'POST',
             headers: headers,
             mode: 'cors',
@@ -145,7 +145,7 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
         e.preventDefault()
     
         try {
-            const response = await fetch(`http://localhost:3000/deletecomment/${postid}/${commentid}`, {
+            const response = await fetch(`https://y-backend-production.up.railway.app/deletecomment/${postid}/${commentid}`, {
                 method: 'GET', 
                 headers: headers,
                 mode: 'cors'

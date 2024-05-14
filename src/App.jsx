@@ -71,11 +71,9 @@ useEffect(() => {
             const userData = await response.json()
             setCurrentUser(userData)
         } else {
-            somethingWentWrong("Error retrieving user data")
             throw new Error ("Error retrieving user data")
         }
     } catch (err) {
-        somethingWentWrong("Error fetching current user")
         throw new Error ("Error fetching current user", err)
     }
 }
@@ -92,11 +90,9 @@ const fetchOtherUser = async (userid) => {
         const userData = await response.json()
         setOtherUser(userData)
     } else {
-        somethingWentWrong("Error retrieving user data")
         throw new Error ("Error retrieving user data")
     }
 } catch (err) {
-    somethingWentWrong("Error fetching current user")
     throw new Error ("Error fetching current user", err)
 }
 }

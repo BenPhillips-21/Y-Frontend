@@ -48,6 +48,12 @@
     margin-left: 0.3rem;
 }
 
+.userPicAndName p:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    cursor: pointer;
+}
+
 .otherUsersButtonContainer {
     width: 100%;
     display: flex;
@@ -60,6 +66,12 @@
     height: 1.75rem;
     border-radius: 30%;
     margin-top: .8rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+#addFriendButton:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
 }
 
 #otherUsersButton {

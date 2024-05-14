@@ -13,7 +13,7 @@ const ProfileSettings = ({currentUser, JWT, fetchCurrentUser, headers}) => {
         const formData = new FormData()
         formData.append('image', image)
         try {
-            const response = await fetch('http://localhost:3000/updateprofilepicture', {
+            const response = await fetch('https://y-backend-production.up.railway.app/updateprofilepicture', {
                 method: 'POST',
                 headers: { 
                     'Authorization': `Bearer ${JWT}`
@@ -41,7 +41,7 @@ const ProfileSettings = ({currentUser, JWT, fetchCurrentUser, headers}) => {
             bio: bio
         }
         try {
-            const response = await fetch('http://localhost:3000/updatebio', {
+            const response = await fetch('https://y-backend-production.up.railway.app/updatebio', {
                 method: 'POST',
                 headers: headers,
                 mode: 'cors',
@@ -67,7 +67,7 @@ const ProfileSettings = ({currentUser, JWT, fetchCurrentUser, headers}) => {
             username: username
         }
         try {
-            const response = await fetch('http://localhost:3000/updateusername', {
+            const response = await fetch('https://y-backend-production.up.railway.app/updateusername', {
                 method: 'POST',
                 headers: headers,
                 mode: 'cors',

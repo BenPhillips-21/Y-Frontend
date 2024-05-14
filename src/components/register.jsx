@@ -14,7 +14,7 @@ const Register = ({registerToast, handleDemoLogin}) => {
         const newUser = { username, password, confirmedPassword };
     
         try {
-          const response = await fetch('http://localhost:3000/sign-up', {
+          const response = await fetch('https://y-backend-production.up.railway.app/sign-up', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newUser)

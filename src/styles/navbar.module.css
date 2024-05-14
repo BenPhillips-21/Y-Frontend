@@ -115,6 +115,10 @@
     margin-right: 0.3rem;
 }
 
+#addFriendButton:hover {
+    cursor: pointer;
+}
+
 #homeButton {
     width: 4rem;
     height: 4rem;

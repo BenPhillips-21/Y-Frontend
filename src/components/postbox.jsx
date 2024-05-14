@@ -18,7 +18,7 @@ const PostBox = ({headers, JWT, fetchPosts, fetchCurrentUser, postToast, somethi
                     postContent: post
                 };
         
-                const response = await fetch('http://localhost:3000/createpost/', {
+                const response = await fetch('https://y-backend-production.up.railway.app/createpost/', {
                     method: 'POST',
                     headers: headers,
                     mode: 'cors',
@@ -42,7 +42,7 @@ const PostBox = ({headers, JWT, fetchPosts, fetchCurrentUser, postToast, somethi
             formData.append('image', image)
             formData.append('postContent', post)
             try {
-                const response = await fetch('http://localhost:3000/createpost/', {
+                const response = await fetch('https://y-backend-production.up.railway.app/createpost/', {
                     method: 'POST',
                     headers: { 
                         'Authorization': `Bearer ${JWT}`

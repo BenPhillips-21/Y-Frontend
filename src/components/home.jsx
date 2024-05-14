@@ -22,7 +22,7 @@ const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequ
 
     const fetchAllUsers = async () => {
         try {
-            const response = await fetch('http://localhost:3000/getallusers', {
+            const response = await fetch('https://y-backend-production.up.railway.app/getallusers', {
                 method: 'GET',
                 headers: headers,
                 mode: 'cors'
@@ -43,7 +43,7 @@ const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequ
 
     const fetchPosts = async () => {
         try {
-            const response = await fetch('http://localhost:3000/getposts', {
+            const response = await fetch('https://y-backend-production.up.railway.app/getposts', {
                 method: 'GET',
                 headers: headers,
                 mode: 'cors'
@@ -91,7 +91,7 @@ const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequ
                   <Post key={index} currentUserPostIDs={currentUserPostIDs} headers={headers} post={post} index={index} currentUser={currentUser} deletePostToast={deletePostToast} JWT={JWT} posts={posts} setPosts={setPosts} somethingWentWrong={somethingWentWrong} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} postLikedToast={postLikedToast} handleVisitProfile={handleVisitProfile} />
                 ))
               ) : (
-                <h1>Add some friends to see some content!</h1>
+                <h1>Add some friends to see their content!</h1>
               )}
             </div>
           </div>
