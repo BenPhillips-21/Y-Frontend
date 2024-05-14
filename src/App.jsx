@@ -61,7 +61,7 @@ useEffect(() => {
 
   const fetchCurrentUser = async () => {
     try {
-        const response = await fetch('http://localhost:3000/myprofile', {
+        const response = await fetch('https://y-backend-production.up.railway.app/myprofile', {
             method: 'GET',
             headers: headers,
         })
@@ -79,7 +79,7 @@ useEffect(() => {
 
 const fetchOtherUser = async (userid) => {
   try {
-    const response = await fetch(`http://localhost:3000/getuser/${userid}`, {
+    const response = await fetch(`https://y-backend-production.up.railway.app/getuser/${userid}`, {
         method: 'GET',
         headers: headers,
     })
@@ -109,7 +109,7 @@ const handleDemoLogin = async (e) => {
   e.preventDefault()
   
   try {
-    const response = await fetch('http://localhost:3000/demologin', {
+    const response = await fetch('https://y-backend-production.up.railway.app/demologin', {
       method: 'GET',
       headers: { "Content-Type": "application/json" },
     });
@@ -131,7 +131,7 @@ const sendFriendRequest = async (e, userid) => {
   e.preventDefault()
 
   try {
-      const response = await fetch(`http://localhost:3000/sendfriendrequest/${userid}`, {
+      const response = await fetch(`https://y-backend-production.up.railway.app/sendfriendrequest/${userid}`, {
           method: 'GET',
           headers: headers,
       }) 
