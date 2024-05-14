@@ -18,7 +18,6 @@ const ProfileSettings = ({currentUser, JWT, fetchCurrentUser, headers}) => {
                 headers: { 
                     'Authorization': `Bearer ${JWT}`
                 },
-                mode: 'cors',
                 body: formData
             })
 
@@ -44,7 +43,6 @@ const ProfileSettings = ({currentUser, JWT, fetchCurrentUser, headers}) => {
             const response = await fetch('https://y-backend-production.up.railway.app/updatebio', {
                 method: 'POST',
                 headers: headers,
-                mode: 'cors',
                 body: JSON.stringify(bioRequestBody)
             })
 
@@ -70,7 +68,6 @@ const ProfileSettings = ({currentUser, JWT, fetchCurrentUser, headers}) => {
             const response = await fetch('https://y-backend-production.up.railway.app/updateusername', {
                 method: 'POST',
                 headers: headers,
-                mode: 'cors',
                 body: JSON.stringify(usernameRequestBody)
             })
 

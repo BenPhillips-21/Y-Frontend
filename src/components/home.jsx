@@ -25,7 +25,6 @@ const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequ
             const response = await fetch('https://y-backend-production.up.railway.app/getallusers', {
                 method: 'GET',
                 headers: headers,
-                mode: 'cors'
             })
 
             if (response.ok) {
@@ -46,7 +45,6 @@ const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequ
             const response = await fetch('https://y-backend-production.up.railway.app/getposts', {
                 method: 'GET',
                 headers: headers,
-                mode: 'cors'
             });
 
             if (response.ok) {

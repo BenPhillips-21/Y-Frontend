@@ -15,7 +15,6 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
             const response = await fetch('https://y-backend-production.up.railway.app/getposts', {
                 method: 'GET',
                 headers: headers,
-                mode: 'cors'
             });
 
             if (response.ok) {
@@ -41,7 +40,6 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
             const response = await fetch(`https://y-backend-production.up.railway.app/deletepost/${postid}`, {
                 method: 'GET',
                 headers: headers,
-                mode: 'cors'
             })
             
             if (response.ok) {
@@ -66,7 +64,6 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
             const response = await fetch(`https://y-backend-production.up.railway.app/likepost/${postid}`, {
                 method: 'GET',
                 headers: headers,
-                mode: 'cors'
             })
 
             if (response.ok) {
@@ -121,7 +118,6 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
         const response = await fetch(`https://y-backend-production.up.railway.app/postcomment/${postid}`, {
             method: 'POST',
             headers: headers,
-            mode: 'cors',
             body: JSON.stringify(commentPostBody)
         })
 
@@ -148,7 +144,6 @@ const Post = ({post, index, fetchOtherUser, profile, currentUserPostIDs, current
             const response = await fetch(`https://y-backend-production.up.railway.app/deletecomment/${postid}/${commentid}`, {
                 method: 'GET', 
                 headers: headers,
-                mode: 'cors'
             });
     
             if (response.ok) {

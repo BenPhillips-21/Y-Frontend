@@ -21,7 +21,6 @@ const PostBox = ({headers, JWT, fetchPosts, fetchCurrentUser, postToast, somethi
                 const response = await fetch('https://y-backend-production.up.railway.app/createpost/', {
                     method: 'POST',
                     headers: headers,
-                    mode: 'cors',
                     body: JSON.stringify(postBodyRequest)
                 });
         
@@ -47,7 +46,6 @@ const PostBox = ({headers, JWT, fetchPosts, fetchCurrentUser, postToast, somethi
                     headers: { 
                         'Authorization': `Bearer ${JWT}`
                     },
-                    mode: 'cors',
                     body: formData
                 })
     

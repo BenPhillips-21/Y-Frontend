@@ -26,7 +26,6 @@ const Navbar = ({headers, fetchCurrentUser, fetchOtherUser, logoutToast, handleV
             const response = await fetch(`https://y-backend-production.up.railway.app/acceptfriendrequest/${userid}`, {
                 method: 'GET',
                 headers: headers,
-                mode: 'cors'
             })
 
             if (response.ok) {
