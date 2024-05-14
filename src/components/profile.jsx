@@ -77,12 +77,15 @@ const Profile = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendR
                         <div className={styles.friendsContainerHeader}>
                             <h3>Friends</h3>
                         </div>
-                        {profile && profile.friends.map((friend, index) => (
+                        {profile && profile.friends.length > 0 ?
+                        profile.friends.map((friend, index) => (
                             <div key={index} className={styles.friendCard}>
                                 <img src={friend.profilePic.url}></img>
                                 <p onClick={(e) => handleVisitProfile(e, friend._id)}>{friend.username}</p>
                             </div>
-                        ))}
+                        )) :
+                        <p>No Friends :(</p>
+                        }
                     </div>
                 </div>
                 <div className={styles.profilePostsContainer}>

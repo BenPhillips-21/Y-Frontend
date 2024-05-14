@@ -27,7 +27,7 @@
 }
 
 #postBoxPostButton {
-    background-color: #F2E34C;
+    background-color: #fffc00;
     border-radius: 1rem;
     padding: auto;
     position: absolute;
@@ -36,14 +36,15 @@
     border: 0px;
     outline: 0px;
     font-family: 'OpenSansBold';
+    transition: background-color 0.3s ease; 
 }
 
 #postBoxPostButton:hover {
-    background-color: #d7c23c;
+    background-color: #22CAE0;
 }
 
 #attachImageButton {
-    background-color: #F2E34C;
+    background-color: #fffc00;
     border-radius: 1rem;
     padding: auto;
     position: absolute;
@@ -52,10 +53,11 @@
     border: 0px;
     outline: 0px;
     font-family: 'OpenSansBold';
+    transition: background-color 0.3s ease; 
 }
 
 #attachImageButton:hover {
-    background-color: #d7c23c;
+    background-color: #22CAE0;
 }
 
 .imageInputContainer {
@@ -73,7 +75,7 @@
 }
 
 .imageInputContainer input {
-    color: #F2E34C;
+    color: #fffc00;
 }
 
 .fileInput {
@@ -82,15 +84,16 @@
 
 .customButton {
     padding: 5px 10px;
-    background-color: #F2E34C;
+    background-color: #fffc00;
     color: black;
     border-radius: 0.5rem;
     cursor: pointer;
     font-family: 'OpenSansBold';
+    transition: background-color 0.3s ease; 
 }
 
 .customButton:hover {
-    background-color: #d7c23c;
+    background-color: #22CAE0;
 }
 
 /* Media query for screen sizes within a specific range */

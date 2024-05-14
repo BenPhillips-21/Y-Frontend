@@ -35,7 +35,7 @@
 }
 
 .pfpChange button {
-    background-color: #F2E34C;
+    background-color: #fffc00;
     border-radius: 5rem;
     padding: 10px 20px; 
     margin-left: 10px; 
@@ -43,6 +43,14 @@
     width: auto; 
     height: auto; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease; 
+    outline: none;
+    border: none;
+    font-family: 'OpenSansBold';
+}
+
+.pfpChange button:hover {
+    background-color: #22CAE0;;
 }
 
 
@@ -68,11 +76,19 @@
 }
 
 .bioSettingsContainer button {
-    background-color: #F2E34C;
+    background-color: #fffc00;
     border-radius: 2rem;
     padding: auto;
     margin-top: .75rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease; 
+    outline: none;
+    border: none;
+    font-family: 'OpenSansBold';
+}
+
+.bioSettingsContainer button:hover {
+    background-color: #22CAE0;
 }
 
 .updateUsernameContainer {
@@ -82,11 +98,19 @@
 }
 
 .updateUsernameContainer button {
-    background-color: #F2E34C;
+    background-color: #fffc00;
     border-radius: 2rem;
     padding: auto;
     margin-top: .75rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease; 
+    outline: none;
+    border: none;
+    font-family: 'OpenSansBold';
+}
+
+.updateUsernameContainer button:hover {
+    background-color: #22CAE0;
 }
 
 .pfpInputBox {
@@ -100,8 +124,16 @@
 }
 
 .pfpInputBox button {
-    background-color: #F2E34C;
+    background-color: #fffc00;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease; 
+    outline: none;
+    border: none;
+    font-family: 'OpenSansBold';
+}
+
+.pfpInputBox button:hover {
+    background-color: #22CAE0;
 }
 
 .updateUsernameContainer input {

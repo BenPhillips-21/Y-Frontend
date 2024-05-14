@@ -91,14 +91,14 @@
     height: auto;
     border-radius: 1.5rem;
     background-color: #DBE8D8;
-    background-image: linear-gradient(to right, #ABEA7C, #F2E34C);
+    background-image: linear-gradient(to right, #22CAE0, #fffc00);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .headingAndEditing {
-    background-image: linear-gradient(to right, #a0dc73, #e9db47);
+    background-image: linear-gradient(to right, #20c6dc, #f1ed03);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -143,7 +143,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    background-image: linear-gradient(to right, #ABEA7C, #F2E34C);
+    background-image: linear-gradient(to right, #22CAE0, #fffc00);
     border-radius: 1rem;
     margin-top: 1rem;
 }
@@ -154,7 +154,7 @@
     border-top-right-radius: 1rem;
     display: flex;
     align-items: flex-start;
-    background-image: linear-gradient(to right, #a0dc73, #e9db47);
+    background-image: linear-gradient(to right, #20c6dc, #f1ed03);
 }
 
 .friendsContainer img {

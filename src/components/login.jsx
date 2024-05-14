@@ -56,7 +56,7 @@ const Login = ({JWT, setJWT, loginToast, handleDemoLogin}) => {
                     />
                 </form>
                 <button onClick={(e) => handleSubmit(e)}>Submit</button>
-                <button onClick={() => navigate('/register')}>Register</button>
+                <button onClick={() => navigate('/register')}>Not Registered?</button>
                 <button onClick={(e) => handleDemoLogin(e)}>Demo Login</button>
                 {error === true &&
                     <ul>

@@ -91,7 +91,7 @@ const ProfileSettings = ({currentUser, JWT, fetchCurrentUser, headers}) => {
         <div className={styles.settingsOuterContainer}>
             <div className={styles.settingsInnerContainer}>
                 <div className={styles.pfpSettingsContainer}>
-                    <h1>Settings</h1>
+                    <h1>User Settings</h1>
                     {currentUser.username !== 'demoUser' &&
                     <div className={styles.updateUsernameContainer}>
                         <h2>Username</h2>

@@ -66,6 +66,7 @@ const Register = ({registerToast, handleDemoLogin}) => {
                     <button onClick={(e) => handleDemoLogin(e)}>Demo Login</button>
                     {error === true &&
                         <ul>
+                             <li>Username cannot be longer than 20 characters</li>
                             <li>Password must be at least 6 characters long</li>
                             <li>Password and confirmed password must match</li>
                         </ul>
