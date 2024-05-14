@@ -85,7 +85,7 @@ const Navbar = ({headers, fetchCurrentUser, fetchOtherUser, logoutToast, handleV
                             <p onClick={(e) => handleVisitProfile(e, request._id)}>{request.username}</p>
                             <img id={styles.addFriendButton} onClick={(e) => acceptFriendRequest(e, request._id)} src='/addFriend.svg'></img>
                         </div>
-                    ) : <h3>No friend requests</h3>}
+                    ) : <h3>No Friend Requests</h3>}
                     </div>
                 )}
         </div>
