@@ -35,43 +35,47 @@ const Register = ({registerToast, handleDemoLogin}) => {
     return (
         <>
             <div className={styles.background}>
-            <img id={styles.homeButton} src={'/Y.svg'}></img>
-                <div className={styles.registerContainer}> 
-                    <h1>Sign Up !</h1>
-                    <form>
-                        <label>Username:</label>
-                        <input
-                            type="text"
-                            required
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                        />
-                        <label>Password:</label>
-                        <input 
-                            type="password"
-                            required
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <label>Confirm Password:</label>
-                        <input 
-                            type="password"
-                            required
-                            value={confirmedPassword}
-                            onChange={(e) => setConfirmedPassword(e.target.value)}
-                        />
-                    </form>
-                    <button onClick={(e) => handleSubmit(e)}>Submit</button>
-                    <button onClick={() => navigate('/login')}>Already Registered?</button>
-                    <button onClick={(e) => handleDemoLogin(e)}>Demo Login</button>
-                    {error === true &&
-                        <ul>
-                             <li>Username cannot be longer than 20 characters</li>
-                            <li>Password must be at least 6 characters long</li>
-                            <li>Password and confirmed password must match</li>
-                        </ul>
-                    }
-                </div>
+                <div className={styles.emblemAndFormContainer}>
+                    <div className={styles.homeButtonContainer}>
+                        <img id={styles.homeButton} src={'/Y.svg'}></img>
+                    </div>
+                    <div className={styles.registerContainer}> 
+                        <h1>Sign Up !</h1>
+                        <form>
+                            <label>Username:</label>
+                            <input
+                                type="text"
+                                required
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
+                            <label>Password:</label>
+                            <input 
+                                type="password"
+                                required
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <label>Confirm Password:</label>
+                            <input 
+                                type="password"
+                                required
+                                value={confirmedPassword}
+                                onChange={(e) => setConfirmedPassword(e.target.value)}
+                            />
+                        </form>
+                        <button onClick={(e) => handleSubmit(e)}>Submit</button>
+                        <button onClick={() => navigate('/login')}>Already Registered?</button>
+                        <button onClick={(e) => handleDemoLogin(e)}>Demo Login</button>
+                        {error === true &&
+                            <ul>
+                                <li>Username cannot be longer than 20 characters</li>
+                                <li>Password must be at least 6 characters long</li>
+                                <li>Password and confirmed password must match</li>
+                            </ul>
+                        }
+                    </div>
+                </div>  
             </div>
         </>
     )

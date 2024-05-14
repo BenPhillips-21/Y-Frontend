@@ -36,34 +36,38 @@ const Login = ({JWT, setJWT, loginToast, handleDemoLogin}) => {
     return (
         <>
           <div className={styles.background}>
-            <img id={styles.homeButton} src={'/Y.svg'}></img>
-            <div className={styles.registerContainer}>
-                <h1>Login !</h1>
-                <form>
-                    <label>Username:</label>
-                    <input
-                        type="text"
-                        required
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                    <label>Password:</label>
-                    <input 
-                        type="password"
-                        required
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </form>
-                <button onClick={(e) => handleSubmit(e)}>Submit</button>
-                <button onClick={() => navigate('/register')}>Not Registered?</button>
-                <button onClick={(e) => handleDemoLogin(e)}>Demo Login</button>
-                {error === true &&
-                    <ul>
-                        <li>Username or password incorrect</li>
-                    </ul>
-                }
-            </div>
+            <div className={styles.emblemAndFormContainer}>
+              <div className={styles.homeButtonContainer}>
+                <img id={styles.homeButton} src={'/Y.svg'}></img>
+              </div>
+                <div className={styles.loginContainer}>
+                    <h1>Login !</h1>
+                    <form>
+                        <label>Username:</label>
+                        <input
+                            type="text"
+                            required
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                        <label>Password:</label>
+                        <input 
+                            type="password"
+                            required
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </form>
+                    <button onClick={(e) => handleSubmit(e)}>Submit</button>
+                    <button onClick={() => navigate('/register')}>Not Registered?</button>
+                    <button onClick={(e) => handleDemoLogin(e)}>Demo Login</button>
+                    {error === true &&
+                        <ul>
+                            <li>Username or password incorrect</li>
+                        </ul>
+                    }
+                </div>
+              </div>
             </div>
         </>
     )
