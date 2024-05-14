@@ -43,7 +43,7 @@ Displays posts from friends in chronological order.
 Y app is designed to be responsive across various devices, including desktops, tablets, and smartphones. This ensures optimal usability and accessibility regardless of screen size or device type.
 
 #### Intuitive User Interface
-The frontend is designed to be intuitive, ensuring that users can effortlessly navigate through various sections of the app. The clean and well-organized layout makes it easy to chat with other users.
+The frontend is designed to be intuitive, ensuring that users can effortlessly navigate through various sections of the app. The clean and well-organized layout makes it easy to use the app.
 
 ## Demo Pictures
 
