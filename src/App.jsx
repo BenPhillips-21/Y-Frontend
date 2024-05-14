@@ -64,7 +64,6 @@ useEffect(() => {
         const response = await fetch('http://localhost:3000/myprofile', {
             method: 'GET',
             headers: headers,
-            mode: 'cors'
         })
 
         if (response.ok) {
@@ -83,7 +82,6 @@ const fetchOtherUser = async (userid) => {
     const response = await fetch(`http://localhost:3000/getuser/${userid}`, {
         method: 'GET',
         headers: headers,
-        mode: 'cors'
     })
 
     if (response.ok) {
@@ -136,7 +134,6 @@ const sendFriendRequest = async (e, userid) => {
       const response = await fetch(`http://localhost:3000/sendfriendrequest/${userid}`, {
           method: 'GET',
           headers: headers,
-          mode: 'cors'
       }) 
 
       if (response.ok) {
