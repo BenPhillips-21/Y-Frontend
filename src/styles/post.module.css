@@ -290,5 +290,31 @@
 
 /* Smartphone styles (e.g., iPhone portrait) */
 @media (max-width: 768px) {
+    .commentSection p {
+        font-size: .75rem;
+    }
 
+    .postContainer p {
+        font-size: .75rem;
+    }
+
+    #commenterPfp {
+        margin-top: 0rem;
+    }
+
+    #usernameStyling {
+        font-size: 0.9rem;
+    }
+
+    #postDateStyling {
+        margin-top: 0.9rem;
+    }
+
+    .nameAndDateContainer {
+        margin-top: -0.25rem;
+    }
+
+    .postHeader button {
+        margin-top: 0.4rem;
+    }
 }

@@ -86,6 +86,7 @@
     color: black;
     border-radius: 0.5rem;
     cursor: pointer;
+    font-family: 'OpenSansBold';
 }
 
 .customButton:hover {

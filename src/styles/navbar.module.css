@@ -136,6 +136,12 @@
     margin-left: 0rem;
 }
 
+#myProfileUsername:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    cursor: pointer;
+}
+
 
 #friendRequestCount {
     position: absolute;
