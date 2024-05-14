@@ -13,9 +13,7 @@
     justify-content: center;
     align-items: center;
     background-image: linear-gradient(#fffc00, #22CAE0);
-   
   }
-  
 
   .registerContainer {
     display: flex;
@@ -74,8 +72,7 @@
     width: 10rem;
     height: 10rem;
     border-radius: 30%;
-    position: absolute;
-    top: 2rem;
+    margin-bottom: 2rem;
 }
 
 /* Tablet styles (e.g., iPad landscape) */
