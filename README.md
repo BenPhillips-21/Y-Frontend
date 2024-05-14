@@ -2,7 +2,7 @@
 
 [Visit The App](https://y-alpha-beige.vercel.app)
 
-[Backend Repository]([https://github.com/BenPhillips-21/messengerAppBackend](https://github.com/BenPhillips-21/Y-Backend))
+[Backend Repository](https://github.com/BenPhillips-21/Y-Backend)
 
 This repository comprises the frontend portion of the 'Y' Social Media Website. 
 
