@@ -25,7 +25,7 @@ Developed by **Benjamin Phillips**
 ## Key Features
 
 #### Authentication and Authorization with JWTs
-The messenger app implements authentication and authorization using JSON Web Tokens (JWTs). Upon login, the backend auth server issues a JWT, which is stored on the client-side. This token is sent in the request headers for routes that require authentication, ensuring secure access to protected resources.
+Y implements authentication and authorization using JSON Web Tokens (JWTs). Upon login, the backend auth server issues a JWT, which is stored on the client-side. This token is sent in the request headers for routes that require authentication, ensuring secure access to protected resources.
 
 #### User Profiles
 Users can create and update their profiles, including profile pictures, usernames, and bios.
@@ -37,7 +37,7 @@ Users can create text-based posts with optional image attachment. Engage with po
 Displays posts from followed users in chronological order.
 
 #### Responsive Design
-The messenger app is designed to be responsive across various devices, including desktops, tablets, and smartphones. This ensures optimal usability and accessibility regardless of screen size or device type.
+Y app is designed to be responsive across various devices, including desktops, tablets, and smartphones. This ensures optimal usability and accessibility regardless of screen size or device type.
 
 #### Intuitive User Interface
 The frontend is designed to be intuitive, ensuring that users can effortlessly navigate through various sections of the app. The clean and well-organized layout makes it easy to chat with other users.
