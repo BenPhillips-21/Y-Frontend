@@ -68,9 +68,18 @@ const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequ
           <div className={styles.postFatherContainer}>
             <div className={styles.postBox}>
               <PostBox headers={headers} JWT={JWT} fetchPosts={fetchPosts} fetchCurrentUser={fetchCurrentUser} postToast={postToast} somethingWentWrong={somethingWentWrong} />
+              {currentUser && allUsers.some(user => 
+              !userFriendIDs.includes(user._id) && 
+              !userFriendRequestIDs.includes(user._id) && 
+              !userSentFriendRequestIDs.includes(user._id) && 
+              currentUser._id !== user._id
+            ) && (
               <div className={styles.otherUsersButtonContainer}>
-                <button onClick={() => setIsOpen(!isOpen)} id={styles.otherUsersButton}>Other Users</button>
+                <button onClick={() => setIsOpen(!isOpen)} id={styles.otherUsersButton}>
+                  Other Users
+                </button>
               </div>
+            )}
               {isOpen && currentUser && (
             <UserList isOpen={isOpen} allUsers={allUsers} userFriendIDs={userFriendIDs} userFriendRequestIDs={userFriendRequestIDs} userSentFriendRequestIDs={userSentFriendRequestIDs} currentUser={currentUser} handleVisitProfile={handleVisitProfile} sendFriendRequest={sendFriendRequest} />
             )}

@@ -101,4 +101,8 @@
         height: 6rem;
         top: 1.75rem;
     }
+
+    .registerContainer button {
+        width: 70%;
+    }
 }
