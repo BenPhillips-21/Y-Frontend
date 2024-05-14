@@ -33,8 +33,11 @@ Users can create and update their profiles, including profile pictures, username
 #### Posting, Liking, Commenting
 Users can create text-based posts with optional image attachment. Engage with posts by liking and commenting, fostering interaction and discussion.
 
+#### Friend System
+Users can connect with others by becoming 'friends', allowing their posts to appear on each other's timelines.
+
 #### The Feed
-Displays posts from followed users in chronological order.
+Displays posts from friends in chronological order.
 
 #### Responsive Design
 Y app is designed to be responsive across various devices, including desktops, tablets, and smartphones. This ensures optimal usability and accessibility regardless of screen size or device type.
