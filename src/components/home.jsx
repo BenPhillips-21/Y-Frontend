@@ -5,9 +5,8 @@ import PostBox from './postbox.jsx'
 import Spinner from './spinner.jsx'
 import UserList from './userlist.jsx'
 
-const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequestIDs, sendFriendRequest, currentUserPostIDs, posts, setPosts, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, sentFriendToast, deletePostToast, createCommentToast, deleteCommentToast, somethingWentWrong, postLikedToast }) => {
+const Home = ({ headers, userFriendIDs, fetchPosts, showSpinner, setShowSpinner, userFriendRequestIDs, userSentFriendRequestIDs, sendFriendRequest, currentUserPostIDs, posts, setPosts, fetchCurrentUser, fetchOtherUser, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser, postToast, sentFriendToast, deletePostToast, createCommentToast, deleteCommentToast, somethingWentWrong, postLikedToast }) => {
     const [allUsers, setAllUsers] = useState([])
-    const [showSpinner, setShowSpinner] = useState(true)
     const [isOpen, setIsOpen] = useState(false)
 
     useEffect(() => {
@@ -39,27 +38,6 @@ const Home = ({ headers, userFriendIDs, userFriendRequestIDs, userSentFriendRequ
             throw new Error ('error fetching all users', err)
         }
     }
-
-    const fetchPosts = async () => {
-        try {
-            const response = await fetch('https://y-backend-production.up.railway.app/getposts', {
-                method: 'GET',
-                headers: headers,
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                setPosts(data); 
-                setShowSpinner(false)
-            } else {
-                somethingWentWrong('Failed to fetch posts')
-                throw new Error('Failed to fetch posts');
-            }
-        } catch (error) {
-            somethingWentWrong('Error fetching posts')
-            console.error('Error fetching posts:', error);
-        }
-    };
 
     return (
         <div className={styles.homeContainer}>

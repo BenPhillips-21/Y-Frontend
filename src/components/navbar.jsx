@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from '../styles/navbar.module.css'
 import { Toaster, toast } from 'sonner';
 
-const Navbar = ({headers, fetchCurrentUser, fetchOtherUser, logoutToast, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser}) => {
+const Navbar = ({headers, fetchPosts, fetchCurrentUser, fetchOtherUser, logoutToast, handleVisitProfile, JWT, setJWT, otherUser, setOtherUser, currentUser, setCurrentUser}) => {
     const [openFriends, setOpenFriends] = useState(false)
 
     let navigate = useNavigate()
@@ -31,6 +31,7 @@ const Navbar = ({headers, fetchCurrentUser, fetchOtherUser, logoutToast, handleV
             if (response.ok) {
                 friendAccepted()
                 fetchCurrentUser()
+                fetchPosts()
             }
         } catch (err) {
             console.log(err)

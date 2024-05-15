@@ -18,6 +18,7 @@ function App() {
   const [currentUserPostIDs, setCurrentUserPostIDs] = useState([])
   const [otherUser, setOtherUser] = useState()
   const [posts, setPosts] = useState([])
+  const [showSpinner, setShowSpinner] = useState(true)
 
   const navigate = useNavigate()
 
@@ -58,6 +59,27 @@ useEffect(() => {
     setCurrentUserPostIDs(currentUserPosts)
   }
   }, [currentUser])
+
+  const fetchPosts = async () => {
+    try {
+        const response = await fetch('https://y-backend-production.up.railway.app/getposts', {
+            method: 'GET',
+            headers: headers,
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            setPosts(data); 
+            setShowSpinner(false)
+        } else {
+            somethingWentWrong('Failed to fetch posts')
+            throw new Error('Failed to fetch posts');
+        }
+    } catch (error) {
+        somethingWentWrong('Error fetching posts')
+        console.error('Error fetching posts:', error);
+    }
+};
 
   const fetchCurrentUser = async () => {
     try {
@@ -155,10 +177,10 @@ const sendFriendRequest = async (e, userid) => {
 
   return (
     <>
-      {showNavbar && <Navbar headers={headers} fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} logoutToast={logoutToast} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
+      {showNavbar && <Navbar headers={headers} fetchPosts={fetchPosts} fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} logoutToast={logoutToast} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
         <Routes>
           <Route path='/' element={<Redirect />} />
-          <Route path='/home' element={<Home headers={headers} userFriendIDs={userFriendIDs} userFriendRequestIDs={userFriendRequestIDs} userSentFriendRequestIDs={userSentFriendRequestIDs} sendFriendRequest={sendFriendRequest} currentUserPostIDs={currentUserPostIDs} posts={posts} setPosts={setPosts} fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} sentFriendToast={sentFriendToast} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} somethingWentWrong={somethingWentWrong} postLikedToast={postLikedToast}/>}/>
+          <Route path='/home' element={<Home headers={headers} showSpinner={showSpinner} setShowSpinner={setShowSpinner} fetchPosts={fetchPosts} userFriendIDs={userFriendIDs} userFriendRequestIDs={userFriendRequestIDs} userSentFriendRequestIDs={userSentFriendRequestIDs} sendFriendRequest={sendFriendRequest} currentUserPostIDs={currentUserPostIDs} posts={posts} setPosts={setPosts} fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} sentFriendToast={sentFriendToast} deletePostToast={deletePostToast} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} somethingWentWrong={somethingWentWrong} postLikedToast={postLikedToast}/>}/>
           <Route path='/profile' element={<Profile headers={headers} userFriendIDs={userFriendIDs} userFriendRequestIDs={userFriendRequestIDs} userSentFriendRequestIDs={userSentFriendRequestIDs} sendFriendRequest={sendFriendRequest} fetchOtherUser={fetchOtherUser} navigate={navigate} currentUserPostIDs={currentUserPostIDs} createCommentToast={createCommentToast} deleteCommentToast={deleteCommentToast} posts={posts} setPosts={setPosts} fetchCurrentUser={fetchCurrentUser} fetchOtherUser={fetchOtherUser} handleVisitProfile={handleVisitProfile} JWT={JWT} setJWT={setJWT} otherUser={otherUser} setOtherUser={setOtherUser} currentUser={currentUser} setCurrentUser={setCurrentUser} postToast={postToast} deletePostToast={deletePostToast} somethingWentWrong={somethingWentWrong} postLikedToast={postLikedToast}/>}/>
           <Route path='/profilesettings' element={<ProfileSettings currentUser={currentUser} JWT={JWT} fetchCurrentUser={fetchCurrentUser} headers={headers}/>}/>
           <Route path='/register' element={<Register registerToast={registerToast} JWT={JWT} setJWT={setJWT} handleDemoLogin={handleDemoLogin}/>}/>
